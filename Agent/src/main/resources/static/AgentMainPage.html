@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<script src="scripts/jquery-3.2.1.min.js"></script>
+		<script src="scripts/tether.min.js"></script>
+		<script src="scripts/bootstrap.min.js"></script>
+		<script src="scripts/functions.js"></script>
+		<link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+		<meta charset="UTF-8">
+		<title>AdminMainPage</title>
+		
+		<script>
+		$(document).ready(function(){
+			$.ajax({
+				url : "http://localhost:8083/smestaji/getSviSmestaji"
+			}).then(
+					function(data) {
+						for (i = 0; i < data.length; i++) {
+						
+							newRow = 
+								"<tr>"
+									+ + "<td class=\"adresa\">" + data[i].adresa + "</td>"
+									+ "<td class=\"slika\">" + data[i].slika + "</td>"
+									+ "<td class=\"opis\">" + data[i].opis + "</td>"
+									+ "<td class=\"kategorija\">" + data[i].kategorija + "</td>"
+								+ "</tr>"
+							$("#tabela").append(newRow)
+						}
+					});
+		});
+		</script>
+		
+	</head>
+	<body>
+		<h1>Moji smestaji za izdavanje:</h1>
+		<table border = "1" id = "tabela">
+			<tr>
+				<th>Adresa</th>
+				<th>Slika</th>
+				<th>Opis</th>
+				<th>Kategorija</th>
+			</tr>
+		</table>
+	
+	</body>
+</html>
