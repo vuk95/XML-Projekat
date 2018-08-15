@@ -94,9 +94,11 @@ public class Smestaj {
     @XmlElement(name = "Agent", required = true)
     @ManyToOne
     protected Agent agent;
-    @XmlElement(name = "Adresa", required = true)
+    /*@XmlElement(name = "Adresa", required = true)
     @ManyToOne
     protected Adresa adresa;
+    */
+    private String lokacija;
     @XmlElement(name = "Kategorija")
     protected int kategorija;
     @XmlElement(name = "Tip", required = true)
@@ -146,9 +148,11 @@ public class Smestaj {
      *     {@link Adresa }
      *     
      */
+    /*
     public Adresa getAdresa() {
         return adresa;
     }
+    */
 
     /**
      * Sets the value of the adresa property.
@@ -158,10 +162,11 @@ public class Smestaj {
      *     {@link Adresa }
      *     
      */
+    /*
     public void setAdresa(Adresa value) {
         this.adresa = value;
     }
-
+    */
     /**
      * Gets the value of the kategorija property.
      * 
@@ -311,4 +316,12 @@ public class Smestaj {
         this.id = value;
     }
 
+	public String getLokacija() {
+		return lokacija;
+	}
+
+	public void setLokacija(String lokacija) {
+		this.lokacija = lokacija;
+	}
+    
 }

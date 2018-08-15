@@ -18,7 +18,7 @@
 						
 							newRow = 
 								"<tr>"
-									+ + "<td class=\"adresa\">" + data[i].adresa + "</td>"
+									+ "<td class=\"adresa\">" + data[i].lokacija + "</td>"
 									+ "<td class=\"slika\">" + data[i].slika + "</td>"
 									+ "<td class=\"opis\">" + data[i].opis + "</td>"
 									+ "<td class=\"kategorija\">" + data[i].kategorija + "</td>"
@@ -26,6 +26,37 @@
 							$("#tabela").append(newRow)
 						}
 					});
+			
+			$("#add").click(function(){
+				formData = JSON.stringify({
+		            lokacija:$("#inputForm [name='lokacija']").val(),
+		            kategorija:$("#inputForm [name='kategorija']").val(),
+		            tip:$("#inputForm [name='tip']").val(),
+		            opis:$("#inputForm [name='opis']").val(),
+		            slika:$("#inputForm [name='slika']").val(),
+		        });
+				$.ajax({
+					url: "/smestaji",
+					type: "POST",
+					data: formData,
+					
+					contentType: "application/json",
+					datatype: 'json',
+					success: function(data) {
+						newRow = 
+								"<tr>"
+									+ "<td class=\"adresa\">" + data.lokacija + "</td>"
+									+ "<td class=\"slika\">" + data.slika + "</td>"
+									+ "<td class=\"opis\">" + data.opis + "</td>"
+									+ "<td class=\"kategorija\">" + data.kategorija + "</td>"
+								+ "</tr>"
+						$("#tabela").append(newRow)
+					  
+						}
+					});
+				
+			});
+			
 		});
 		</script>
 		
@@ -40,6 +71,34 @@
 				<th>Kategorija</th>
 			</tr>
 		</table>
+		
+			<form id="inputForm">
+		      
+					<input type="hidden" name="id" id="id" />
+				<p>
+					<label for="lokacija">Lokacija</label> <input type="text" name="lokacija"
+						id="lokacija"/>
+				</p>
+				<p>
+					<label for="kategorija">Kategorija</label> <input type="number" name="kategorija"
+						id="kategorija" />
+				</p>
+				<p>
+					<label for="tip">Tip</label> <input type="number" name="tip"
+						id="tip" />
+				</p>
+				<p>
+					<label for="opis">Opis</label> <input type="text" name="opis"
+						id="opis" />
+				</p>
+				<p>
+					<label for="slika">Slika</label> <input type="text" name="slika"
+						id="slika" />
+				</p>		
+				
+		        <button type="button" class="btn btn-primary" id="add">Potvrda</button>
+		   
+		      </form>
 	
 	</body>
 </html>

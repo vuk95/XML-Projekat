@@ -6,7 +6,7 @@ import com.xmlws.agent.model.Smestaj;
 
 public interface SmestajService {
 
-	public void save(Smestaj s);
+	public Smestaj save(Smestaj s);
 	public Smestaj findOne(Long id);
 	public List<Smestaj> findAll();
 	

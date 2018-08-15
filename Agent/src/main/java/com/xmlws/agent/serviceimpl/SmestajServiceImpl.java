@@ -16,8 +16,8 @@ public class SmestajServiceImpl implements SmestajService{
 	private SmestajRepository repository;
 	
 	@Override
-	public void save(Smestaj s) {
-		repository.save(s);
+	public Smestaj save(Smestaj s) {
+		return repository.save(s);
 	}
 
 	@Override
