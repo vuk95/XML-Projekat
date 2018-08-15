@@ -25,7 +25,6 @@
                 </xs:element>
                 <xs:element name="Opis" type="xs:string"/>
                 <xs:element maxOccurs="unbounded" name="Slika" type="xs:string"/>
-                <xs:element name="Broj_kreveta" type="xs:positiveInteger"/>
                 <xs:element name="Ocena">
                     <xs:simpleType>
                         <xs:restriction base="xs:positiveInteger">
@@ -34,6 +33,8 @@
                         </xs:restriction>
                     </xs:simpleType>
                 </xs:element>
+                <xs:element ref="Ponuda"/>
+                <xs:element name="id" type="xs:long"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -50,11 +51,10 @@
     <xs:element name="Rezervacija">
         <xs:complexType>
             <xs:sequence>
-                <xs:element ref="Smestaj"/>
                 <xs:element ref="Korisnik"/>
-                <xs:element name="Od" type="xs:date"/>
-                <xs:element name="Do" type="xs:date"/>
                 <xs:element name="Potvrdjeno" type="xs:boolean"/>
+                <xs:element name="Datum_realizacije" type="xs:dateTime"/>
+                <xs:element name="id" type="xs:long"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -65,6 +65,7 @@
                 <xs:element ref="Korisnik"/>
                 <xs:element name="Sadrzaj" type="xs:string"/>
                 <xs:element name="Odobren" type="xs:boolean"/>
+                <xs:element name="id" type="xs:long"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -77,6 +78,7 @@
                 <xs:element name="Lozinka" type="xs:string"/>
                 <xs:element ref="Adresa"/>
                 <xs:element name="Zabranjen" type="xs:boolean"/>
+                <xs:element name="id" type="xs:long"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -89,6 +91,7 @@
                 <xs:element name="Lozinka" type="xs:string"/>
                 <xs:element ref="Adresa"/>
                 <xs:element name="Poslovni_maticni_broj" type="xs:string"/>
+                <xs:element name="id" type="xs:long"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -97,6 +100,7 @@
             <xs:sequence>
                 <xs:element name="Email" type="xs:string"/>
                 <xs:element name="Lozinka" type="xs:string"/>
+                <xs:element name="id" type="xs:long"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -118,6 +122,33 @@
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Ponuda">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Cena" type="xs:decimal"/>
+                <xs:element name="Broj_kreveta" type="xs:positiveInteger"/>
+                <xs:element name="Od" type="xs:date"/>
+                <xs:element name="Do" type="xs:date"/>
+                <xs:element ref="Rezervacija"/>
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="Dodatna_usluga">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Naziv" type="xs:string"/>
+                            <xs:element name="Sifra">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:int">
+                                        <xs:pattern value="[0-9][0-9][0-9]"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Opis" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="id" type="xs:long"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

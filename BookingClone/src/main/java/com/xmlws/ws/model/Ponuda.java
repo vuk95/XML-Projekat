@@ -8,15 +8,31 @@
 
 package com.xmlws.ws.model;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
@@ -29,6 +45,11 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
+ *         &lt;element name="Cena" type="{http://www.w3.org/2001/XMLSchema}decimal"/&gt;
+ *         &lt;element name="Broj_kreveta" type="{http://www.w3.org/2001/XMLSchema}positiveInteger"/&gt;
+ *         &lt;element name="Od" type="{http://www.w3.org/2001/XMLSchema}date"/&gt;
+ *         &lt;element name="Do" type="{http://www.w3.org/2001/XMLSchema}date"/&gt;
+ *         &lt;element ref="{}Rezervacija"/&gt;
  *         &lt;element name="Dodatna_usluga" maxOccurs="unbounded" minOccurs="0"&gt;
  *           &lt;complexType&gt;
  *             &lt;complexContent&gt;
@@ -48,6 +69,7 @@ import javax.xml.bind.annotation.XmlType;
  *             &lt;/complexContent&gt;
  *           &lt;/complexType&gt;
  *         &lt;/element&gt;
+ *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -58,14 +80,165 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "dodatnaUsluga"
+    "cena",
+    "brojKreveta",
+    "od",
+    "_do",
+    "rezervacija",
+    "dodatnaUsluga",
+    "id"
 })
+@Entity
+@XmlRootElement(name = "Ponuda")
+@Table(name = "Ponuda")
+public class Ponuda {
 
-@XmlRootElement(name = "Sifrarnik")
-public class Sifrarnik {
-
+    @XmlElement(name = "Cena", required = true)
+    protected BigDecimal cena;
+    @XmlElement(name = "Broj_kreveta", required = true)
+    @XmlSchemaType(name = "positiveInteger")
+    protected BigInteger brojKreveta;
+    @XmlElement(name = "Od", required = true)
+    @XmlSchemaType(name = "date")
+    protected Date od;
+    @XmlElement(name = "Do", required = true)
+    @XmlSchemaType(name = "date")
+    protected Date _do;
+    @XmlElement(name = "Rezervacija", required = true)
+    @ManyToOne
+    protected Rezervacija rezervacija;
+   
+    /*
     @XmlElement(name = "Dodatna_usluga")
-    protected List<Sifrarnik.DodatnaUsluga> dodatnaUsluga;
+    @OneToMany
+    @JoinTable(name = "ponuda_dodatne_usluge", joinColumns = {@JoinColumn(name="ponuda_id")},
+               inverseJoinColumns = {@JoinColumn(name="dodatna_id")} ) 
+    protected List<DodatnaUsluga> dodatnaUsluga;
+    */
+    @Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ponuda_id")
+    protected long id;
+
+    /**
+     * Gets the value of the cena property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigDecimal }
+     *     
+     */
+    public BigDecimal getCena() {
+        return cena;
+    }
+
+    /**
+     * Sets the value of the cena property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigDecimal }
+     *     
+     */
+    public void setCena(BigDecimal value) {
+        this.cena = value;
+    }
+
+    /**
+     * Gets the value of the brojKreveta property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigInteger }
+     *     
+     */
+    public BigInteger getBrojKreveta() {
+        return brojKreveta;
+    }
+
+    /**
+     * Sets the value of the brojKreveta property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigInteger }
+     *     
+     */
+    public void setBrojKreveta(BigInteger value) {
+        this.brojKreveta = value;
+    }
+
+    /**
+     * Gets the value of the od property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public Date getOd() {
+        return od;
+    }
+
+    /**
+     * Sets the value of the od property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public void setOd(Date value) {
+        this.od = value;
+    }
+
+    /**
+     * Gets the value of the do property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public Date getDo() {
+        return _do;
+    }
+
+    /**
+     * Sets the value of the do property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public void setDo(Date value) {
+        this._do = value;
+    }
+
+    /**
+     * Gets the value of the rezervacija property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Rezervacija }
+     *     
+     */
+    public Rezervacija getRezervacija() {
+        return rezervacija;
+    }
+
+    /**
+     * Sets the value of the rezervacija property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Rezervacija }
+     *     
+     */
+    public void setRezervacija(Rezervacija value) {
+        this.rezervacija = value;
+    }
 
     /**
      * Gets the value of the dodatnaUsluga property.
@@ -85,15 +258,31 @@ public class Sifrarnik {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Sifrarnik.DodatnaUsluga }
+     * {@link Ponuda.DodatnaUsluga }
      * 
      * 
      */
-    public List<Sifrarnik.DodatnaUsluga> getDodatnaUsluga() {
+    /*public List<Ponuda.DodatnaUsluga> getDodatnaUsluga() {
         if (dodatnaUsluga == null) {
-            dodatnaUsluga = new ArrayList<Sifrarnik.DodatnaUsluga>();
+            dodatnaUsluga = new ArrayList<Ponuda.DodatnaUsluga>();
         }
         return this.dodatnaUsluga;
+    }
+     */
+    /**
+     * Gets the value of the id property.
+     * 
+     */
+    public long getId() {
+        return id;
+    }
+
+    /**
+     * Sets the value of the id property.
+     * 
+     */
+    public void setId(long value) {
+        this.id = value;
     }
 
 
