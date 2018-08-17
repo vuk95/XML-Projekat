@@ -1,0 +1,12 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Smestaj prikazani</title>
+	</head>
+	<body>
+		<h1 th:text="${smestaj.lokacija +' - ' + smestaj.opis}"></h1>
+		
+		<a th:href="@{'/imgsmestaji/' + ${smestaj.id} + '/image'}" role="button">Change Image</a>
+		
+		<img th:src="@{'/imgsmestaji/' + ${smestaj.id} + '/smestajiimage'}" width="360" height="240">
+	</body>
+</html>

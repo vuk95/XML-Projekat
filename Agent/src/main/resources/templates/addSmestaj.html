@@ -1,0 +1,34 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Dodaj smestaj</title>
+	</head>
+	<body>
+		<h3>Dodaj smestaj:</h3>
+		<form th:action="@{/smestaji/getSviSmestaji/add}" th:object="${smestaj}" method ="post">
+			<table>
+				
+				<tr>
+					<td>Adresa:</td>
+					<td><input type = "text" th:field="*{lokacija}"></td>
+				</tr>
+				<tr>
+					<td>Opis:</td>
+					<td><input type = "text" th:field="*{opis}"></td>
+				</tr>
+				<tr>
+					<td>Tip:</td>
+					<td><input type = "text" th:field="*{tip}"></td>
+				</tr>
+				<tr>
+					<td>Kategorija:</td>
+					<td><input type = "text" th:field="*{kategorija}"></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><input type = "submit" value="Save"></td>
+				</tr>
+			</table>
+		</form>
+		
+	</body>
+</html>

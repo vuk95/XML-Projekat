@@ -1,0 +1,25 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Naslovna</title>
+	</head>
+	<body>
+		<h3>Smestaji</h3>
+		<a th:href="@{/smestaji/getSviSmestaji/add}">Dodaj novi smestaj</a>
+		<table border = "1">
+			<tr>
+				<th>Adresa</th>
+				<th>Slika</th>
+				<th>Opis</th>
+				<th>Tip</th>
+			</tr>
+			<tr th:each="smestaj, iterStat: ${smestaji}">
+				<td th:text="${smestaj.lokacija}"></td>
+				<td><img th:src="@{'/imgsmestaji/' + ${smestaj.id} + '/smestajiimage'}" width="30" height="30"></td>
+				<td th:text="${smestaj.opis}"></td>
+				<td th:text="${smestaj.tip}"></td>
+				<td><a th:href="${'/smestaji/getSviSmestaji/show/' + smestaj.id}">Detaljnije</a></td>
+			</tr>
+		</table>
+	</body>
+</html>

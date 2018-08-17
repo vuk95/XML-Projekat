@@ -15,6 +15,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -106,7 +107,8 @@ public class Smestaj {
     @XmlElement(name = "Opis", required = true)
     protected String opis;
     @XmlElement(name = "Slika", required = true)
-    protected String slika;
+    @Lob
+    protected Byte[] slika;
     @XmlElement(name = "Ocena")
     protected int ocena;
     @XmlElement(name = "Ponuda", required = true)
@@ -253,13 +255,7 @@ public class Smestaj {
      * 
      * 
      */
-    public String getSlika() {
-        if (slika == null) {
-            slika = new  String();
-        }
-        return this.slika;
-    }
-
+    
     /**
      * Gets the value of the ocena property.
      * 
@@ -268,7 +264,15 @@ public class Smestaj {
         return ocena;
     }
 
-    /**
+    public Byte[] getSlika() {
+		return slika;
+	}
+
+	public void setSlika(Byte[] slika) {
+		this.slika = slika;
+	}
+
+	/**
      * Sets the value of the ocena property.
      * 
      */

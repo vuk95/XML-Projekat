@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.xmlws.agent.model.Smestaj;
 import com.xmlws.agent.service.SmestajService;
 
-@RestController
-@RequestMapping("/smestaji")
+//@RestController
+//@RequestMapping("/smestaji")
 public class SmestajController {
-	
+	/*
 	@Autowired
 	private SmestajService sm_service;
 	
@@ -35,5 +35,5 @@ public class SmestajController {
 		
 		return new ResponseEntity<Smestaj>(newSmestaj, HttpStatus.OK);
 	}
-
+	*/
 }
