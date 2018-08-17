@@ -6,16 +6,16 @@ INSERT INTO adresa (broj,drzava,grad,ulica) values ('58','Crna Gora','Herceg Nov
 INSERT INTO adresa (broj,drzava,grad,ulica) values ('322','Crna Gora','Kotor','Old town');
 
 --Smestaj
-INSERT INTO smestaj (kategorija,naziv,ocena,opis,tip,adresa_id) 
-values ('1','Hotel Backa','2','Jedini hotel u Vrbasu','Hotel','1');
-INSERT INTO smestaj (kategorija,naziv,ocena,opis,tip,adresa_id) 
-values ('4','Hotel Aleksandar','2','Najlepsi hotel u Novom Sadu','Hotel','2');
-INSERT INTO smestaj (kategorija,naziv,ocena,opis,tip,adresa_id) 
-values ('5','Crowne Plaza','2','Jedan od najluksuznijih hotela u Srbiji','Hotel','3');
-INSERT INTO smestaj (kategorija,naziv,ocena,opis,tip,adresa_id) 
-values ('3','Plaza','4','Hotel u Herceg Novom','Hotel','4');
-INSERT INTO smestaj (kategorija,naziv,ocena,opis,tip,adresa_id) 
-values ('4','Astoria','5','Jedini od najlepsih hotela u Crnoj Gori','Hotel','5');
+INSERT INTO smestaj (kategorija,lokacija,naziv,ocena,opis,tip) 
+values ('1','Vrbas','Hotel Backa','2','Jedini hotel u Vrbasu','Hotel');
+INSERT INTO smestaj (kategorija,lokacija,naziv,ocena,opis,tip) 
+values ('4','Novi Sad','Hotel Aleksandar','2','Najlepsi hotel u Novom Sadu','Hotel');
+INSERT INTO smestaj (kategorija,lokacija,naziv,ocena,opis,tip) 
+values ('5','Beograd','Crowne Plaza','2','Jedan od najluksuznijih hotela u Srbiji','Hotel');
+INSERT INTO smestaj (kategorija,lokacija,naziv,ocena,opis,tip) 
+values ('3','Herceg Novi','Plaza','4','Hotel u Herceg Novom','Hotel');
+INSERT INTO smestaj (kategorija,lokacija,naziv,ocena,opis,tip) 
+values ('4','Kotor','Astoria','5','Jedini od najlepsih hotela u Crnoj Gori','Hotel');
 
 --Ponuda
 INSERT INTO ponuda (_do,broj_kreveta,cena,od,smestaj_id) values ('2018-08-15','1','3500','2018-08-10','1');

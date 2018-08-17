@@ -95,9 +95,9 @@ public class Ponuda {
 
     @XmlElement(name = "Cena", required = true)
     protected BigDecimal cena;
-    @XmlElement(name = "Broj_kreveta", required = true)
-    @XmlSchemaType(name = "positiveInteger")
-    protected BigInteger brojKreveta;
+    
+    protected int brojKreveta;
+    
     @XmlElement(name = "Od", required = true)
     @XmlSchemaType(name = "date")
     protected Date od;
@@ -154,22 +154,7 @@ public class Ponuda {
      *     {@link BigInteger }
      *     
      */
-    public BigInteger getBrojKreveta() {
-        return brojKreveta;
-    }
-
-    /**
-     * Sets the value of the brojKreveta property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigInteger }
-     *     
-     */
-    public void setBrojKreveta(BigInteger value) {
-        this.brojKreveta = value;
-    }
-
+   
     /**
      * Gets the value of the od property.
      * 
@@ -182,7 +167,15 @@ public class Ponuda {
         return od;
     }
 
-    /**
+    public int getBrojKreveta() {
+		return brojKreveta;
+	}
+
+	public void setBrojKreveta(int brojKreveta) {
+		this.brojKreveta = brojKreveta;
+	}
+
+	/**
      * Sets the value of the od property.
      * 
      * @param value

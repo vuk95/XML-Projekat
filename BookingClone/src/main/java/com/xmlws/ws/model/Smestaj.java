@@ -89,12 +89,12 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "Smestaj")
 public class Smestaj {
 
-    @XmlElement(name = "Agent", required = true)
+	@XmlElement(name = "Agent", required = true)
     @ManyToOne
     protected Agent agent;
-    @XmlElement(name = "Adresa", required = true)
-    @ManyToOne
-    protected Adresa adresa;
+    //@XmlElement(name = "Adresa", required = true)
+    //@ManyToOne
+    //protected Adresa adresa;
     @XmlElement(name = "Kategorija")
     protected int kategorija;
     @XmlElement(name = "Tip", required = true)
@@ -110,6 +110,8 @@ public class Smestaj {
     //protected Ponuda ponuda;
     
     public String naziv;
+    
+    public String lokacija;
     
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -147,9 +149,9 @@ public class Smestaj {
      *     {@link Adresa }
      *     
      */
-    public Adresa getAdresa() {
-        return adresa;
-    }
+   // public Adresa getAdresa() {
+     //   return adresa;
+    //}
 
     /**
      * Sets the value of the adresa property.
@@ -159,9 +161,9 @@ public class Smestaj {
      *     {@link Adresa }
      *     
      */
-    public void setAdresa(Adresa value) {
-        this.adresa = value;
-    }
+   // public void setAdresa(Adresa value) {
+     //   this.adresa = value;
+    //}
 
     /**
      * Gets the value of the kategorija property.
@@ -318,6 +320,14 @@ public class Smestaj {
 
 	public void setNaziv(String naziv) {
 		this.naziv = naziv;
+	}
+
+	public String getLokacija() {
+		return lokacija;
+	}
+
+	public void setLokacija(String lokacija) {
+		this.lokacija = lokacija;
 	}
     
     
