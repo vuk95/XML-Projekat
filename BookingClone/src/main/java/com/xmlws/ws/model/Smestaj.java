@@ -106,8 +106,11 @@ public class Smestaj {
     @XmlElement(name = "Ocena")
     protected int ocena;
     @XmlElement(name = "Ponuda", required = true)
-    @ManyToOne
-    protected Ponuda ponuda;
+    //@ManyToOne
+    //protected Ponuda ponuda;
+    
+    public String naziv;
+    
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     protected long id;
@@ -277,9 +280,9 @@ public class Smestaj {
      *     {@link Ponuda }
      *     
      */
-    public Ponuda getPonuda() {
-        return ponuda;
-    }
+ //  public Ponuda getPonuda() {
+   //     return ponuda;
+    //}
 
     /**
      * Sets the value of the ponuda property.
@@ -289,9 +292,9 @@ public class Smestaj {
      *     {@link Ponuda }
      *     
      */
-    public void setPonuda(Ponuda value) {
-        this.ponuda = value;
-    }
+    //public void setPonuda(Ponuda value) {
+      //  this.ponuda = value;
+   // }
 
     /**
      * Gets the value of the id property.
@@ -309,4 +312,13 @@ public class Smestaj {
         this.id = value;
     }
 
+	public String getNaziv() {
+		return naziv;
+	}
+
+	public void setNaziv(String naziv) {
+		this.naziv = naziv;
+	}
+    
+    
 }

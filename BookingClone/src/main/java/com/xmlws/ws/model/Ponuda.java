@@ -108,6 +108,8 @@ public class Ponuda {
     @ManyToOne
     protected Rezervacija rezervacija;
    
+    @ManyToOne
+    public Smestaj smestaj;
     /*
     @XmlElement(name = "Dodatna_usluga")
     @OneToMany
@@ -285,6 +287,16 @@ public class Ponuda {
         this.id = value;
     }
 
+	public Smestaj getSmestaj() {
+		return smestaj;
+	}
+
+	public void setSmestaj(Smestaj smestaj) {
+		this.smestaj = smestaj;
+	}
+
+    
+    
 
     /**
      * <p>Java class for anonymous complex type.
@@ -313,85 +325,5 @@ public class Ponuda {
      * 
      * 
      */
-    @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
-        "naziv",
-        "sifra",
-        "opis"
-    })
-    public static class DodatnaUsluga {
-
-        @XmlElement(name = "Naziv", required = true)
-        protected String naziv;
-        @XmlElement(name = "Sifra")
-        protected int sifra;
-        @XmlElement(name = "Opis", required = true)
-        protected String opis;
-
-        /**
-         * Gets the value of the naziv property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
-        public String getNaziv() {
-            return naziv;
-        }
-
-        /**
-         * Sets the value of the naziv property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
-         */
-        public void setNaziv(String value) {
-            this.naziv = value;
-        }
-
-        /**
-         * Gets the value of the sifra property.
-         * 
-         */
-        public int getSifra() {
-            return sifra;
-        }
-
-        /**
-         * Sets the value of the sifra property.
-         * 
-         */
-        public void setSifra(int value) {
-            this.sifra = value;
-        }
-
-        /**
-         * Gets the value of the opis property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
-        public String getOpis() {
-            return opis;
-        }
-
-        /**
-         * Sets the value of the opis property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
-         */
-        public void setOpis(String value) {
-            this.opis = value;
-        }
-
-    }
-
+    
 }

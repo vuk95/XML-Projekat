@@ -96,10 +96,7 @@ public class ObjectFactory {
      * Create an instance of {@link Ponuda.DodatnaUsluga }
      * 
      */
-    public Ponuda.DodatnaUsluga createPonudaDodatnaUsluga() {
-        return new Ponuda.DodatnaUsluga();
-    }
-
+    
     /**
      * Create an instance of {@link Komentar }
      * 
