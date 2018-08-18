@@ -7,6 +7,11 @@
 		
 		<a th:href="@{'/imgsmestaji/' + ${smestaj.id} + '/image'}" role="button">Change Image</a>
 		
-		<img th:src="@{'/imgsmestaji/' + ${smestaj.id} + '/smestajiimage'}" width="360" height="240">
+		<!--<img th:src="@{'/imgsmestaji/' + ${smestaj.id} + '/smestajiimage'}" width="360" height="240">-->
+		<table>
+			<tr th:each="image, iterStat: ${slike}">
+				<td><img th:src="@{'/imgsmestaji/' + ${smestaj.id} + '/smestajiimage/' + ${image.id}}" width="360" height="240"></td>
+			</tr>
+		</table>
 	</body>
 </html>

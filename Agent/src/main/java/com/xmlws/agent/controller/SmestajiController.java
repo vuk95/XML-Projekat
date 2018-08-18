@@ -55,6 +55,7 @@ public class SmestajiController {
     public String showById(@PathVariable Long id, ModelMap map){
 
     	map.put("smestaj",sm_service.findOne(id));
+    	map.put("slike", sm_service.findOne(id).getMojeSlike());
     	return "showSmestaj";
 		
     }

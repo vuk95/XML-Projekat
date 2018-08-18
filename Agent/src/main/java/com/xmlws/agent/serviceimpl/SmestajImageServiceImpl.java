@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.xmlws.agent.model.Image;
 import com.xmlws.agent.model.Smestaj;
+import com.xmlws.agent.repository.ImageRepository;
 import com.xmlws.agent.repository.SmestajRepository;
 import com.xmlws.agent.service.SmestajImageService;
 
@@ -15,6 +17,9 @@ public class SmestajImageServiceImpl implements SmestajImageService{
 	
 	@Autowired
 	private SmestajRepository repo;
+	
+	@Autowired
+	private ImageRepository imageRepo;
 	
 	@Override
 	public void saveImageFile(Long smestajId, MultipartFile file) {
@@ -28,8 +33,9 @@ public class SmestajImageServiceImpl implements SmestajImageService{
 	                byteObjects[i++] =  b;
 	            }
 	            
-
-	            smestaj.setSlika(byteObjects);
+	            Image image = new Image();
+	            image.setSlika(byteObjects);
+	            smestaj.getMojeSlike().add(image);
 	            
 	            repo.save(smestaj);
 
@@ -37,6 +43,12 @@ public class SmestajImageServiceImpl implements SmestajImageService{
 
             e.printStackTrace();
         }
+	}
+
+	@Override
+	public Image findOne(Integer id) {
+		
+		return imageRepo.getOne(id);
 	}
 
 }

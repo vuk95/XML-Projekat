@@ -11,10 +11,14 @@ package com.xmlws.agent.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -99,24 +103,31 @@ public class Smestaj {
     @ManyToOne
     protected Adresa adresa;
     */
+    private int kapacitet;
     private String lokacija;
     @XmlElement(name = "Kategorija")
-    protected int kategorija;
+    protected String kategorija;
     @XmlElement(name = "Tip", required = true)
     protected String tip;
     @XmlElement(name = "Opis", required = true)
     protected String opis;
-    @XmlElement(name = "Slika", required = true)
-    @Lob
-    protected Byte[] slika;
     @XmlElement(name = "Ocena")
     protected int ocena;
     @XmlElement(name = "Ponuda", required = true)
     @ManyToOne
     protected Ponuda ponuda;
+    
+    @OneToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "mojeSlike",
+				joinColumns = @JoinColumn(name = "smestaj_id", referencedColumnName = "smestaj_id"),
+				inverseJoinColumns = @JoinColumn(name = "image_id", referencedColumnName = "image_id"))
+	private List<Image> mojeSlike = new ArrayList<Image>();
+    
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "smestaj_id")
     protected Long id;
+    
 
     /**
      * Gets the value of the agent property.
@@ -173,7 +184,7 @@ public class Smestaj {
      * Gets the value of the kategorija property.
      * 
      */
-    public int getKategorija() {
+    public String getKategorija() {
         return kategorija;
     }
 
@@ -181,7 +192,7 @@ public class Smestaj {
      * Sets the value of the kategorija property.
      * 
      */
-    public void setKategorija(int value) {
+    public void setKategorija(String value) {
         this.kategorija = value;
     }
 
@@ -264,14 +275,6 @@ public class Smestaj {
         return ocena;
     }
 
-    public Byte[] getSlika() {
-		return slika;
-	}
-
-	public void setSlika(Byte[] slika) {
-		this.slika = slika;
-	}
-
 	/**
      * Sets the value of the ocena property.
      * 
@@ -327,5 +330,21 @@ public class Smestaj {
 	public void setLokacija(String lokacija) {
 		this.lokacija = lokacija;
 	}
-    
+
+	public int getKapacitet() {
+		return kapacitet;
+	}
+
+	public void setKapacitet(int kapacitet) {
+		this.kapacitet = kapacitet;
+	}
+
+	public List<Image> getMojeSlike() {
+		return mojeSlike;
+	}
+
+	public void setMojeSlike(List<Image> mojeSlike) {
+		this.mojeSlike = mojeSlike;
+	}
+	
 }

@@ -15,7 +15,7 @@
 			</tr>
 			<tr th:each="smestaj, iterStat: ${smestaji}">
 				<td th:text="${smestaj.lokacija}"></td>
-				<td><img th:src="@{'/imgsmestaji/' + ${smestaj.id} + '/smestajiimage'}" width="30" height="30"></td>
+				<!--<td><img th:src="@{'/imgsmestaji/' + ${smestaj.id} + '/smestajiimage'}" width="30" height="30"></td>-->
 				<td th:text="${smestaj.opis}"></td>
 				<td th:text="${smestaj.tip}"></td>
 				<td><a th:href="${'/smestaji/getSviSmestaji/show/' + smestaj.id}">Detaljnije</a></td>

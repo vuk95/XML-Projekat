@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.xmlws.agent.model.Image;
 import com.xmlws.agent.model.Smestaj;
 import com.xmlws.agent.service.SmestajImageService;
 import com.xmlws.agent.service.SmestajService;
+
 
 
 @Controller
@@ -47,28 +49,35 @@ public class ImageSmestajController {
 	        return "redirect:/smestaji/getSviSmestaji";
 	    }
 	   
-	    @GetMapping("imgsmestaji/{id}/smestajiimage")
-	    public void renderImageFromDB(@PathVariable Long id, HttpServletResponse response) throws IOException {
+	    @GetMapping("imgsmestaji/{id}/smestajiimage/{Idsl}")
+	    public void renderImageFromDB(@PathVariable(value = "id") Long id,@PathVariable(value = "Idsl") int Idsl, HttpServletResponse response) throws IOException {
 	    	
 	    	Smestaj smestaj = smestajService.findOne(id);
 	        
 	        if(smestaj == null){
 	            throw new RuntimeException("there is no smestaj with this id : " + id);
 	        }
+	        	for(int i = 0; i < smestaj.getMojeSlike().size(); i++) {
+	        		Image image = imageService.findOne(Idsl);
+	        		if(image.getId().equals(smestaj.getMojeSlike().get(i).getId())) {
+	        			
+	        			byte[] byteArray = new byte[smestaj.getMojeSlike().get(i).getSlika().length];
+	        	        
+	        	        
+	    	        	int j= 0;
+	    	      
+	    	        	for(Byte wrappedByte : smestaj.getMojeSlike().get(i).getSlika() ){
 
-	        byte[] byteArray = new byte[smestaj.getSlika().length];
-	        int i= 0;
-	      
-	        for(Byte wrappedByte : smestaj.getSlika() ){
-
-	            byteArray[i++] = wrappedByte;
-	        }
+	    	        		byteArray[j++] = wrappedByte;
+	    	        	}
+	    	        
+	    	        	response.setContentType("image/jpeg");
+	    	        	InputStream is = new ByteArrayInputStream(byteArray);
+	    	        	IOUtils.copy(is,response.getOutputStream());
+	        			
+	        		}
+	        	}
 	        
-	        response.setContentType("image/jpeg");
-	        InputStream is = new ByteArrayInputStream(byteArray);
-	        IOUtils.copy(is,response.getOutputStream());
-
-
 	    }
 	
 }
