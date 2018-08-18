@@ -96,14 +96,14 @@ public class Ponuda {
     @XmlElement(name = "Cena", required = true)
     protected BigDecimal cena;
     
-    protected int brojKreveta;
+    protected String brojKreveta;
     
     @XmlElement(name = "Od", required = true)
-    @XmlSchemaType(name = "date")
-    protected Date od;
-    @XmlElement(name = "Do", required = true)
-    @XmlSchemaType(name = "date")
-    protected Date _do;
+    
+    protected String od;
+    
+    
+    protected String doDatuma;
     @XmlElement(name = "Rezervacija", required = true)
     @ManyToOne
     protected Rezervacija rezervacija;
@@ -163,15 +163,15 @@ public class Ponuda {
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public Date getOd() {
+    public String getOd() {
         return od;
     }
 
-    public int getBrojKreveta() {
+    public String getBrojKreveta() {
 		return brojKreveta;
 	}
 
-	public void setBrojKreveta(int brojKreveta) {
+	public void setBrojKreveta(String brojKreveta) {
 		this.brojKreveta = brojKreveta;
 	}
 
@@ -183,7 +183,7 @@ public class Ponuda {
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setOd(Date value) {
+    public void setOd(String value) {
         this.od = value;
     }
 
@@ -195,10 +195,14 @@ public class Ponuda {
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public Date getDo() {
-        return _do;
-    }
+    public String getDoDatuma() {
+		return doDatuma;
+	}
 
+	public void setDoDatuma(String doDatuma) {
+		this.doDatuma = doDatuma;
+	}
+    
     /**
      * Sets the value of the do property.
      * 
@@ -207,9 +211,7 @@ public class Ponuda {
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setDo(Date value) {
-        this._do = value;
-    }
+    
 
     /**
      * Gets the value of the rezervacija property.
@@ -223,7 +225,8 @@ public class Ponuda {
         return rezervacija;
     }
 
-    /**
+    
+	/**
      * Sets the value of the rezervacija property.
      * 
      * @param value

@@ -48,6 +48,13 @@ public class PonudaServiceImpl implements PonudaService {
 	public List<Ponuda> searchOrderByCategory(Date od, Date _do, String naziv, int brojKreveta) {
 		return repository.findBySmestajLokacijaContainingIgnoreCaseAndBrojKrevetaOrderBySmestajKategorija(naziv, brojKreveta);
 	}
+	
+	
+	//Privremeno dok ne nadjem bolje resenje
+	@Override
+	public List<Ponuda> findPonuda(String od, String doDatuma, String brojKreveta,String lokacija) {
+		return repository.findByOdIgnoreCaseContainingAndDoDatumaIgnoreCaseContainingAndBrojKrevetaIgnoreCaseContainingAndSmestajLokacijaIgnoreCaseContaining(od, doDatuma, brojKreveta,lokacija);
+	}
 
 	
 

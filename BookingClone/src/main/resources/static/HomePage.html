@@ -13,12 +13,55 @@
 
 	<title>Booking home</title>
 <script>
+	 
+$(document).ready(function(){	 
+
+	$("#search").click(function(){
+		//pripremamo JSON koji cemo poslati
+		var data = {}
+		data["od"] = $("#searchForm [name='od']").val();
+		data["doDatuma"] = $("#searchForm [name='doDatuma']").val();
+		data["brojKreveta"] = $("#searchForm [name='brojKreveta']").val();
+		data["lokacija"] = $("#searchForm [name='lokacija']").val();
+		
+		$.ajax({
+			url: "http://localhost:8083/search",
+			type: "GET",
+			data: data,
+			//saljemo json i ocekujemo json nazad
+			contentType: "application/json",
+			datatype: 'json',
+			success: function(data) {
+				
+				for (i = 0; i < data.length; i++) {
+					newRow = 
+						"<tr>"
+							+ "<td class=\"od\">" + data[i].smestaj.naziv + "</td>"
+							+ "<td class=\"lokacija\">" + data[i].smestaj.lokacija + "</td>"
+							+ "<td class=\"kategorija\">" + data[i].smestaj.kategorija + "</td>"
+							+ "<td class=\"do\">" + data[i].smestaj.tip + "</td>"
+							+ "<td class=\"brojKreveta\">" + data[i].brojKreveta + "</td>"
+							+ "<td class=\"brojKreveta\">" + data[i].od + "</td>"
+							+ "<td class=\"do\">" + data[i].doDatuma + "</td>"
+							+ "<td class=\"do\">" + data[i].cena + "</td>"
+						+ "</tr>"
+						$("#dataTable").append(newRow);				
+				}		
+			}
+		});	
+	});
+	
+	 
+});	 
+	 
+	 
 	 $( function() {
 		    $( "#datepicker" ).datepicker();
 		  } );
 	 $( function() {
 		    $( "#datepicker1" ).datepicker();
 		  } );
+		 
 </script>
 <style>
 h3 {
@@ -70,47 +113,44 @@ margin-top: 12px;
 			
 			<div class="panel-body">
 			
-				<form name="SubForum" id="SubForum" method="post">
+				<form  id="searchForm">
 				
 					<div class="form-group">
-						<label for="naziv">Mesto:</label>
-						<input id="naziv" name="naziv" class="form-control" type="text" data-validation="required">
-						<span id="error_naziv" class="text-danger"></span>
+						<label for="place">Mesto:</label>
+						<input id="place" name="lokacija" class="form-control" type="text" data-validation="required">
 					</div>
 					
 					
 					<div class="form-group">
-						<label for="ikonica">Datum polaska:</label>
-						<input id="datepicker" name="ikonica" class="form-control"  type="text" data-validation="required">
-						<span id="error_ikonica" class="text-danger"></span>
+						<label for="startDate">Datum polaska:</label>
+						<input id="startDate" name="od" class="form-control"  type="text" data-validation="required">						
 					</div>
 					
 					<div class="form-group">
-						<label for="ikonica">Datum dolaska:</label>
-						<input id="datepicker1" name="ikonica" class="form-control"  type="text" data-validation="required">
-						<span id="error_ikonica" class="text-danger"></span>
+						<label for="endDate">Datum dolaska:</label>
+						<input id="endDate" name="doDatuma" class="form-control"  type="text" data-validation="required">
 					</div>
 					
 					<div class="form-group">
-						<label for="ikonica">Broj osoba:</label>				
-						<select class="form-control" id="spisakModeratora" size="1" style="width: 510px;" >
-							<option>1 osoba</option>
-							<option>2 osobe</option>
-							<option>3 osobe</option>
-							<option>4 osobe</option>
-							<option>5 osoba</option>
-							<option>6 osoba</option>
-							<option>7 osoba</option>
-							<option>8 osoba</option>
-							<option>9 osoba</option>
-							<option>10 osoba</option>					
+						<label for="personNumber">Broj osoba:</label>				
+						<select class="form-control" id="personNumber" name = "brojKreveta" size="1" style="width: 510px;" >
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+							<option>6</option>
+							<option>7</option>
+							<option>8</option>
+							<option>9</option>
+							<option>10</option>					
 						</select> 
 						
 					</div>
 					
 					<div class="form-group">
-						<label for="ikonica">Sortiraj po:</label>				
-						<select class="form-control" id="spisakModeratora" size="1" style="width: 510px;" >
+						<label for="sort">Sortiraj po:</label>				
+						<select class="form-control" id="sort" name = "sortiranje" size="1" style="width: 510px;" >
 							<option>Ceni</option>
 							<option>Oceni</option>
 							<option>Kategoriji smestaja</option>					
@@ -121,10 +161,9 @@ margin-top: 12px;
 					<div class="form-group">
 						<label for="ikonica">Napredna pretraga:</label>
 						<a href="#searchModal" data-toggle="modal" data-target="#searchModal">Prikazi</a></li>
-						<span id="error_ikonica" class="text-danger"></span>
 					</div>
 					
-	<button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+	<button type="button" class="btn btn-primary" id="search"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
 				</form>
 
 			</div>
@@ -133,7 +172,28 @@ margin-top: 12px;
 	</div>
 		</div>
 	</div>
-
+			
+		<div class="container">
+		
+			<div id="box">	
+				<h3>Rezultati pretrage</h3>
+				<hr>
+				<table style="width:100%" id="dataTable"><tbody>
+  				<tr>
+				<th>Naziv</th>
+  				<th>Lokacija</th>
+				<th>Kategorija</th>
+				<th>Tip</th>
+				<th>Broj kreveta</th>
+  				<th>Datum polaska</th>
+  				<th>Datum dolaska</th>
+  				<th>Cena</th>
+  				</tr>
+				</tbody></table>
+		</div>
+		</div>
+			
+			
 
 		<!-- Modalni dijalog za pretragu -->
 		<div class="modal" id="searchModal" tabindex="-1" role="dialog">
@@ -145,7 +205,7 @@ margin-top: 12px;
 		          <span aria-hidden="true">&times;</span>
 		        </button>
 		      </div>
-		      <form id="searchForm">
+		      <form id="searchFor">
 		      <div class="modal-body">
 					<input type="hidden" name="id" id="id" />
 				<p>

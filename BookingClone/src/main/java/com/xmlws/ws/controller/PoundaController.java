@@ -1,6 +1,5 @@
 package com.xmlws.ws.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +20,11 @@ public class PoundaController {
 	private PonudaService ponudaService;
 	
 	@RequestMapping(value = "/search" , method = RequestMethod.GET , consumes="application/json")
-	public ResponseEntity<List<Ponuda>> search(@RequestParam(value = "od", required = false, defaultValue = "") Date od, 
-			@RequestParam(value = "_do", required = false, defaultValue = "") Date _do, @RequestParam(value = "naziv", required = false, defaultValue = "") String naziv,
-			@RequestParam(value = "brojKreveta", required = false, defaultValue = "") int brojKreveta) {
+	public ResponseEntity<List<Ponuda>> search(@RequestParam(value = "od", required = false, defaultValue = "") String od, 
+			@RequestParam(value = "doDatuma", required = false, defaultValue = "") String doDatuma,
+			@RequestParam(value = "brojKreveta", required = false, defaultValue = "") String brojKreveta,@RequestParam(value = "lokacija", required = false, defaultValue = "") String lokacija) {
 		
-		List<Ponuda> ponuda = ponudaService.searchOrderByCena(od, _do, naziv, brojKreveta); 
+		List<Ponuda> ponuda = ponudaService.findPonuda(od, doDatuma, brojKreveta,lokacija);
 				
 		return new ResponseEntity<>(ponuda,HttpStatus.OK);
 	} 

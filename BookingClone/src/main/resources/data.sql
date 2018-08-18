@@ -18,9 +18,9 @@ INSERT INTO smestaj (kategorija,lokacija,naziv,ocena,opis,tip)
 values ('4','Kotor','Astoria','5','Jedini od najlepsih hotela u Crnoj Gori','Hotel');
 
 --Ponuda
-INSERT INTO ponuda (_do,broj_kreveta,cena,od,smestaj_id) values ('2018-08-15','1','3500','2018-08-10','1');
-INSERT INTO ponuda (_do,broj_kreveta,cena,od,smestaj_id) values ('2018-08-25','3','11000','2018-08-15','2');
-INSERT INTO ponuda (_do,broj_kreveta,cena,od,smestaj_id) values ('2018-09-1','2','7500','2018-08-25','3');
-INSERT INTO ponuda (_do,broj_kreveta,cena,od,smestaj_id) values ('2018-08-26','4','13000','2018-08-16','4');
-INSERT INTO ponuda (_do,broj_kreveta,cena,od,smestaj_id) values ('2018-08-25','2','9600','2018-08-17','5');
+INSERT INTO ponuda (do_datuma,broj_kreveta,cena,od,smestaj_id) values ('2018-08-15','1','3500','2018-08-10','1');
+INSERT INTO ponuda (do_datuma,broj_kreveta,cena,od,smestaj_id) values ('2018-08-25','3','11000','2018-08-15','2');
+INSERT INTO ponuda (do_datuma,broj_kreveta,cena,od,smestaj_id) values ('2018-09-1','2','7500','2018-08-25','3');
+INSERT INTO ponuda (do_datuma,broj_kreveta,cena,od,smestaj_id) values ('2018-08-26','4','13000','2018-08-16','4');
+INSERT INTO ponuda (do_datuma,broj_kreveta,cena,od,smestaj_id) values ('2018-08-25','2','9600','2018-08-17','5');
 

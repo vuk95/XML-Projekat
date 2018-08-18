@@ -13,5 +13,8 @@ public interface PonudaService {
 	public List<Ponuda> searchOrderByCena(Date od,Date _do,String naziv,int brojKreveta);
 	public List<Ponuda> searchOrderByRaiting(Date od,Date _do,String naziv,int brojKreveta);
 	public List<Ponuda> searchOrderByCategory(Date od,Date _do,String naziv,int brojKreveta);
+	
+	//privremeno
+	public List<Ponuda> findPonuda(String od,String _do,String brojKreveta,String lokacija);
 
 }

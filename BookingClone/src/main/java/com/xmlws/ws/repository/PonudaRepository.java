@@ -18,6 +18,6 @@ public interface PonudaRepository extends JpaRepository<Ponuda,Long> {
 		List<Ponuda> findBySmestajLokacijaContainingIgnoreCaseAndBrojKreveta
 		(String naziv, int brojKreveta);
 		
-	
+		List<Ponuda> findByOdIgnoreCaseContainingAndDoDatumaIgnoreCaseContainingAndBrojKrevetaIgnoreCaseContainingAndSmestajLokacijaIgnoreCaseContaining(String od,String _do,String brojKreveta,String lokacija);
 	
 }
