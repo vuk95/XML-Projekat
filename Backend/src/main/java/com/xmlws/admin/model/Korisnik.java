@@ -61,7 +61,7 @@ public class Korisnik {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected long id;
+    protected Long id;
 	
     @XmlElement(name = "Ime", required = true)
     protected String ime;
