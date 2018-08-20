@@ -18,6 +18,12 @@ $(document).ready(function(){
 
 	$("#search").click(function(){
 		//pripremamo JSON koji cemo poslati
+		
+		sort = $('#sortiranje').val();
+		var queryString = "?param1=" + sort;
+		
+		//alert("Sort value:" + sort)
+		
 		var data = {}
 		data["od"] = $("#searchForm [name='od']").val();
 		data["doDatuma"] = $("#searchForm [name='doDatuma']").val();
@@ -25,7 +31,7 @@ $(document).ready(function(){
 		data["lokacija"] = $("#searchForm [name='lokacija']").val();
 		
 		$.ajax({
-			url: "http://localhost:8083/search",
+			url: "http://localhost:8083/search/" + queryString ,
 			type: "GET",
 			data: data,
 			//saljemo json i ocekujemo json nazad
@@ -152,10 +158,10 @@ margin-top: 12px;
 					
 					<div class="form-group">
 						<label for="sort">Sortiraj po:</label>				
-						<select class="form-control" id="sort" name = "sortiranje" size="1" style="width: 510px;" >
-							<option>Ceni</option>
-							<option>Oceni</option>
-							<option>Kategoriji smestaja</option>					
+						<select class="form-control" id="sortiranje" name = "sortiranje" size="1" style="width: 510px;" >
+							<option selected value="1">Ceni</option>
+							<option value="2">Oceni</option>
+							<option value="3">Kategoriji smestaja</option>					
 						</select> 
 						
 					</div>

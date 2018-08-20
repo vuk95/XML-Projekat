@@ -6,12 +6,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.xmlws.ws.model.Ponuda;
 import com.xmlws.ws.repository.PonudaRepository;
 import com.xmlws.ws.service.PonudaService;
 
-
+@Transactional
 @Service
 public class PonudaServiceImpl implements PonudaService {
 
@@ -54,6 +55,21 @@ public class PonudaServiceImpl implements PonudaService {
 	@Override
 	public List<Ponuda> findPonuda(String od, String doDatuma, String brojKreveta,String lokacija) {
 		return repository.findByOdIgnoreCaseContainingAndDoDatumaIgnoreCaseContainingAndBrojKrevetaIgnoreCaseContainingAndSmestajLokacijaIgnoreCaseContaining(od, doDatuma, brojKreveta,lokacija);
+	}
+
+	@Override
+	public List<Ponuda> findPonudaOrderByCenaAsc(String od, String doDatuma, String brojKreveta, String lokacija) {
+		return repository.findByOdIgnoreCaseContainingAndDoDatumaIgnoreCaseContainingAndBrojKrevetaIgnoreCaseContainingAndSmestajLokacijaIgnoreCaseContainingOrderByCena(od, doDatuma, brojKreveta, lokacija);
+	}
+
+	@Override
+	public List<Ponuda> findOrderByCategory(String od, String doDatuma, String brojKreveta, String lokacija) {
+		return repository.findByOdIgnoreCaseContainingAndDoDatumaIgnoreCaseContainingAndBrojKrevetaIgnoreCaseContainingAndSmestajLokacijaIgnoreCaseContainingOrderBySmestajKategorija(od, doDatuma, brojKreveta, lokacija);
+	}
+
+	@Override
+	public List<Ponuda> findOrderByRaiting(String od, String doDatuma, String brojKreveta, String lokacija) {
+		return repository.findByOdIgnoreCaseContainingAndDoDatumaIgnoreCaseContainingAndBrojKrevetaIgnoreCaseContainingAndSmestajLokacijaIgnoreCaseContainingOrderBySmestajOcena(od, doDatuma, brojKreveta, lokacija);
 	}
 
 	

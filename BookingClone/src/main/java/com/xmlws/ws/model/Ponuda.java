@@ -93,7 +93,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @Table(name = "Ponuda")
 public class Ponuda {
 
-    @XmlElement(name = "Cena", required = true)
+    @XmlElement(required = true)
     protected BigDecimal cena;
     
     protected String brojKreveta;

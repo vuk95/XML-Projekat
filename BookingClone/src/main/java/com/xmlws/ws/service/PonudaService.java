@@ -16,5 +16,9 @@ public interface PonudaService {
 	
 	//privremeno
 	public List<Ponuda> findPonuda(String od,String _do,String brojKreveta,String lokacija);
+	public List<Ponuda> findPonudaOrderByCenaAsc(String od,String _do,String brojKreveta,String lokacija);
+	public List<Ponuda> findOrderByCategory(String od,String doDatuma,String brojKreveta,String lokacija);
+	public List<Ponuda> findOrderByRaiting(String od,String doDatuma,String brojKreveta,String lokacija);
+	
 
 }
