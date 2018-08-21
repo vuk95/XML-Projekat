@@ -17,28 +17,54 @@
     
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    
+    <!-- Bootstrap core JavaScript -->
+    <script src="scripts/jquery.min.js"></script>
+    <script src="scripts/bootstrap.bundle.min.js"></script>
+    
+    <script>
+    	$(document).ready(function(){
+			$("#login-btn").click(function(event) {
+				event.preventDefault();
+				
+				formData = JSON.stringify({
+					email:$("#login-form [name='email']").val(),
+					lozinka:$("#login-form [name='lozinka']").val()
+				});
+				
+				console.log(formData);
+				
+				$.ajax({
+					url: "http://localhost:8085/users/loginAdmin",
+					type: "POST",
+					data: formData,
+					contentType: "application/json",
+					success: function(data) {
+						top.location.href = "/index.html";
+					}
+				});
+			});
+			
+		});		
+    </script>
 </head>
 <body>
 	
 	<div class="container h-100">
 		<div class="row h-100 justify-content-center align-items-center">
 			<div class="login-container">
-				<form action="#">
+				<form id="login-form">
 					<div class="form-group">
-						<input type="email" class="form-control form-control-lg" placeholder="E-mail">
+						<input name="email" type="email" class="form-control form-control-lg" placeholder="E-mail">
 						<br>
-						<input type="password" class="form-control form-control-lg" placeholder="Lozinka">
+						<input name="lozinka" type="password" class="form-control form-control-lg" placeholder="Lozinka">
 						<br>
-						<button type="submit" class="btn btn-danger btn-lg btn-block">Prijavi se</button>
+						<button id="login-btn" class="btn btn-danger btn-lg btn-block">Prijavi se</button>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
-
-	<!-- Bootstrap core JavaScript -->
-    <script src="scripts/jquery.min.js"></script>
-    <script src="scripts/bootstrap.bundle.min.js"></script>
-    
+	
 </body>
 </html>

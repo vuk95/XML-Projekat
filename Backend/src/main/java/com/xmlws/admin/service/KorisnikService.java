@@ -10,6 +10,8 @@ public interface KorisnikService {
 	
 	public Korisnik findById(Long id);
 	
+	public Korisnik findByEmail(String email);
+	
 	public void setCurrentUser(Korisnik user);
 	
 	public Korisnik getCurrentUser();

@@ -12,13 +12,13 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import com.xmlws.admin.model.Admin;
+import com.xmlws.admin.model.Agent;
 import com.xmlws.admin.model.Korisnik;
 import com.xmlws.admin.repository.KorisnikRepository;
 import com.xmlws.admin.service.KorisnikService;
 
-@Transactional
 @Service
 public class KorisnikServiceImpl implements KorisnikService {
 
@@ -28,6 +28,11 @@ public class KorisnikServiceImpl implements KorisnikService {
 	@Override
 	public List<Korisnik> findAll() {
 		return korisnikRepository.findAll();
+	}
+	
+	@Override
+	public Korisnik findByEmail(String email) {
+		return korisnikRepository.findByEmail(email);
 	}
 	
 	@Override
@@ -46,10 +51,17 @@ public class KorisnikServiceImpl implements KorisnikService {
 	@Override
 	public void setCurrentUser(Korisnik user) {
 		Collection<GrantedAuthority> authority = new ArrayList<>();
-		//Ovo treba promeniti u Admin, Agent, RegistrovaniKorisnik
-		authority.add(new SimpleGrantedAuthority("USER"));
+		if(user instanceof Admin) {
+			authority.add(new SimpleGrantedAuthority("ADMIN"));
+		} else if(user instanceof Agent) {
+			authority.add(new SimpleGrantedAuthority("AGENT"));
+		} else {
+			authority.add(new SimpleGrantedAuthority("KORISNIK"));
+		}
 		Authentication authenitcation = new PreAuthenticatedAuthenticationToken(user.getId(), null, authority);
 		SecurityContextHolder.getContext().setAuthentication(authenitcation);
+		
+		System.out.println("AUTH " + authenitcation.getName());
 	}
 
 	/**
@@ -58,14 +70,18 @@ public class KorisnikServiceImpl implements KorisnikService {
 	@Override
 	public Korisnik getCurrentUser() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		try {
-			Long id = Long.parseLong(authentication.getName());
-			
-			return findById(id);
-		} catch(Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+		System.out.println("CURRENT AUTH " + authentication.getName());
+		
+		//		try {
+//			Long id = Long.parseLong(authentication.getName());
+//			
+//			return findById(id);
+//		} catch(Exception e) {
+//			e.printStackTrace();
+//			return null;
+//		}
+		
+		return null;
 	}
 	
 }
