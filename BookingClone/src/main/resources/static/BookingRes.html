@@ -1,0 +1,74 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<script src="scripts/jquery-3.2.1.min.js"></script>
+	<script src="scripts/tether.min.js"></script>
+	<script src="scripts/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="stylesheets/style.css">
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<title>Rezultati pretrage</title>
+<style>
+h3 {
+text-align:center;
+font-family:"Comic Sans MS", cursive, sans-serif;
+font-size: 28px;
+}
+</style>	
+
+<script>
+
+$(document).ready(function(){
+	
+	var queryString = decodeURIComponent(window.location.search);
+	queryString = queryString.substring(8);
+	
+	$.ajax({
+		url: "http://localhost:8083/ponuda/" + queryString
+	}).then(
+		function(data) {
+			info = "<tr>"
+				+ "<td class=\"od\">" + data.smestaj.naziv + "</td>"
+				+ "<td class=\"lokacija\">" + data.smestaj.lokacija + "</td>"
+				+ "<td class=\"kategorija\">" + data.smestaj.kategorija + "</td>"
+				+ "<td class=\"do\">" + data.smestaj.tip + "</td>"
+				+ "<td class=\"brojKreveta\">" + data.brojKreveta + "</td>"
+				+ "<td class=\"brojKreveta\">" + data.od + "</td>"
+				+ "<td class=\"do\">" + data.doDatuma + "</td>"
+				+ "<td class=\"do\">" + data.cena + "</td>"
+			+ "</tr>"
+			$("#dataTable").append(info);
+			//$("#gasenje").append("<a class=\"details\"  href='/individual/individualClient/" + queryString + "/getBankAccounts'>Zatvori racun</a>");
+		});		
+});
+	
+</script>
+	
+</head>
+<body>
+
+		<div class="container">
+		
+			<div id="box">	
+				<h3>Rezultati pretrage</h3>
+				<hr>
+				<table style="width:100%" id="dataTable"><tbody>
+  				<tr>
+				<th>Naziv</th>
+  				<th>Lokacija</th>
+				<th>Kategorija</th>
+				<th>Tip</th>
+				<th>Broj kreveta</th>
+  				<th>Datum polaska</th>
+  				<th>Datum dolaska</th>
+  				<th>Cena</th>
+  				</tr>
+				</tbody></table>
+		</div>
+		</div>
+
+
+
+</body>
+</html>
