@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,8 +33,9 @@ public class PoundaController {
 		return new ResponseEntity<>(ponuda,HttpStatus.OK);
 	} 
 	
+	//pretrage sa sortiranje
 	@RequestMapping(value = "/search/{sort}" , method = RequestMethod.GET , consumes="application/json")
-	public ResponseEntity<List<Ponuda>> find(@PathVariable("sort") int sort,@RequestParam(value = "od", required = false, defaultValue = "") String od, 
+	public ResponseEntity<?> find(@PathVariable("sort") int sort,@RequestParam(value = "od", required = false, defaultValue = "") String od, 
 			@RequestParam(value = "doDatuma", required = false, defaultValue = "") String doDatuma,
 			@RequestParam(value = "brojKreveta", required = false, defaultValue = "") String brojKreveta,@RequestParam(value = "lokacija", required = false, defaultValue = "") String lokacija) {
 	
