@@ -15,6 +15,7 @@ text-align:center;
 font-family:"Comic Sans MS", cursive, sans-serif;
 font-size: 28px;
 }
+img {width:50px; height:30px;}
 </style>	
 
 <script>
@@ -36,7 +37,10 @@ $(document).ready(function(){
 				+ "<td class=\"brojKreveta\">" + data.brojKreveta + "</td>"
 				+ "<td class=\"brojKreveta\">" + data.od + "</td>"
 				+ "<td class=\"do\">" + data.doDatuma + "</td>"
-				+ "<td class=\"do\">" + data.cena + "</td>"
+				+ "<td class=\"cena\">" + data.cena + "</td>"
+				+ "<td class=\"ocena\">" + data.smestaj.ocena + "</td>"
+				+ "<td class=\"opis\">" + data.smestaj.opis + "</td>"
+				+ "<td class=\"slika\"><img src=\"images/pullman.jpg\"></td>"
 			+ "</tr>"
 			$("#dataTable").append(info);
 			//$("#gasenje").append("<a class=\"details\"  href='/individual/individualClient/" + queryString + "/getBankAccounts'>Zatvori racun</a>");
@@ -63,6 +67,9 @@ $(document).ready(function(){
   				<th>Datum polaska</th>
   				<th>Datum dolaska</th>
   				<th>Cena</th>
+  				<th>Ocena</th>
+  				<th>Opis</th>
+  				<th>Slika</th>
   				</tr>
 				</tbody></table>
 		</div>
