@@ -1,0 +1,99 @@
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Booking Result Page</title>
+	<link rel="stylesheet" href="stylesheets/bootstrap.min2.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="scripts/jquery-3.2.1.min.js"></script>
+	<script src="scripts/bootstrap.min.js"></script>
+
+<script>
+
+$(document).ready(function(){
+	
+	var queryString = decodeURIComponent(window.location.search);
+	queryString = queryString.substring(8);
+	
+	$.ajax({
+		url: "http://localhost:8083/ponuda/" + queryString
+	}).then(
+		function(data) {
+			info = "<table class=\"table table-hover\"><tr><td><strong>Naziv:</strong></td><td>" + data.smestaj.naziv + "</td></tr>"
+					+ "<tr><td><strong>Lokacija:</strong></td><td>" +  data.smestaj.lokacija + "</td></tr>"
+					+ "<tr><td><strong>Kategorija:</strong></td><td>" + data.smestaj.kategorija + "</td></tr>"
+					+ "<tr><td><strong>Tip:</strong></td><td>" + data.smestaj.tip + "</td></tr>"
+					+ "<tr><td><strong>Broj kreveta:</strong></td><td>" + data.brojKreveta + "</td></tr>"
+					+ "<tr><td><strong>Datum polaska:</strong></td><td>" + data.od + "</td></tr>"
+					+ "<tr><td><strong>Datum dolaska:</strong></td><td>" + data.doDatuma + "</td></tr>"
+					+ "<tr><td><strong>Ocena:</strong></td><td>" + data.smestaj.ocena + "</td></tr>"
+					+ "<tr><td><strong>Cena:</strong></td><td>" + data.cena + " RSD</td></tr>"
+		
+			$("#ponudaInfo").append(info);
+			$("#opis").append("<strong>" + data.smestaj.opis + "</strong>");		
+		});	
+});
+
+</script>
+<style>
+.slika {width:505px;height:300px;}
+.picture {
+margin-top: 12px;
+}
+h3 {
+text-align:center;
+font-family:"Comic Sans MS", cursive, sans-serif;
+font-size: 23px;
+}
+</style>
+
+</head>
+<body>
+
+	<nav class="navbar navbar-default">
+		<div class="container">
+			<ul class="nav navbar-nav navbar-left">
+				<li><a href="#">Pocetna</a></li>
+				<li><a href="#">Kontakt</a></li>
+				<li><a href="#"><b>RSD</b></a></li>
+				<li><img class="picture" src="images/Serbia.png"></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#">Registracija</a></li>
+				<li><a href="/logout">Prijava</a></li>
+			</ul>		
+		</div>
+	</nav>
+	
+	
+						
+	<div class="container">
+		<div class="col-md-6">
+			<div id="ponudaInfo">
+				<!-- Deo sa podacima o ponudi -->
+			</div>
+
+		</div>
+		
+		<div class="col-md-6">
+			<div style="height: 335px;" class="alert alert-warning">
+				<img class="slika" src="images/pullman.jpg" alt=""></img>
+				<!-- Deo gde ce biti slika -->
+			</div>
+			<button type="button" class="btn btn-secondary btn-sm btn-block"><b>Rezervisi</b></button>
+		</div>
+		
+		
+	</div>
+	
+	<div class="container">
+		<div class="col-md-6">
+			<div id="box">
+				<h3>Opis:</h3>
+				<hr>
+				<div id="opis"></div>
+			</div>
+		</div>
+			</div>
+	
+</body>
+</html>
