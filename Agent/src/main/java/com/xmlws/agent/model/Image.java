@@ -33,4 +33,5 @@ public class Image {
 	public void setSlika(Byte[] slika) {
 		this.slika = slika;
 	}
+
 }
