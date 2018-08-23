@@ -28,4 +28,8 @@ public interface PonudaRepository extends JpaRepository<Ponuda,Long> {
 		List<Ponuda> findByOdIgnoreCaseContainingAndDoDatumaIgnoreCaseContainingAndBrojKrevetaIgnoreCaseContainingAndSmestajLokacijaIgnoreCaseContainingOrderBySmestajKategorija(String od,String doDatuma,String brojKreveta,String lokacija);
 		
 		List<Ponuda> findByOdIgnoreCaseContainingAndDoDatumaIgnoreCaseContainingAndBrojKrevetaIgnoreCaseContainingAndSmestajLokacijaIgnoreCaseContainingOrderBySmestajOcena(String od,String doDatuma,String brojKreveta,String lokacija);
+
+		//napredna pretraga
+		List<Ponuda> findByOdIgnoreCaseContainingAndDoDatumaIgnoreCaseContainingAndBrojKrevetaIgnoreCaseContainingAndSmestajLokacijaIgnoreCaseContainingAndSmestajTipIgnoreCaseContainingAndSmestajKategorijaIgnoreCaseContaining(String od,String _do,String brojKreveta,String lokacija,String tip,String kategorija);
+
 }

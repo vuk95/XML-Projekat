@@ -68,4 +68,16 @@ public class PoundaController {
 		return new ResponseEntity<>(ponuda,HttpStatus.OK);
 	} 
 	
+	@RequestMapping(value = "/searchAdvance" , method = RequestMethod.GET , consumes="application/json")
+	public ResponseEntity<List<Ponuda>> searchAdvance(@RequestParam(value = "od", required = false, defaultValue = "") String od, 
+			@RequestParam(value = "doDatuma", required = false, defaultValue = "") String doDatuma,
+			@RequestParam(value = "brojKreveta", required = false, defaultValue = "") String brojKreveta,@RequestParam(value = "lokacija", required = false, defaultValue = "") String lokacija,
+			@RequestParam(value = "tip", required = false, defaultValue = "") String tip,@RequestParam(value = "kategorija", required = false, defaultValue = "") String kategorija) {
+		
+		List<Ponuda> ponuda = ponudaService.findPonudaAdvance(od, doDatuma, brojKreveta, lokacija, tip, kategorija);
+				
+		return new ResponseEntity<>(ponuda,HttpStatus.OK);
+	} 
+	
+	
 }

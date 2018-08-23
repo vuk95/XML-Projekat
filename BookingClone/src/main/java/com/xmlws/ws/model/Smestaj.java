@@ -96,7 +96,7 @@ public class Smestaj {
     //@ManyToOne
     //protected Adresa adresa;
     @XmlElement(name = "Kategorija")
-    protected int kategorija;
+    protected String kategorija;
     @XmlElement(name = "Tip", required = true)
     protected String tip;
     @XmlElement(name = "Opis", required = true)
@@ -169,7 +169,7 @@ public class Smestaj {
      * Gets the value of the kategorija property.
      * 
      */
-    public int getKategorija() {
+    public String getKategorija() {
         return kategorija;
     }
 
@@ -177,7 +177,7 @@ public class Smestaj {
      * Sets the value of the kategorija property.
      * 
      */
-    public void setKategorija(int value) {
+    public void setKategorija(String value) {
         this.kategorija = value;
     }
 
