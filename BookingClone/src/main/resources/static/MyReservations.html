@@ -1,0 +1,61 @@
+<html>
+<head>
+	<title>My Reservations </title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<script src="scripts/jquery-3.2.1.min.js"></script>
+	<script src="scripts/tether.min.js"></script>
+	<script src="scripts/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="stylesheets/style.css">
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<style>
+.slika {
+margin-top: 12px;
+}
+</style>
+
+</head>
+
+<body>
+	
+	<nav class="navbar navbar-default">
+		<div class="container">
+			<ul class="nav navbar-nav navbar-left">
+				<li><span class="glyphicon glyphicon-home"></span></li>			
+				<li><a href="#">Pocetna</a></li>
+				<li><a href="#">Kontakt</a></li>
+				<li><a href="#"><b>RSD</b></a></li>
+				<li class="slika"><img src="images/Serbia.png"></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#">Registracija</a></li>
+				<li><a href="/logout">Prijava</a></li>
+			</ul>		
+		</div>
+	</nav>
+
+	<div class="container">
+			<div id="box">	
+				<h3>Moje rezervacije:</h3>
+				<hr>
+				<table style="width:100%" id="dataTable"><tbody>
+  				<tr>
+				<th>Naziv</th>
+  				<th>Lokacija</th>
+				<th>Kategorija</th>
+				<th>Tip</th>
+				<th>Broj kreveta</th>
+  				<th>Datum polaska</th>
+  				<th>Datum dolaska</th>
+  				<th>Cena</th>
+  				<th>Datum realizacije</th>
+  				<th>Status</th>
+  				</tr>
+				</tbody></table>
+		</div>
+		</div>
+</body>
+</html>
+		

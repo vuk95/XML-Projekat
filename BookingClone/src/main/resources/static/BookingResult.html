@@ -30,7 +30,27 @@ $(document).ready(function(){
 		
 			$("#ponudaInfo").append(info);
 			$("#opis").append("<strong>" + data.smestaj.opis + "</strong>");		
-		});	
+		});
+	
+	$("#reserve").click(function(){
+		//pripremamo JSON koji cemo poslati
+		$.ajax({
+			url: "http://localhost:8083/rezervacija/" + queryString ,
+			type: "POST",
+			//saljemo json i ocekujemo json nazad
+			contentType: "application/json",
+			datatype: 'json',
+			success: function(data) {
+				 alert('Rezervacija je uspesno izvrsena!');
+				 var qs = decodeURIComponent(window.location.search);
+ 				 window.location.href = "MyReservations.html" + qs;
+			  },
+			  error: function(data) {
+				  alert('Rezervacija nije uspela!');
+			  }
+			});
+		
+	});
 });
 
 </script>
@@ -79,7 +99,7 @@ font-size: 23px;
 				<img class="slika" src="images/pullman.jpg" alt=""></img>
 				<!-- Deo gde ce biti slika -->
 			</div>
-			<button type="button" class="btn btn-secondary btn-sm btn-block"><b>Rezervisi</b></button>
+			<button type="button" id="reserve" class="btn btn-secondary btn-sm btn-block"><b>Rezervisi</b></button>
 		</div>
 		
 		

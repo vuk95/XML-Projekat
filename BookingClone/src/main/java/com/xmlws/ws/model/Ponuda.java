@@ -102,11 +102,11 @@ public class Ponuda {
     
     protected String od;
     
-    
     protected String doDatuma;
+    
     @XmlElement(name = "Rezervacija", required = true)
-    @ManyToOne
-    protected Rezervacija rezervacija;
+    @OneToMany
+    protected List<Rezervacija> rezervacija;
    
     @ManyToOne
     public Smestaj smestaj;
@@ -221,9 +221,10 @@ public class Ponuda {
      *     {@link Rezervacija }
      *     
      */
-    public Rezervacija getRezervacija() {
-        return rezervacija;
-    }
+	
+	public List<Rezervacija> getRezervacija() {
+		return rezervacija;
+	}
 
     
 	/**
@@ -234,11 +235,12 @@ public class Ponuda {
      *     {@link Rezervacija }
      *     
      */
-    public void setRezervacija(Rezervacija value) {
-        this.rezervacija = value;
-    }
+   
+	public void setRezervacija(List<Rezervacija> rezervacija) {
+		this.rezervacija = rezervacija;
+	}
 
-    /**
+	/**
      * Gets the value of the dodatnaUsluga property.
      * 
      * <p>

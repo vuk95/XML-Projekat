@@ -68,7 +68,9 @@ public class Rezervacija {
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     protected long id;
-
+    
+    @ManyToOne
+    public Ponuda ponuda;
     /**
      * Gets the value of the korisnik property.
      * 
@@ -149,4 +151,13 @@ public class Rezervacija {
         this.id = value;
     }
 
+	public Ponuda getPonuda() {
+		return ponuda;
+	}
+
+	public void setPonuda(Ponuda ponuda) {
+		this.ponuda = ponuda;
+	}
+    
+    
 }
