@@ -32,4 +32,23 @@ public class RezervacijaServiceImpl implements RezervaciijaService {
 		return repository.save(r);
 	}
 
+	@Override
+	public Rezervacija delete(Long id) {
+		
+		Rezervacija rezervacija = repository.getOne(id);
+		
+		if(rezervacija == null) {
+			throw new IllegalArgumentException("Tried to delete"
+					+ "non-existant reservation");
+		} else {
+			repository.delete(rezervacija);
+		}
+		
+		return rezervacija;
+		
+		
+	}
+
+	
+
 }

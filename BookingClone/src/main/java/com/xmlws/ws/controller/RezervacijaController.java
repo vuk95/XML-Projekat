@@ -26,6 +26,14 @@ public class RezervacijaController {
 	@Autowired
 	private PonudaService ponudaService;
 	
+	@RequestMapping(value = "/sve_rezervacije" , method = RequestMethod.GET)
+	public ResponseEntity<List<Rezervacija>> getRezervacije() {
+		
+		List<Rezervacija> rezervacije = rezervacijaService.findAll();
+		
+		return new ResponseEntity<>(rezervacije,HttpStatus.OK);
+	}
+	
 	@RequestMapping(value = "/rezervacija/{id}" , method = RequestMethod.POST , consumes="application/json")
 	public ResponseEntity<?> reserve(@PathVariable Long id) {
 		
@@ -45,6 +53,14 @@ public class RezervacijaController {
 		return new ResponseEntity<>(newReservation,HttpStatus.OK);
 	}
 	
+	
+	@RequestMapping(value = "/otkazi/{id}" , method = RequestMethod.DELETE)
+	public ResponseEntity<Rezervacija> cancel(@PathVariable Long id) {
+		
+		Rezervacija rezervacija = rezervacijaService.delete(id);
+		
+		return new ResponseEntity<>(rezervacija,HttpStatus.OK);
+	}
 	
 	
 }

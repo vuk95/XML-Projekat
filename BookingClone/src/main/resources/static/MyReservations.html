@@ -10,6 +10,64 @@
 	<link rel="stylesheet" href="stylesheets/style.css">
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+<script>
+$(document).ready(function(){
+	$.ajax({
+		url: "http://localhost:8083/sve_rezervacije"
+	}).then(
+		function(data) {
+			for(i = 0; i < data.length; i++) {
+				newRow = 
+					"<tr>"
+						+ "<td class=\"kategorija\">" + data[i].ponuda.smestaj.naziv + "</td>"
+						+ "<td class=\"kategorija\">" + data[i].ponuda.smestaj.lokacija + "</td>"
+						+ "<td class=\"kategorija\">" + data[i].ponuda.smestaj.kategorija + "</td>"
+						+ "<td class=\"kategorija\">" + data[i].ponuda.smestaj.tip + "</td>"
+						+ "<td class=\"kategorija\">" + data[i].ponuda.brojKreveta + "</td>"
+						+ "<td class=\"kategorija\">" + data[i].ponuda.od + "</td>"
+						+ "<td class=\"kategorija\">" + data[i].ponuda.doDatuma + "</td>"
+						+ "<td class=\"kategorija\">" + data[i].ponuda.cena + "</td>"
+						+ "<td class=\"lokacija\">" + data[i].datumRealizacije + "</td>"
+						+ "<td class=\"od\">" + data[i].potvrdjeno + "</td>"
+						+ "<td><a class=\"cancel\" href='/otkazi/" + data[i].id + "'>" 
+						+ "<img src='images/remove.gif'/></a></td>"
+					+ "</tr>"
+					$("#dataTable").append(newRow);
+				
+			}
+		}
+	)
+});
+
+$(document).ready(function() {
+
+$(document).on("click", ".cancel", function(event){	
+	
+	event.preventDefault(); 
+	
+	var confirmed = confirm("Da li ste sigurni da zelite da otkazete rezervaciju?");
+	if(confirmed){
+	
+		var url = $(this).attr("href")
+		//red koji se treba izbrisati ako je brisanje na serveru bilo uspesno
+		tr_parent = $(this).closest("tr")
+		$.ajax({
+        	url: url,
+        	type: "DELETE",
+        	success: function(){
+        		//ukloni i na strani 
+				tr_parent.remove()
+	        }
+			});
+		
+		
+	}
+	
+});	
+});	
+</script>
+
+
 <style>
 .slika {
 margin-top: 12px;

@@ -9,5 +9,6 @@ public interface RezervaciijaService {
 	public Rezervacija findOne(Long id);
 	public List<Rezervacija> findAll();
 	public Rezervacija save(Rezervacija r);
-	
+	//public void delete(Long id);
+	public Rezervacija delete(Long id);
 }
