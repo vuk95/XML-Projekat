@@ -72,10 +72,30 @@ public class PonudaServiceImpl implements PonudaService {
 		return repository.findByOdIgnoreCaseContainingAndDoDatumaIgnoreCaseContainingAndBrojKrevetaIgnoreCaseContainingAndSmestajLokacijaIgnoreCaseContainingOrderBySmestajOcena(od, doDatuma, brojKreveta, lokacija);
 	}
 
+	
+	//Deo koji se tice napredne pretrage
 	@Override
 	public List<Ponuda> findPonudaAdvance(String od, String _do, String brojKreveta, String lokacija, String tip,
 			String kategorija) {
 		return repository.findByOdIgnoreCaseContainingAndDoDatumaIgnoreCaseContainingAndBrojKrevetaIgnoreCaseContainingAndSmestajLokacijaIgnoreCaseContainingAndSmestajTipIgnoreCaseContainingAndSmestajKategorijaIgnoreCaseContaining(od, _do, brojKreveta, lokacija, tip, kategorija);
+	}
+
+	@Override
+	public List<Ponuda> findPonudaAdvanceOrderByCena(String od, String _do, String brojKreveta, String lokacija,
+			String tip, String kategorija) {
+		return repository.findByOdIgnoreCaseContainingAndDoDatumaIgnoreCaseContainingAndBrojKrevetaIgnoreCaseContainingAndSmestajLokacijaIgnoreCaseContainingAndSmestajTipIgnoreCaseContainingAndSmestajKategorijaIgnoreCaseContainingOrderByCena(od, _do, brojKreveta, lokacija, tip, kategorija);
+	}
+
+	@Override
+	public List<Ponuda> findPonudaAdvanceOrderByCategory(String od, String _do, String brojKreveta, String lokacija,
+			String tip, String kategorija) {
+		return repository.findByOdIgnoreCaseContainingAndDoDatumaIgnoreCaseContainingAndBrojKrevetaIgnoreCaseContainingAndSmestajLokacijaIgnoreCaseContainingAndSmestajTipIgnoreCaseContainingAndSmestajKategorijaIgnoreCaseContainingOrderBySmestajKategorija(od, _do, brojKreveta, lokacija, tip, kategorija);
+	}
+
+	@Override
+	public List<Ponuda> findPonudaAdvanceOrderByRaiting(String od, String _do, String brojKreveta, String lokacija,
+			String tip, String kategorija) {
+		return repository.findByOdIgnoreCaseContainingAndDoDatumaIgnoreCaseContainingAndBrojKrevetaIgnoreCaseContainingAndSmestajLokacijaIgnoreCaseContainingAndSmestajTipIgnoreCaseContainingAndSmestajKategorijaIgnoreCaseContainingOrderBySmestajOcena(od, _do, brojKreveta, lokacija, tip, kategorija);
 	}
 
 	
