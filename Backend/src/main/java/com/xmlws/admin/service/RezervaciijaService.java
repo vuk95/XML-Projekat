@@ -2,7 +2,7 @@ package com.xmlws.admin.service;
 
 import java.util.List;
 
-import com.xmlws.admin.model.Rezervacija;
+import com.xmlws.admin.backend.Rezervacija;
 
 public interface RezervaciijaService {
 	

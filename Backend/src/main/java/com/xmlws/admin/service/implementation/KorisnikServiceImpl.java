@@ -13,9 +13,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
 import org.springframework.stereotype.Service;
 
-import com.xmlws.admin.model.Admin;
-import com.xmlws.admin.model.Agent;
-import com.xmlws.admin.model.Korisnik;
+import com.xmlws.admin.backend.Admin;
+import com.xmlws.admin.backend.Agent;
+import com.xmlws.admin.backend.Korisnik;
 import com.xmlws.admin.repository.KorisnikRepository;
 import com.xmlws.admin.service.KorisnikService;
 

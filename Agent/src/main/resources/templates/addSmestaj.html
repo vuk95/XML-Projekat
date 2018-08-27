@@ -17,10 +17,6 @@
 				</tr>
 				<tr>
 					<td>Tip:</td>
-					<td><input type = "text" th:field="*{tip}"></td>
-				</tr>
-				<tr>
-					<td>Kategorija:</td>
 					<td><select th:field="*{kategorija}">
 					  <option value="hotel">Hotel</option>
   					  <option value="bed and breakfast">Bed and breakfast</option>
@@ -29,9 +25,11 @@
 					</td>
 				</tr>
 				<tr>
-					<td>Kapacitet:</td>
-					<td><input type = "number" th:field="*{kapacitet}"></td>
+					<td>Kategorija:</td>
+					<td><input type = "text" th:field="*{tip}"></td>
+					
 				</tr>
+				
 				<tr>
 					<td>&nbsp;</td>
 					<td><input type = "submit" value="Save"></td>

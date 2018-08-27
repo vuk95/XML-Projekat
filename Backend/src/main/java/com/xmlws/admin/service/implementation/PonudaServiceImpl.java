@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.xmlws.admin.model.Ponuda;
+import com.xmlws.admin.backend.Ponuda;
 import com.xmlws.admin.repository.PonudaRepository;
 import com.xmlws.admin.service.PonudaService;
 

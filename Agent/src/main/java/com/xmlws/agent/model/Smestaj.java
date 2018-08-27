@@ -25,8 +25,6 @@ public class Smestaj {
 	@ManyToOne
     private Agent agent;
     
-    private int kapacitet;
-    
     private String lokacija;
     
     private String kategorija;
@@ -58,12 +56,7 @@ public class Smestaj {
 	public void setAgent(Agent agent) {
 		this.agent = agent;
 	}
-	public int getKapacitet() {
-		return kapacitet;
-	}
-	public void setKapacitet(int kapacitet) {
-		this.kapacitet = kapacitet;
-	}
+	
 	public String getLokacija() {
 		return lokacija;
 	}

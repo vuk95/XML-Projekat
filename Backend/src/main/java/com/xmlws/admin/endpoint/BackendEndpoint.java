@@ -6,8 +6,8 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import com.xmlws.admin.backendmodel.AddSmestajRequest;
-import com.xmlws.admin.backendmodel.AddSmestajResponse;
+import com.xmlws.admin.backend.AddSmestajRequest;
+import com.xmlws.admin.backend.AddSmestajResponse;
 import com.xmlws.admin.service.SmService;
 
 @Endpoint
@@ -16,7 +16,7 @@ public class BackendEndpoint {
 	@Autowired
 	private SmService smestajService;
 	
-	@PayloadRoot(namespace = "admin.xmlws.com/backendmodel",
+	@PayloadRoot(namespace = "admin.xmlws.com/backend",
             localPart = "addSmestajRequest")
     @ResponsePayload
     public AddSmestajResponse addSmestaj(@RequestPayload AddSmestajRequest request) {

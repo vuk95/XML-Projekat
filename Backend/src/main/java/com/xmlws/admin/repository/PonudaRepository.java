@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.xmlws.admin.model.Ponuda;
+import com.xmlws.admin.backend.Ponuda;
 
 @Repository
 public interface PonudaRepository extends JpaRepository<Ponuda,Long> {

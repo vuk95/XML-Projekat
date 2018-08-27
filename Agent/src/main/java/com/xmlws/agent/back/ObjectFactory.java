@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlRegistry;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the com.xmlws.admin.backendmodel package. 
+ * generated in the com.xmlws.admin.backend package. 
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -23,7 +23,7 @@ public class ObjectFactory {
 
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.xmlws.admin.backendmodel
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.xmlws.admin.backend
      * 
      */
     public ObjectFactory() {
@@ -51,6 +51,62 @@ public class ObjectFactory {
      */
     public AddSmestajResponse createAddSmestajResponse() {
         return new AddSmestajResponse();
+    }
+
+    /**
+     * Create an instance of {@link Ponuda }
+     * 
+     */
+    public Ponuda createPonuda() {
+        return new Ponuda();
+    }
+
+    /**
+     * Create an instance of {@link Agent }
+     * 
+     */
+    public Agent createAgent() {
+        return new Agent();
+    }
+
+    /**
+     * Create an instance of {@link Korisnik }
+     * 
+     */
+    public Korisnik createKorisnik() {
+        return new Korisnik();
+    }
+
+    /**
+     * Create an instance of {@link Rezervacija }
+     * 
+     */
+    public Rezervacija createRezervacija() {
+        return new Rezervacija();
+    }
+
+    /**
+     * Create an instance of {@link Image }
+     * 
+     */
+    public Image createImage() {
+        return new Image();
+    }
+
+    /**
+     * Create an instance of {@link Admin }
+     * 
+     */
+    public Admin createAdmin() {
+        return new Admin();
+    }
+
+    /**
+     * Create an instance of {@link RegistrovaniKorisnik }
+     * 
+     */
+    public RegistrovaniKorisnik createRegistrovaniKorisnik() {
+        return new RegistrovaniKorisnik();
     }
 
 }

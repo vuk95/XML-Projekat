@@ -53,8 +53,8 @@ public class SmestajiController {
 		sm_service.save(smestaj);
 		
 		com.xmlws.agent.back.Smestaj demoSmestaj = new com.xmlws.agent.back.Smestaj();
+		demoSmestaj.setAgent(null);
 		demoSmestaj.setId(smestaj.getId());
-		demoSmestaj.setKapacitet(smestaj.getKapacitet());
 		demoSmestaj.setKategorija(smestaj.getKategorija());
 		demoSmestaj.setLokacija(smestaj.getLokacija());
 		demoSmestaj.setOcena(smestaj.getOcena());

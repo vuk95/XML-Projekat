@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.xmlws.admin.model.Ponuda;
+import com.xmlws.admin.backend.Ponuda;
 import com.xmlws.admin.service.PonudaService;
 
 @RestController

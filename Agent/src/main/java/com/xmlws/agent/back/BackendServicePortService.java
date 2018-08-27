@@ -17,14 +17,14 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "BackendServicePortService", targetNamespace = "admin.xmlws.com/backendmodel", wsdlLocation = "http://localhost:8085/ws/mojismestaji.wsdl")
+@WebServiceClient(name = "BackendServicePortService", targetNamespace = "admin.xmlws.com/backend", wsdlLocation = "http://localhost:8085/ws/mojismestaji.wsdl")
 public class BackendServicePortService
     extends Service
 {
 
     private final static URL BACKENDSERVICEPORTSERVICE_WSDL_LOCATION;
     private final static WebServiceException BACKENDSERVICEPORTSERVICE_EXCEPTION;
-    private final static QName BACKENDSERVICEPORTSERVICE_QNAME = new QName("admin.xmlws.com/backendmodel", "BackendServicePortService");
+    private final static QName BACKENDSERVICEPORTSERVICE_QNAME = new QName("admin.xmlws.com/backend", "BackendServicePortService");
 
     static {
         URL url = null;
@@ -69,7 +69,7 @@ public class BackendServicePortService
      */
     @WebEndpoint(name = "BackendServicePortSoap11")
     public BackendServicePort getBackendServicePortSoap11() {
-        return super.getPort(new QName("admin.xmlws.com/backendmodel", "BackendServicePortSoap11"), BackendServicePort.class);
+        return super.getPort(new QName("admin.xmlws.com/backend", "BackendServicePortSoap11"), BackendServicePort.class);
     }
 
     /**
@@ -81,7 +81,7 @@ public class BackendServicePortService
      */
     @WebEndpoint(name = "BackendServicePortSoap11")
     public BackendServicePort getBackendServicePortSoap11(WebServiceFeature... features) {
-        return super.getPort(new QName("admin.xmlws.com/backendmodel", "BackendServicePortSoap11"), BackendServicePort.class, features);
+        return super.getPort(new QName("admin.xmlws.com/backend", "BackendServicePortSoap11"), BackendServicePort.class, features);
     }
 
     private static URL __getWsdlLocation() {

@@ -3,7 +3,7 @@ package com.xmlws.admin.service;
 import java.util.Date;
 import java.util.List;
 
-import com.xmlws.admin.model.Ponuda;
+import com.xmlws.admin.backend.Ponuda;
 
 public interface PonudaService {
 	

@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.xmlws.admin.dto.LoginDTO;
-import com.xmlws.admin.model.Admin;
-import com.xmlws.admin.model.Korisnik;
+import com.xmlws.admin.backend.Admin;
+import com.xmlws.admin.backend.Korisnik;
 import com.xmlws.admin.service.KorisnikService;
 
 @RestController

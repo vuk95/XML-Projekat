@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.xmlws.admin.model.Korisnik;
+import com.xmlws.admin.backend.Korisnik;
 import com.xmlws.admin.service.KorisnikService;
 
 @RestController

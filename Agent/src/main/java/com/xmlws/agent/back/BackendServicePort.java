@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlSeeAlso;
  * Generated source version: 2.2
  * 
  */
-@WebService(name = "BackendServicePort", targetNamespace = "admin.xmlws.com/backendmodel")
+@WebService(name = "BackendServicePort", targetNamespace = "admin.xmlws.com/backend")
 @SOAPBinding(parameterStyle = SOAPBinding.ParameterStyle.BARE)
 @XmlSeeAlso({
     ObjectFactory.class
@@ -27,12 +27,12 @@ public interface BackendServicePort {
      * 
      * @param addSmestajRequest
      * @return
-     *     returns com.xmlws.admin.backendmodel.AddSmestajResponse
+     *     returns com.xmlws.admin.backend.AddSmestajResponse
      */
     @WebMethod
-    @WebResult(name = "addSmestajResponse", targetNamespace = "admin.xmlws.com/backendmodel", partName = "addSmestajResponse")
+    @WebResult(name = "addSmestajResponse", targetNamespace = "admin.xmlws.com/backend", partName = "addSmestajResponse")
     public AddSmestajResponse addSmestaj(
-        @WebParam(name = "addSmestajRequest", targetNamespace = "admin.xmlws.com/backendmodel", partName = "addSmestajRequest")
+        @WebParam(name = "addSmestajRequest", targetNamespace = "admin.xmlws.com/backend", partName = "addSmestajRequest")
         AddSmestajRequest addSmestajRequest);
 
 }
