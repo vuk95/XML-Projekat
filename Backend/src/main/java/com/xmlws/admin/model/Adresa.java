@@ -44,7 +44,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  * 
  */
-@Entity
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "drzava",
@@ -64,8 +64,6 @@ public class Adresa {
     @XmlElement(name = "Broj", required = true)
     @XmlSchemaType(name = "positiveInteger")
     protected BigInteger broj;
-    @Id
-   	@GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
     /**
      * Gets the value of the drzava property.

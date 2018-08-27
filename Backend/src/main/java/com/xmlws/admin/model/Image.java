@@ -7,11 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 
-@Entity
 public class Image {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
 	@Column(name = "image_id")
     private Integer id;
 	

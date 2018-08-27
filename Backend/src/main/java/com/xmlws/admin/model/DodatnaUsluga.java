@@ -8,8 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlElement;
 
-@Entity
-@Table(name = "dodatna_usluga")
+
 public class DodatnaUsluga {
 
     @XmlElement(name = "Naziv", required = true)
@@ -18,9 +17,6 @@ public class DodatnaUsluga {
     protected int sifra;
     @XmlElement(name = "Opis", required = true)
     protected String opis;
-    @Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "dodatna_id")
     protected long id;
     
     /**

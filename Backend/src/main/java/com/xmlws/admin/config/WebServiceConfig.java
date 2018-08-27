@@ -28,17 +28,17 @@ public class WebServiceConfig extends WsConfigurerAdapter {
 
     @Bean
     public XsdSchema smestajSchema() {
-        return new SimpleXsdSchema(new ClassPathResource("sema.xsd"));
+        return new SimpleXsdSchema(new ClassPathResource("newshema.xsd"));
     }
 
-    @Bean(name = "smestaji")
+    @Bean(name = "mojismestaji")
     public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema userSchema) {
 
         DefaultWsdl11Definition definition = new DefaultWsdl11Definition();
         definition.setSchema(userSchema);
         definition.setLocationUri("/ws");
-        definition.setPortTypeName("BackServicePort");
-        definition.setTargetNamespace("admin.xmlws.com/backend");
+        definition.setPortTypeName("BackendServicePort");
+        definition.setTargetNamespace("admin.xmlws.com/backendmodel");
         return definition;
     }
 }

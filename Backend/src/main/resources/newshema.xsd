@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="admin.xmlws.com/backendmodel" xmlns:ag="admin.xmlws.com/backendmodel">
+
+
+    <xs:element name="addSmestajRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Smestaj" type="ag:Smestaj"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="addSmestajResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Smestaj" type="ag:Smestaj"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="Smestaj">
+        <xs:sequence>
+            <xs:element name="Kategorija" type="xs:string"/>
+            <xs:element name="Tip" type="xs:string"/>
+            <xs:element name="Opis" type="xs:string"/>
+            <xs:element name="Ocena" type="xs:int"/>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="lokacija" type="xs:string"/>
+            <xs:element name="kapacitet" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

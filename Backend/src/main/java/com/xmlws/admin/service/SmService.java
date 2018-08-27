@@ -1,6 +1,6 @@
 package com.xmlws.admin.service;
 
-import com.xmlws.admin.backend.Smestaj;
+import com.xmlws.admin.backendmodel.Smestaj;
 
 public interface SmService {
 	

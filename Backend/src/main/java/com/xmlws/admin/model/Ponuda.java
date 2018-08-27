@@ -80,9 +80,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "dodatnaUsluga",
     "id"
 })
-@Entity
+
 @XmlRootElement(name = "Ponuda")
-@Table(name = "Ponuda")
+
 public class Ponuda {
 
     @XmlElement(name = "Cena", required = true)
@@ -97,7 +97,7 @@ public class Ponuda {
     @XmlSchemaType(name = "date")
     protected Date _do;
     @XmlElement(name = "Rezervacija", required = true)
-    @ManyToOne
+
     protected Rezervacija rezervacija;
    
     /*
@@ -107,8 +107,7 @@ public class Ponuda {
                inverseJoinColumns = {@JoinColumn(name="dodatna_id")} ) 
     protected List<DodatnaUsluga> dodatnaUsluga;
     */
-    @Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+  
     protected Long id;
 
     /**

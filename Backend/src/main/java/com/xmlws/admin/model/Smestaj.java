@@ -89,12 +89,12 @@ import javax.xml.bind.annotation.XmlType;
     "ponuda",
     "id"
 })
-@Entity
+
 @XmlRootElement(name = "Smestaj")
 public class Smestaj {
 
     @XmlElement(name = "Agent", required = true)
-    @ManyToOne
+    
     protected Agent agent;
     /*@XmlElement(name = "Adresa", required = true)
     @ManyToOne
@@ -111,18 +111,12 @@ public class Smestaj {
     @XmlElement(name = "Ocena")
     protected int ocena;
     @XmlElement(name = "Ponuda", required = true)
-    @ManyToOne
+    
     protected Ponuda ponuda;
     
-    @OneToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "mojeSlike",
-				joinColumns = @JoinColumn(name = "smestaj_id", referencedColumnName = "smestaj_id"),
-				inverseJoinColumns = @JoinColumn(name = "image_id", referencedColumnName = "image_id"))
-	private List<Image> mojeSlike = new ArrayList<Image>();
+    private List<Image> mojeSlike = new ArrayList<Image>();
     
-    @Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "smestaj_id")
+  
     protected Long id;
     
 

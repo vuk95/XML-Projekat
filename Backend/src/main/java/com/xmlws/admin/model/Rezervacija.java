@@ -53,20 +53,19 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "datumRealizacije",
     "id"
 })
-@Entity
+
 @XmlRootElement(name = "Rezervacija")
 public class Rezervacija {
 	
     @XmlElement(name = "Korisnik", required = true)
-    @ManyToOne
+  
     protected Korisnik korisnik;
     @XmlElement(name = "Potvrdjeno")
     protected boolean potvrdjeno;
     @XmlElement(name = "Datum_realizacije", required = true)
     @XmlSchemaType(name = "dateTime")
     protected Date datumRealizacije;
-    @Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    
     protected long id;
 
     /**

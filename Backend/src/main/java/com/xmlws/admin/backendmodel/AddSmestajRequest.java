@@ -6,26 +6,26 @@
 //
 
 
-package com.xmlws.admin.backend;
+package com.xmlws.admin.backendmodel;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for Image complex type.
+ * <p>Java class for anonymous complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="Image">
+ * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="slika" type="{http://www.w3.org/2001/XMLSchema}base64Binary"/>
+ *         &lt;element name="Smestaj" type="{admin.xmlws.com/backendmodel}Smestaj"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -35,52 +35,37 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Image", propOrder = {
-    "id",
-    "slika"
+@XmlType(name = "", propOrder = {
+    "smestaj"
 })
-public class Image {
+@XmlRootElement(name = "addSmestajRequest")
+public class AddSmestajRequest {
 
-    protected int id;
-    @XmlElement(required = true)
-    protected byte[] slika;
-
-    /**
-     * Gets the value of the id property.
-     * 
-     */
-    public int getId() {
-        return id;
-    }
+    @XmlElement(name = "Smestaj", required = true)
+    protected Smestaj smestaj;
 
     /**
-     * Sets the value of the id property.
-     * 
-     */
-    public void setId(int value) {
-        this.id = value;
-    }
-
-    /**
-     * Gets the value of the slika property.
+     * Gets the value of the smestaj property.
      * 
      * @return
      *     possible object is
-     *     byte[]
+     *     {@link Smestaj }
+     *     
      */
-    public byte[] getSlika() {
-        return slika;
+    public Smestaj getSmestaj() {
+        return smestaj;
     }
 
     /**
-     * Sets the value of the slika property.
+     * Sets the value of the smestaj property.
      * 
      * @param value
      *     allowed object is
-     *     byte[]
+     *     {@link Smestaj }
+     *     
      */
-    public void setSlika(byte[] value) {
-        this.slika = value;
+    public void setSmestaj(Smestaj value) {
+        this.smestaj = value;
     }
 
 }

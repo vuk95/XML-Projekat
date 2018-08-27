@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.xmlws.agent.back.AddSmestajRequest;
+import com.xmlws.agent.back.AddSmestajResponse;
+import com.xmlws.agent.back.BackendServicePort;
+import com.xmlws.agent.back.BackendServicePortService;
 import com.xmlws.agent.model.Smestaj;
 import com.xmlws.agent.service.SmestajService;
 
@@ -47,6 +51,24 @@ public class SmestajiController {
 	public String add(@ModelAttribute("smestaj") Smestaj smestaj, ModelMap map) {
 	
 		sm_service.save(smestaj);
+		
+		com.xmlws.agent.back.Smestaj demoSmestaj = new com.xmlws.agent.back.Smestaj();
+		demoSmestaj.setId(smestaj.getId());
+		demoSmestaj.setKapacitet(smestaj.getKapacitet());
+		demoSmestaj.setKategorija(smestaj.getKategorija());
+		demoSmestaj.setLokacija(smestaj.getLokacija());
+		demoSmestaj.setOcena(smestaj.getOcena());
+		demoSmestaj.setOpis(smestaj.getOpis());
+		demoSmestaj.setTip(smestaj.getTip());
+		
+		BackendServicePortService backServicePortService = new BackendServicePortService();
+		BackendServicePort port = backServicePortService.getBackendServicePortSoap11();
+		AddSmestajRequest addSmestajRequest = new AddSmestajRequest();
+		addSmestajRequest.setSmestaj(demoSmestaj);
+		AddSmestajResponse addSmestajResponse = port.addSmestaj(addSmestajRequest);
+		
+		System.out.println("U glavnu bazu upisan smestaj: " + addSmestajResponse.getSmestaj().getLokacija());
+		
 		return "redirect:../getSviSmestaji";
 	
 	}

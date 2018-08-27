@@ -6,10 +6,12 @@
 //
 
 
-package com.xmlws.admin.backend;
+package com.xmlws.admin.backendmodel;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -26,16 +28,13 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="Agent" type="{admin.xmlws.com/backend}Agent"/>
  *         &lt;element name="Kategorija" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="Tip" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="Opis" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="Ocena" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="Ponuda" type="{admin.xmlws.com/backend}Ponuda"/>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="lokacija" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="kapacitet" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="Image" type="{admin.xmlws.com/backend}Image" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -46,21 +45,17 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Smestaj", propOrder = {
-    "agent",
     "kategorija",
     "tip",
     "opis",
     "ocena",
-    "ponuda",
     "id",
     "lokacija",
-    "kapacitet",
-    "image"
+    "kapacitet"
 })
+@Entity
 public class Smestaj {
 
-    @XmlElement(name = "Agent", required = true)
-    protected Agent agent;
     @XmlElement(name = "Kategorija", required = true)
     protected String kategorija;
     @XmlElement(name = "Tip", required = true)
@@ -69,38 +64,12 @@ public class Smestaj {
     protected String opis;
     @XmlElement(name = "Ocena")
     protected int ocena;
-    @XmlElement(name = "Ponuda", required = true)
-    protected Ponuda ponuda;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     protected long id;
     @XmlElement(required = true)
     protected String lokacija;
     protected int kapacitet;
-    @XmlElement(name = "Image")
-    protected List<Image> image;
-
-    /**
-     * Gets the value of the agent property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Agent }
-     *     
-     */
-    public Agent getAgent() {
-        return agent;
-    }
-
-    /**
-     * Sets the value of the agent property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Agent }
-     *     
-     */
-    public void setAgent(Agent value) {
-        this.agent = value;
-    }
 
     /**
      * Gets the value of the kategorija property.
@@ -191,30 +160,6 @@ public class Smestaj {
     }
 
     /**
-     * Gets the value of the ponuda property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Ponuda }
-     *     
-     */
-    public Ponuda getPonuda() {
-        return ponuda;
-    }
-
-    /**
-     * Sets the value of the ponuda property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Ponuda }
-     *     
-     */
-    public void setPonuda(Ponuda value) {
-        this.ponuda = value;
-    }
-
-    /**
      * Gets the value of the id property.
      * 
      */
@@ -268,35 +213,6 @@ public class Smestaj {
      */
     public void setKapacitet(int value) {
         this.kapacitet = value;
-    }
-
-    /**
-     * Gets the value of the image property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the image property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getImage().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Image }
-     * 
-     * 
-     */
-    public List<Image> getImage() {
-        if (image == null) {
-            image = new ArrayList<Image>();
-        }
-        return this.image;
     }
 
 }

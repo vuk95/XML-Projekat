@@ -51,22 +51,21 @@ import javax.xml.bind.annotation.XmlType;
     "odobren",
     "id"
 })
-@Entity
+
 @XmlRootElement(name = "Komentar")
 public class Komentar {
 
     @XmlElement(name = "Smestaj", required = true)
-    @ManyToOne
+   
     protected Smestaj smestaj;
     @XmlElement(name = "Korisnik", required = true)
-    @ManyToOne
+    
     protected Korisnik korisnik;
     @XmlElement(name = "Sadrzaj", required = true)
     protected String sadrzaj;
     @XmlElement(name = "Odobren")
     protected boolean odobren;
-    @Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    
     protected long id;
 
     /**
