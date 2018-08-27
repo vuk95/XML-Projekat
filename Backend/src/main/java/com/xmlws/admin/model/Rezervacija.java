@@ -23,6 +23,8 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import com.xmlws.admin.model.Ponuda;
+
 
 /**
  * <p>Java class for anonymous complex type.
@@ -53,12 +55,12 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "datumRealizacije",
     "id"
 })
-
+@Entity
 @XmlRootElement(name = "Rezervacija")
 public class Rezervacija {
 	
     @XmlElement(name = "Korisnik", required = true)
-  
+    @ManyToOne
     protected Korisnik korisnik;
     @XmlElement(name = "Potvrdjeno")
     protected boolean potvrdjeno;
@@ -66,7 +68,12 @@ public class Rezervacija {
     @XmlSchemaType(name = "dateTime")
     protected Date datumRealizacije;
     
+    @Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     protected long id;
+    
+    @ManyToOne
+    public Ponuda ponuda;
 
     /**
      * Gets the value of the korisnik property.
@@ -148,4 +155,13 @@ public class Rezervacija {
         this.id = value;
     }
 
+	public Ponuda getPonuda() {
+		return ponuda;
+	}
+
+	public void setPonuda(Ponuda ponuda) {
+		this.ponuda = ponuda;
+	}
+    
+    
 }
