@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<script src="scripts/jquery-3.2.1.min.js"></script>
+	<script src="scripts/tether.min.js"></script>
+	<script src="scripts/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="stylesheets/style.css">
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+	<title>Booking home</title>
+<script>
+	 
+$(document).ready(function(){	 
+
+	$("#search").click(function(){
+		//pripremamo JSON koji cemo poslati
+		
+		sort = $('#sortiranje').val();
+		
+		//alert("Sort value:" + sort)
+		
+		var data = {}
+		data["od"] = $("#searchForm [name='od']").val();
+		data["doDatuma"] = $("#searchForm [name='doDatuma']").val();
+		data["brojKreveta"] = $("#searchForm [name='brojKreveta']").val();
+		data["lokacija"] = $("#searchForm [name='lokacija']").val();
+		data["tip"] = $("#searchForm [name='tip']").val();
+		data["kategorija"] = $("#searchForm [name='kategorija']").val();
+		
+		$.ajax({
+			url: "http://localhost:8083/searchAdvance/" + sort ,
+			type: "GET",
+			data: data,
+			//saljemo json i ocekujemo json nazad
+			contentType: "application/json",
+			datatype: 'json',
+			success: function(data) {
+				
+				$("#dataTable tr:gt(0)").remove();
+
+				for (i = 0; i < data.length; i++) {
+					newRow = 
+						"<tr>"
+							+ "<td class=\"od\">" + data[i].smestaj.naziv + "</td>"
+							+ "<td class=\"lokacija\">" + data[i].smestaj.lokacija + "</td>"
+							+ "<td class=\"kategorija\">" + data[i].smestaj.kategorija + "</td>"
+							+ "<td class=\"do\">" + data[i].smestaj.tip + "</td>"
+							+ "<td class=\"brojKreveta\">" + data[i].brojKreveta + "</td>"
+							+ "<td class=\"ocena\">" + data[i].smestaj.ocena + "</td>"
+							+ "<td class=\"od\">" + data[i].od + "</td>"
+							+ "<td class=\"do\">" + data[i].doDatuma + "</td>"
+							+ "<td class=\"cena\">" + data[i].cena + "</td>"
+							+ "<td><a class=\"details\"  href='/ponuda/" + data[i].id +"'>" 
+							+ "<img src='images/details.gif'/></a></td>"
+						+ "</tr>"
+						$("#dataTable").append(newRow);				
+				}		
+			}
+		});	
+	});
+	 
+	$(document).on("click", ".details", function(event){
+		//ne salji get zahtev
+			event.preventDefault(); 
+		
+			var url = $(this).attr("href")
+			//red koji se treba izbrisati ako je brisanje na serveru bilo uspesno
+			$.ajax({
+	        	url: url,
+	        	type: "GET",
+	    		contentType:"application/json",
+	    		dataType:"json",
+	        	success: function(data){
+	        		if(data != null) {
+	        			var queryString = "?param1=" + data.id
+	    				window.location.href = "BookingResult.html" + queryString;
+	    			}
+	    		},
+	    		error: function(jqxhr,textStatus,errorThrown) {
+	    			alert(errorThrown);
+	    		}	 
+					
+			});
+	});
+
+	 
+});	 
+	 
+	 
+	 $( function() {
+		    $( "#datepicker" ).datepicker();
+		  } );
+	 $( function() {
+		    $( "#datepicker1" ).datepicker();
+		  } );
+	 
+</script>
+<style>
+h3 {
+text-align:center;
+font-family:"Comic Sans MS", cursive, sans-serif;
+font-size: 28px;
+}
+
+.search {
+font: 20px arial bold, sans-serif;
+color:#005B96;
+margin-top: 5px;
+}
+
+.row {
+margin-top: 20px;
+}
+
+.slika {
+margin-top: 12px;
+}
+</style>
+
+</head>
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container">
+			<ul class="nav navbar-nav navbar-left">
+				<li><span class="glyphicon glyphicon-home"></span></li>			
+				<li><a href="#">Pocetna</a></li>
+				<li><a href="#">Kontakt</a></li>
+				<li><a href="#"><b>RSD</b></a></li>
+				<li class="slika"><img src="images/Serbia.png"></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#">Registracija</a></li>
+				<li><a href="/logout">Prijava</a></li>
+			</ul>		
+		</div>
+	</nav>
+	
+	<div class="container">
+		<div class="col-md-12" id="bankInfo">
+			<h3>Booking Site</h3>
+<div class="row">
+    <div class="col-md-6 col-sm-12 col-lg-6 col-md-offset-3">
+		<div class="panel panel-danger">
+			<center class="search">Search: <span class="glyphicon glyphicon-search"></span></center>
+			
+			<div class="panel-body">
+			
+				<form  id="searchForm">
+				
+					<div class="form-group">
+						<label for="place">Mesto:</label>
+						<input id="place" name="lokacija" class="form-control" type="text" data-validation="required">
+					</div>
+					
+					
+					<div class="form-group">
+						<label for="startDate">Datum polaska:</label>
+						<input id="startDate" name="od" class="form-control"  type="text" data-validation="required">						
+					</div>
+					
+					<div class="form-group">
+						<label for="endDate">Datum dolaska:</label>
+						<input id="endDate" name="doDatuma" class="form-control"  type="text" data-validation="required">
+					</div>
+					
+					<div class="form-group">
+						<label for="personNumber">Broj osoba:</label>				
+						<select class="form-control" id="personNumber" name = "brojKreveta" size="1" style="width: 510px;" >
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+							<option>6</option>
+							<option>7</option>
+							<option>8</option>
+							<option>9</option>
+							<option>10</option>					
+						</select> 
+						
+					</div>
+					
+					<div class="form-group">
+						<label for="type">Tip smestaja:</label>
+						<input id="type" name="tip" class="form-control" type="text" data-validation="required">
+					</div>
+					
+					<div class="form-group">
+						<label for="category">Kategorija:</label>
+						<input id="category" name="kategorija" class="form-control" type="text" data-validation="required">
+					</div>
+					
+					<div class="form-group">
+						<label for="service">Dodatne usluge:</label>
+						<input id="service" name="dodatneUsluge" class="form-control" type="text" data-validation="required">
+					</div>
+					
+					
+					<div class="form-group">
+						<label for="sort">Sortiraj po:</label>				
+						<select class="form-control" id="sortiranje" name = "sortiranje" size="1" style="width: 510px;" >
+							<option selected value="1">Ceni</option>
+							<option value="2">Oceni</option>
+							<option value="3">Kategoriji smestaja</option>					
+						</select> 
+						
+					</div>
+					
+					
+	<button type="button" class="btn btn-primary" id="search"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+				</form>
+
+			</div>
+		</div>
+	</div>
+	</div>
+		</div>
+	</div>
+			
+		<div class="container">
+		
+			<div id="box">	
+				<h3>Rezultati pretrage</h3>
+				<hr>
+				<table style="width:100%" id="dataTable"><tbody>
+  				<tr>
+				<th>Naziv</th>
+  				<th>Lokacija</th>
+				<th>Kategorija</th>
+				<th>Tip</th>
+				<th>Broj kreveta</th>
+				<th>Ocena</th>
+  				<th>Datum polaska</th>
+  				<th>Datum dolaska</th>
+  				<th>Cena</th>
+  				</tr>
+				</tbody></table>
+		</div>
+		</div>
+
+		<!-- Modalni dijalog za pretragu -->
+		<div class="modal" id="searchModal" tabindex="-1" role="dialog">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h3 class="modal-title" id="exampleModalLabel">Napredna pretraga</h3>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <form id="searchForm">
+		      <div class="modal-body">
+					<input type="hidden" name="id" id="id" />
+				<p>
+					<label for="ime">Tip smestaja</label> <input type="text" name="name"
+						id="ime"/>
+				</p>
+				<p>
+					<label for="prezime">Kategorija</label> <input type="text" name="lastname"
+						id="prezime" />
+				</p>
+				<p>
+					<label for="jmbg">Dodatne usluge</label> <input type="text" name="jmbg"
+						id="jmbg" />
+				</p>
+				
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+		        <button type="button" class="btn btn-primary" id="find">Potvrda</button>
+		      </div>
+		      </form>
+		    </div>
+		  </div>
+		</div>
+
+</body>
+</html>
