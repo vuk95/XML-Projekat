@@ -17,7 +17,7 @@ values ('3','Herceg Novi','Plaza','4','Hotel u Herceg Novom','Hotel');
 INSERT INTO smestaj (kategorija,lokacija,naziv,ocena,opis,tip) 
 values ('4','Kotor','Astoria','5','Jedini od najlepsih hotela u Crnoj Gori','Hotel');
 INSERT INTO smestaj (kategorija,lokacija,naziv,ocena,opis,tip) 
-values ('5','Madrid','InterContinental','5','Jedan od najboljih hotela u Madridu','Hotel');
+values ('5','Madrid','InterContinental','4','Jedan od najboljih hotela u Madridu','Hotel');
 
 --Ponuda
 INSERT INTO ponuda (do_datuma,broj_kreveta,cena,od,smestaj_id) values ('2018-08-15','1','3500','2018-08-10','1');

@@ -22,5 +22,7 @@ public interface PonudaService {
 	
 	//napredna
 	public List<Ponuda> findPonudaAdvance(String od,String _do,String brojKreveta,String lokacija,String tip,String kategorija);
-
+	public List<Ponuda> findPonudaAdvanceOrderByCena(String od,String _do,String brojKreveta,String lokacija,String tip,String kategorija);
+	public List<Ponuda> findPonudaAdvanceOrderByCategory(String od,String _do,String brojKreveta,String lokacija,String tip,String kategorija);
+	public List<Ponuda> findPonudaAdvanceOrderByRaiting(String od,String _do,String brojKreveta,String lokacija,String tip,String kategorija);
 }

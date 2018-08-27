@@ -20,7 +20,6 @@ $(document).ready(function(){
 		//pripremamo JSON koji cemo poslati
 		
 		sort = $('#sortiranje').val();
-		var queryString = "?param1=" + sort;
 		
 		//alert("Sort value:" + sort)
 		
@@ -33,7 +32,7 @@ $(document).ready(function(){
 		data["kategorija"] = $("#searchForm [name='kategorija']").val();
 		
 		$.ajax({
-			url: "http://localhost:8083/searchAdvance/" ,
+			url: "http://localhost:8083/searchAdvance/" + sort ,
 			type: "GET",
 			data: data,
 			//saljemo json i ocekujemo json nazad
@@ -51,9 +50,10 @@ $(document).ready(function(){
 							+ "<td class=\"kategorija\">" + data[i].smestaj.kategorija + "</td>"
 							+ "<td class=\"do\">" + data[i].smestaj.tip + "</td>"
 							+ "<td class=\"brojKreveta\">" + data[i].brojKreveta + "</td>"
-							+ "<td class=\"brojKreveta\">" + data[i].od + "</td>"
+							+ "<td class=\"ocena\">" + data[i].smestaj.ocena + "</td>"
+							+ "<td class=\"od\">" + data[i].od + "</td>"
 							+ "<td class=\"do\">" + data[i].doDatuma + "</td>"
-							+ "<td class=\"do\">" + data[i].cena + "</td>"
+							+ "<td class=\"cena\">" + data[i].cena + "</td>"
 							+ "<td><a class=\"details\"  href='/ponuda/" + data[i].id +"'>" 
 							+ "<img src='images/details.gif'/></a></td>"
 						+ "</tr>"
@@ -233,6 +233,7 @@ margin-top: 12px;
 				<th>Kategorija</th>
 				<th>Tip</th>
 				<th>Broj kreveta</th>
+				<th>Ocena</th>
   				<th>Datum polaska</th>
   				<th>Datum dolaska</th>
   				<th>Cena</th>
