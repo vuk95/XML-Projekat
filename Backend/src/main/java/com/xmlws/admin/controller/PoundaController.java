@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.xmlws.admin.backend.Ponuda;
+import com.xmlws.admin.converters.PonudaToPonudaDTO;
 import com.xmlws.admin.service.PonudaService;
 
 @RestController
@@ -21,6 +22,9 @@ public class PoundaController {
 
 	@Autowired
 	private PonudaService ponudaService;
+	
+	@Autowired
+	private PonudaToPonudaDTO toPonudaDTO;
 	
 	//pretraga bez sortiranja
 	@CrossOrigin
@@ -55,7 +59,7 @@ public class PoundaController {
 				 ponuda = ponudaService.findOrderByCategory(od, doDatuma, brojKreveta, lokacija);
 				}
 			
-			return new ResponseEntity<>(ponuda,HttpStatus.OK);
+			return new ResponseEntity<>(toPonudaDTO.convert(ponuda),HttpStatus.OK);
 		}
 		
 		catch (Exception e) {
@@ -86,7 +90,7 @@ public class PoundaController {
 		return new ResponseEntity<>(ponuda,HttpStatus.OK);
 	} 
 	
-	//pretrage sa sortiranje
+	//napredna pretraga sa sortiranjem
 	@CrossOrigin
 	@RequestMapping(value = "/searchAdvance/{sort}" , method = RequestMethod.GET , consumes="application/json")
 		public ResponseEntity<?> findAdvance(@PathVariable("sort") int sort,@RequestParam(value = "od", required = false, defaultValue = "") String od, 
@@ -108,7 +112,7 @@ public class PoundaController {
 					 ponuda = ponudaService.findPonudaAdvanceOrderByCategory(od, doDatuma, brojKreveta, lokacija, tip, kategorija);
 					}
 				
-				return new ResponseEntity<>(ponuda,HttpStatus.OK);
+				return new ResponseEntity<>(toPonudaDTO.convert(ponuda),HttpStatus.OK);
 			}
 			
 			catch (Exception e) {

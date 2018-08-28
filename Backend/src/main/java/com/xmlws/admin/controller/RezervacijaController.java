@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.xmlws.admin.backend.Ponuda;
 import com.xmlws.admin.backend.Rezervacija;
+import com.xmlws.admin.converters.RezervacijaToRezervacijaDTO;
 import com.xmlws.admin.service.PonudaService;
 import com.xmlws.admin.service.RezervaciijaService;
 
@@ -26,6 +27,9 @@ public class RezervacijaController {
 	
 	@Autowired
 	private PonudaService ponudaService;
+	
+	@Autowired
+	private RezervacijaToRezervacijaDTO toRezervacijaDTO;
 	
 	@CrossOrigin
 	@RequestMapping(value = "/sve_rezervacije" , method = RequestMethod.GET)
@@ -54,7 +58,7 @@ public class RezervacijaController {
 		Rezervacija newReservation = rezervacijaService.save(rezervacija);
 		//Ponuda retPonuda = ponudaService.save(ponuda);
 		
-		return new ResponseEntity<>(newReservation,HttpStatus.OK);
+		return new ResponseEntity<>(toRezervacijaDTO.convert(newReservation),HttpStatus.OK);
 	}
 	
 	@CrossOrigin
