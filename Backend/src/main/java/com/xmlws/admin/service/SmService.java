@@ -5,5 +5,6 @@ import com.xmlws.admin.backend.Smestaj;
 public interface SmService {
 	
 	Smestaj save(Smestaj s);
+	Smestaj findOne(String naziv);
 
 }

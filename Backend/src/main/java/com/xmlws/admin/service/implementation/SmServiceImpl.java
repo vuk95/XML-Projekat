@@ -18,4 +18,9 @@ public class SmServiceImpl implements SmService{
 		return repository.save(s);
 	}
 
+	@Override
+	public Smestaj findOne(String naziv) {
+		return repository.findByNaziv(naziv);
+	}
+
 }

@@ -7,5 +7,7 @@ import com.xmlws.admin.backend.Smestaj;
 
 @Repository
 public interface SmRepository extends JpaRepository<Smestaj, Long>{
-
+	
+	Smestaj findByNaziv(String naziv);
+	
 }
