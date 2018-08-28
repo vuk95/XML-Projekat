@@ -58,10 +58,8 @@ public class KorisnikServiceImpl implements KorisnikService {
 		} else {
 			authority.add(new SimpleGrantedAuthority("KORISNIK"));
 		}
-		Authentication authenitcation = new PreAuthenticatedAuthenticationToken(user.getId(), null, authority);
+		Authentication authenitcation = new PreAuthenticatedAuthenticationToken(user.getEmail(), null, authority);
 		SecurityContextHolder.getContext().setAuthentication(authenitcation);
-		
-		System.out.println("AUTH " + authenitcation.getName());
 	}
 
 	/**
@@ -70,18 +68,14 @@ public class KorisnikServiceImpl implements KorisnikService {
 	@Override
 	public Korisnik getCurrentUser() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		System.out.println("CURRENT AUTH " + authentication.getName());
 		
-		//		try {
-//			Long id = Long.parseLong(authentication.getName());
-//			
-//			return findById(id);
-//		} catch(Exception e) {
-//			e.printStackTrace();
-//			return null;
-//		}
-		
-		return null;
+		try {
+			String email = authentication.getName();
+			return findByEmail(email);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 }
