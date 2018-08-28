@@ -41,6 +41,9 @@
 					contentType: "application/json",
 					success: function(data) {
 						top.location.href = "/index.html";
+					},
+					error: function(jqXHR, textStatus, erorThrown) {
+						$("#error-container").append("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button><strong>" + jqXHR.responseText + "</strong></div>");
 					}
 				});
 			});
@@ -53,6 +56,9 @@
 	<div class="container h-100">
 		<div class="row h-100 justify-content-center align-items-center">
 			<div class="login-container">
+				<div id="error-container">
+									
+				</div>
 				<form id="login-form">
 					<div class="form-group">
 						<input name="email" type="email" class="form-control form-control-lg" placeholder="E-mail">

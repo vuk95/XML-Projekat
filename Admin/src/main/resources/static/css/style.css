@@ -71,6 +71,53 @@ body {
   margin-right: -250px;
 }
 
+table#tabela {
+	font-family: 'Lato', sans-serif;
+	width: 100%;
+	border-radius: 50px;
+	background-color: #fff;
+}
+
+table#tabela td {
+	border: 1px solid #ddddeb;
+	border-left: none;
+  	border-right: none;
+    padding: 8px;
+}
+
+table#tabela th {
+	padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 8px;
+    background-color: #0e5ace;
+    color: white;
+}
+
+table#tabela tr:nth-child(even) {
+	background-color: #f7f7f7;
+}
+
+table#tabela tr:hover {
+	background-color: #f3f3f3;
+}
+
+button.btn.btn-outline-primary.btn-sm {
+	color: #0e5ace;
+	border-color: #0e5ace;
+	box-shadow:none !important;
+    outline:0px !important;
+}
+
+button.btn.btn-outline-primary.btn-sm:hover {
+	background-color: #0e5ace;
+	color: #fff;
+	border-color: #0e5ace;
+}
+
+button.btn.btn-outline-primary.btn-sm:hover:focus, button.btn.btn-outline-primary.btn-sm:hover:active {
+	box-shadow:none !important;
+    outline:0px !important;
+}
 
 /* Sidebar Styles */
 

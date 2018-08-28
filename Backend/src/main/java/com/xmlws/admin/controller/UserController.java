@@ -7,13 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +19,7 @@ import com.xmlws.admin.backend.Admin;
 import com.xmlws.admin.backend.Agent;
 import com.xmlws.admin.backend.Korisnik;
 import com.xmlws.admin.service.KorisnikService;
+import com.xmlws.admin.service.RegistrovaniKorisnikService;
 
 @RestController
 @RequestMapping(value = "/users")
@@ -33,6 +27,9 @@ public class UserController {
 
 	@Autowired
 	private KorisnikService korisnikService;
+	
+	@Autowired
+	private RegistrovaniKorisnikService registrovaniKorisnikService;
 	
 	
 	@CrossOrigin
@@ -73,6 +70,13 @@ public class UserController {
 		}
 		
 		return new ResponseEntity<>(new LoggedUserDTO(korisnik.getEmail(), role, korisnik.getId()), HttpStatus.OK);
+	}
+	
+	@CrossOrigin()
+	@RequestMapping(value = "", method = RequestMethod.GET)
+	public ResponseEntity<?> getRegistrovaniKorisnici() {
+		
+		return new ResponseEntity<>(registrovaniKorisnikService.findAll(), HttpStatus.OK);
 	}
 	
 }
