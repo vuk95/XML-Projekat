@@ -31,6 +31,14 @@
             <xs:element name="naziv" type="xs:string"/>
             <xs:element maxOccurs="unbounded" minOccurs="0" name="Image" type="ag:Image"/>
             <xs:element maxOccurs="unbounded" minOccurs="0" name="Ponuda" type="ag:Ponuda"/>
+            <xs:element name="Parking" type="xs:boolean"/>
+            <xs:element name="Wifi" type="xs:boolean"/>
+            <xs:element name="Dorucak" type="xs:boolean"/>
+            <xs:element name="Polupansion" type="xs:boolean"/>
+            <xs:element name="Pansion" type="xs:boolean"/>
+            <xs:element name="TV" type="xs:boolean"/>
+            <xs:element name="Kuhinja" type="xs:boolean"/>
+            <xs:element name="Kupatilo" type="xs:boolean"/>
         </xs:sequence>
     </xs:complexType>
 

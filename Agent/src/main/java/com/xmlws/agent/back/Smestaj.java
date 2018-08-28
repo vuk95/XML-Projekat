@@ -29,6 +29,14 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="naziv" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="Image" type="{admin.xmlws.com/backend}Image" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="Ponuda" type="{admin.xmlws.com/backend}Ponuda" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="Parking" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="Wifi" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="Dorucak" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="Polupansion" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="Pansion" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="TV" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="Kuhinja" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="Kupatilo" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -48,7 +56,15 @@ import javax.xml.bind.annotation.XmlType;
     "lokacija",
     "naziv",
     "image",
-    "ponuda"
+    "ponuda",
+    "parking",
+    "wifi",
+    "dorucak",
+    "polupansion",
+    "pansion",
+    "tv",
+    "kuhinja",
+    "kupatilo"
 })
 public class Smestaj {
 
@@ -71,6 +87,22 @@ public class Smestaj {
     protected List<Image> image;
     @XmlElement(name = "Ponuda")
     protected List<Ponuda> ponuda;
+    @XmlElement(name = "Parking")
+    protected boolean parking;
+    @XmlElement(name = "Wifi")
+    protected boolean wifi;
+    @XmlElement(name = "Dorucak")
+    protected boolean dorucak;
+    @XmlElement(name = "Polupansion")
+    protected boolean polupansion;
+    @XmlElement(name = "Pansion")
+    protected boolean pansion;
+    @XmlElement(name = "TV")
+    protected boolean tv;
+    @XmlElement(name = "Kuhinja")
+    protected boolean kuhinja;
+    @XmlElement(name = "Kupatilo")
+    protected boolean kupatilo;
 
     /**
      * Gets the value of the agent property.
@@ -304,6 +336,134 @@ public class Smestaj {
             ponuda = new ArrayList<Ponuda>();
         }
         return this.ponuda;
+    }
+
+    /**
+     * Gets the value of the parking property.
+     * 
+     */
+    public boolean isParking() {
+        return parking;
+    }
+
+    /**
+     * Sets the value of the parking property.
+     * 
+     */
+    public void setParking(boolean value) {
+        this.parking = value;
+    }
+
+    /**
+     * Gets the value of the wifi property.
+     * 
+     */
+    public boolean isWifi() {
+        return wifi;
+    }
+
+    /**
+     * Sets the value of the wifi property.
+     * 
+     */
+    public void setWifi(boolean value) {
+        this.wifi = value;
+    }
+
+    /**
+     * Gets the value of the dorucak property.
+     * 
+     */
+    public boolean isDorucak() {
+        return dorucak;
+    }
+
+    /**
+     * Sets the value of the dorucak property.
+     * 
+     */
+    public void setDorucak(boolean value) {
+        this.dorucak = value;
+    }
+
+    /**
+     * Gets the value of the polupansion property.
+     * 
+     */
+    public boolean isPolupansion() {
+        return polupansion;
+    }
+
+    /**
+     * Sets the value of the polupansion property.
+     * 
+     */
+    public void setPolupansion(boolean value) {
+        this.polupansion = value;
+    }
+
+    /**
+     * Gets the value of the pansion property.
+     * 
+     */
+    public boolean isPansion() {
+        return pansion;
+    }
+
+    /**
+     * Sets the value of the pansion property.
+     * 
+     */
+    public void setPansion(boolean value) {
+        this.pansion = value;
+    }
+
+    /**
+     * Gets the value of the tv property.
+     * 
+     */
+    public boolean isTV() {
+        return tv;
+    }
+
+    /**
+     * Sets the value of the tv property.
+     * 
+     */
+    public void setTV(boolean value) {
+        this.tv = value;
+    }
+
+    /**
+     * Gets the value of the kuhinja property.
+     * 
+     */
+    public boolean isKuhinja() {
+        return kuhinja;
+    }
+
+    /**
+     * Sets the value of the kuhinja property.
+     * 
+     */
+    public void setKuhinja(boolean value) {
+        this.kuhinja = value;
+    }
+
+    /**
+     * Gets the value of the kupatilo property.
+     * 
+     */
+    public boolean isKupatilo() {
+        return kupatilo;
+    }
+
+    /**
+     * Sets the value of the kupatilo property.
+     * 
+     */
+    public void setKupatilo(boolean value) {
+        this.kupatilo = value;
     }
 
 }
