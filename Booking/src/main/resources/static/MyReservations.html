@@ -29,7 +29,7 @@ $(document).ready(function(){
 						+ "<td class=\"kategorija\">" + data[i].ponuda.cena + "</td>"
 						+ "<td class=\"lokacija\">" + data[i].datumRealizacije + "</td>"
 						+ "<td class=\"od\">" + data[i].potvrdjeno + "</td>"
-						+ "<td><a class=\"cancel\" href='/otkazi/" + data[i].id + "'>" 
+						+ "<td><a class=\"cancel\" href='http://localhost:8085/otkazi/" + data[i].id + "'>" 
 						+ "<img src='images/remove.gif'/></a></td>"
 					+ "</tr>"
 					$("#dataTable").append(newRow);

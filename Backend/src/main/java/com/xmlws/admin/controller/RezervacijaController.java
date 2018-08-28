@@ -57,7 +57,7 @@ public class RezervacijaController {
 		return new ResponseEntity<>(newReservation,HttpStatus.OK);
 	}
 	
-	
+	@CrossOrigin
 	@RequestMapping(value = "/otkazi/{id}" , method = RequestMethod.DELETE)
 	public ResponseEntity<Rezervacija> cancel(@PathVariable Long id) {
 		
