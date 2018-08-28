@@ -53,6 +53,7 @@ public class SmestajiController {
 		sm_service.save(smestaj);
 		
 		com.xmlws.agent.back.Smestaj demoSmestaj = new com.xmlws.agent.back.Smestaj();
+		demoSmestaj.setNaziv(smestaj.getNaziv());
 		demoSmestaj.setAgent(null);
 		demoSmestaj.setId(smestaj.getId());
 		demoSmestaj.setKategorija(smestaj.getKategorija());
@@ -60,7 +61,15 @@ public class SmestajiController {
 		demoSmestaj.setOcena(smestaj.getOcena());
 		demoSmestaj.setOpis(smestaj.getOpis());
 		demoSmestaj.setTip(smestaj.getTip());
-		
+		demoSmestaj.setWifi(smestaj.isWifi());
+		demoSmestaj.setTV(smestaj.isTv());
+		demoSmestaj.setPolupansion(smestaj.isPolupansion());
+		demoSmestaj.setPansion(smestaj.isPansion());
+		demoSmestaj.setParking(smestaj.isParking());
+		demoSmestaj.setKupatilo(smestaj.isKupatilo());
+		demoSmestaj.setKuhinja(smestaj.isKuhinja());
+		demoSmestaj.setDorucak(smestaj.isDorucak());
+			
 		BackendServicePortService backServicePortService = new BackendServicePortService();
 		BackendServicePort port = backServicePortService.getBackendServicePortSoap11();
 		AddSmestajRequest addSmestajRequest = new AddSmestajRequest();

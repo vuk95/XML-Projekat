@@ -6,7 +6,10 @@
 		<h3>Dodaj smestaj:</h3>
 		<form th:action="@{/smestaji/getSviSmestaji/add}" th:object="${smestaj}" method ="post">
 			<table>
-				
+				<tr>
+					<td>Naziv:</td>
+					<td><input type = "text" th:field="*{naziv}"></td>
+				</tr>
 				<tr>
 					<td>Adresa:</td>
 					<td><input type = "text" th:field="*{lokacija}"></td>
@@ -17,7 +20,7 @@
 				</tr>
 				<tr>
 					<td>Tip:</td>
-					<td><select th:field="*{kategorija}">
+					<td><select th:field="*{tip}">
 					  <option value="hotel">Hotel</option>
   					  <option value="bed and breakfast">Bed and breakfast</option>
  					  <option value="apartman">Apartman</option>
@@ -26,8 +29,39 @@
 				</tr>
 				<tr>
 					<td>Kategorija:</td>
-					<td><input type = "text" th:field="*{tip}"></td>
-					
+					<td><input type = "text" th:field="*{kategorija}"></td>
+				</tr>
+				<tr>
+					<td>Parking:</td>
+					<td><input type="checkbox" th:field="*{parking}"/></td>
+				</tr>
+				<tr>
+					<td>Dorucak:</td>
+					<td><input type="checkbox" th:field="*{dorucak}"/></td>
+				</tr>
+				<tr>
+					<td>Polupansion:</td>
+					<td><input type="checkbox" th:field="*{polupansion}"/></td>
+				</tr>
+				<tr>
+					<td>Pansion:</td>
+					<td><input type="checkbox" th:field="*{pansion}"/></td>
+				</tr>
+				<tr>
+					<td>tv:</td>
+					<td><input type="checkbox" th:field="*{tv}"/></td>
+				</tr>
+				<tr>
+					<td>Kuhinja:</td>
+					<td><input type="checkbox" th:field="*{kuhinja}"/></td>
+				</tr>
+				<tr>
+					<td>Kupatilo:</td>
+					<td><input type="checkbox" th:field="*{kupatilo}"/></td>
+				</tr>
+				<tr>
+					<td>Dorucak:</td>
+					<td><input type="checkbox" th:field="*{dorucak}"/></td>
 				</tr>
 				
 				<tr>

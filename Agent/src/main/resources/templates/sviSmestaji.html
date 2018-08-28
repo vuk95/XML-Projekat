@@ -8,12 +8,14 @@
 		<a th:href="@{/smestaji/getSviSmestaji/add}">Dodaj novi smestaj</a>
 		<table border = "1">
 			<tr>
+				<th>Naziv</th>
 				<th>Adresa</th>
 				<th>Opis</th>
 				<th>Tip</th>
 				<th>Detaljnije</th>
 			</tr>
 			<tr th:each="smestaj, iterStat: ${smestaji}">
+				<td th:text="${smestaj.naziv}"></td>
 				<td th:text="${smestaj.lokacija}"></td>
 				<td th:text="${smestaj.opis}"></td>
 				<td th:text="${smestaj.tip}"></td>
