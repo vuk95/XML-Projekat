@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,6 +27,7 @@ public class RezervacijaController {
 	@Autowired
 	private PonudaService ponudaService;
 	
+	@CrossOrigin
 	@RequestMapping(value = "/sve_rezervacije" , method = RequestMethod.GET)
 	public ResponseEntity<List<Rezervacija>> getRezervacije() {
 		
@@ -34,6 +36,7 @@ public class RezervacijaController {
 		return new ResponseEntity<>(rezervacije,HttpStatus.OK);
 	}
 	
+	@CrossOrigin
 	@RequestMapping(value = "/rezervacija/{id}" , method = RequestMethod.POST , consumes="application/json")
 	public ResponseEntity<?> reserve(@PathVariable Long id) {
 		

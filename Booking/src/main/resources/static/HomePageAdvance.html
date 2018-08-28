@@ -32,7 +32,7 @@ $(document).ready(function(){
 		data["kategorija"] = $("#searchForm [name='kategorija']").val();
 		
 		$.ajax({
-			url: "http://localhost:8083/searchAdvance/" + sort ,
+			url: "http://localhost:8085/searchAdvance/" + sort ,
 			type: "GET",
 			data: data,
 			//saljemo json i ocekujemo json nazad

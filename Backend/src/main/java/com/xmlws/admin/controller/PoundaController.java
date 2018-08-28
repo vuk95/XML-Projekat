@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,6 +23,7 @@ public class PoundaController {
 	private PonudaService ponudaService;
 	
 	//pretraga bez sortiranja
+	@CrossOrigin
 	@RequestMapping(value = "/search" , method = RequestMethod.GET , consumes="application/json")
 	public ResponseEntity<List<Ponuda>> search(@RequestParam(value = "od", required = false, defaultValue = "") String od, 
 			@RequestParam(value = "doDatuma", required = false, defaultValue = "") String doDatuma,
@@ -33,6 +35,7 @@ public class PoundaController {
 	} 
 	
 	//pretrage sa sortiranje
+	@CrossOrigin
 	@RequestMapping(value = "/search/{sort}" , method = RequestMethod.GET , consumes="application/json")
 	public ResponseEntity<?> find(@PathVariable("sort") int sort,@RequestParam(value = "od", required = false, defaultValue = "") String od, 
 			@RequestParam(value = "doDatuma", required = false, defaultValue = "") String doDatuma,
@@ -60,7 +63,8 @@ public class PoundaController {
 		}
 				
 	}
-		
+	
+	@CrossOrigin
 	@RequestMapping(value = "/ponuda/{id}" , method = RequestMethod.GET)
 	public ResponseEntity<Ponuda> getPonuda(@PathVariable Long id) {
 		
@@ -70,6 +74,7 @@ public class PoundaController {
 	} 
 	
 	//napredna pretraga bez sortiranja
+	@CrossOrigin
 	@RequestMapping(value = "/searchAdvance" , method = RequestMethod.GET , consumes="application/json")
 	public ResponseEntity<List<Ponuda>> searchAdvance(@RequestParam(value = "od", required = false, defaultValue = "") String od, 
 			@RequestParam(value = "doDatuma", required = false, defaultValue = "") String doDatuma,
@@ -82,6 +87,7 @@ public class PoundaController {
 	} 
 	
 	//pretrage sa sortiranje
+	@CrossOrigin
 	@RequestMapping(value = "/searchAdvance/{sort}" , method = RequestMethod.GET , consumes="application/json")
 		public ResponseEntity<?> findAdvance(@PathVariable("sort") int sort,@RequestParam(value = "od", required = false, defaultValue = "") String od, 
 				@RequestParam(value = "doDatuma", required = false, defaultValue = "") String doDatuma,

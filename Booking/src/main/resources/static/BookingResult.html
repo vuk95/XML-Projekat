@@ -15,7 +15,7 @@ $(document).ready(function(){
 	queryString = queryString.substring(8);
 	
 	$.ajax({
-		url: "http://localhost:8083/ponuda/" + queryString
+		url: "http://localhost:8085/ponuda/" + queryString
 	}).then(
 		function(data) {
 			info = "<table class=\"table table-hover\"><tr><td><strong>Naziv:</strong></td><td>" + data.smestaj.naziv + "</td></tr>"
@@ -35,7 +35,7 @@ $(document).ready(function(){
 	$("#reserve").click(function(){
 		//pripremamo JSON koji cemo poslati
 		$.ajax({
-			url: "http://localhost:8083/rezervacija/" + queryString ,
+			url: "http://localhost:8085/rezervacija/" + queryString ,
 			type: "POST",
 			//saljemo json i ocekujemo json nazad
 			contentType: "application/json",
