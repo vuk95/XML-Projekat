@@ -4,10 +4,12 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,21 +18,20 @@ public class Ponuda {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ponuda_id")
     private Long id;
 	
     private BigDecimal cena;
     
     private BigInteger brojKreveta;
     
-    private Date od;
+    private String od;
     
-    private Date _do;
+    private String doDatuma;
     
-    /*
     @ManyToOne
-    protected Rezervacija rezervacija;
-    */
-
+    private Smestaj smestaj;
+    
 	public Long getId() {
 		return id;
 	}
@@ -55,21 +56,28 @@ public class Ponuda {
 		this.brojKreveta = brojKreveta;
 	}
 
-	public Date getOd() {
+	public String getOd() {
 		return od;
 	}
 
-	public void setOd(Date od) {
+	public void setOd(String od) {
 		this.od = od;
 	}
 
-	public Date get_do() {
-		return _do;
+	public String getDoDatuma() {
+		return doDatuma;
 	}
 
-	public void set_do(Date _do) {
-		this._do = _do;
+	public void setDoDatuma(String doDatuma) {
+		this.doDatuma = doDatuma;
 	}
-    
-    
+
+	public Smestaj getSmestaj() {
+		return smestaj;
+	}
+
+	public void setSmestaj(Smestaj smestaj) {
+		this.smestaj = smestaj;
+	}
+   
 }

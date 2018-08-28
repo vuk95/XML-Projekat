@@ -1,5 +1,12 @@
-insert into adresa(drzava, grad, ulica, broj) values ("Srbija", "Novi Sad", "Cara Dusana", 82)
-
-insert into agent(ime, prezime, email, lozinka, adresa_id, poslovni_maticni_broj) values ("Pera", "Peric", "pera@pera.com", "pera", 1, "123")
-
---insert into smestaj(agent_id,lokacija, kategorija, tip, opis, ocena, ponuda_id) values (1,"Bulevar Cara Lazara 80", 2, "stan", "jednoiposobni", 4, null)
+INSERT INTO smestaj (kategorija,lokacija,naziv,ocena,opis,tip, parking, wifi, dorucak, polupansion, pansion, tv, kuhinja, kupatilo) 
+values ('1','Vrbas','Hotel Backa','2','Jedini hotel u Vrbasu','Hotel', 1, 1, 1, 0, 0, 1, 1, 0);
+INSERT INTO smestaj (kategorija,lokacija,naziv,ocena,opis,tip, parking, wifi, dorucak, polupansion, pansion, tv, kuhinja, kupatilo) 
+values ('4','Novi Sad','Hotel Aleksandar','2','Najlepsi hotel u Novom Sadu','Hotel',1, 1, 1, 0, 0, 1, 1, 0);
+INSERT INTO smestaj (kategorija,lokacija,naziv,ocena,opis,tip, parking, wifi, dorucak, polupansion, pansion, tv, kuhinja, kupatilo) 
+values ('5','Beograd','Crowne Plaza','2','Jedan od najluksuznijih hotela u Srbiji','Hotel',1, 1, 1, 1, 1, 1, 1, 0);
+INSERT INTO smestaj (kategorija,lokacija,naziv,ocena,opis,tip, parking, wifi, dorucak, polupansion, pansion, tv, kuhinja, kupatilo) 
+values ('3','Herceg Novi','Plaza','4','Hotel u Herceg Novom','Hotel',1, 1, 1, 1, 1, 1, 1, 0);
+INSERT INTO smestaj (kategorija,lokacija,naziv,ocena,opis,tip, parking, wifi, dorucak, polupansion, pansion, tv, kuhinja, kupatilo) 
+values ('4','Kotor','Astoria','5','Jedini od najlepsih hotela u Crnoj Gori','Hotel', 1, 1, 1, 1, 1, 1, 1, 1);
+INSERT INTO smestaj (kategorija,lokacija,naziv,ocena,opis,tip, parking, wifi, dorucak, polupansion, pansion, tv, kuhinja, kupatilo) 
+values ('5','Madrid','InterContinental','4','Jedan od najboljih hotela u Madridu','Hotel', 1, 1, 1, 0, 0, 1, 1, 0);

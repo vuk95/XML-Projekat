@@ -53,16 +53,19 @@ public class Smestaj {
     private boolean kupatilo;
     
     private String naziv;
-    
-    @ManyToOne
-    private Ponuda ponuda;    
-    
+     
     @OneToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "mojeSlike",
 				joinColumns = @JoinColumn(name = "smestaj_id", referencedColumnName = "smestaj_id"),
 				inverseJoinColumns = @JoinColumn(name = "image_id", referencedColumnName = "image_id"))
 	private List<Image> mojeSlike = new ArrayList<Image>();
 	
+    @OneToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "mojePonude",
+				joinColumns = @JoinColumn(name = "smestaj_id", referencedColumnName = "smestaj_id"),
+				inverseJoinColumns = @JoinColumn(name = "ponuda_id", referencedColumnName = "ponuda_id"))
+	private List<Ponuda> mojePonude = new ArrayList<Ponuda>();
+    
     public Long getId() {
 		return id;
 	}
@@ -105,12 +108,6 @@ public class Smestaj {
 	}
 	public void setOcena(int ocena) {
 		this.ocena = ocena;
-	}
-	public Ponuda getPonuda() {
-		return ponuda;
-	}
-	public void setPonuda(Ponuda ponuda) {
-		this.ponuda = ponuda;
 	}
 	public List<Image> getMojeSlike() {
 		return mojeSlike;
@@ -172,5 +169,13 @@ public class Smestaj {
 	public void setNaziv(String naziv) {
 		this.naziv = naziv;
 	}
+	public List<Ponuda> getMojePonude() {
+		return mojePonude;
+	}
+	public void setMojePonude(List<Ponuda> mojePonude) {
+		this.mojePonude = mojePonude;
+	}
+	
+	
 
 }

@@ -12,7 +12,9 @@ import com.xmlws.agent.back.AddSmestajRequest;
 import com.xmlws.agent.back.AddSmestajResponse;
 import com.xmlws.agent.back.BackendServicePort;
 import com.xmlws.agent.back.BackendServicePortService;
+import com.xmlws.agent.model.Ponuda;
 import com.xmlws.agent.model.Smestaj;
+import com.xmlws.agent.service.PonudaService;
 import com.xmlws.agent.service.SmestajService;
 
 @Controller
@@ -21,6 +23,9 @@ public class SmestajiController {
 	
 	@Autowired
 	private SmestajService sm_service;
+	
+	@Autowired
+	private PonudaService p_service;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index() {
@@ -87,8 +92,33 @@ public class SmestajiController {
 
     	map.put("smestaj",sm_service.findOne(id));
     	map.put("slike", sm_service.findOne(id).getMojeSlike());
+    	map.put("ponude", sm_service.findOne(id).getMojePonude());
     	return "showSmestaj";
 		
     }
+	
+	@RequestMapping(value = "/getSvePonude/add/{id}", method = RequestMethod.GET)
+	public String addPonude(@PathVariable Long id, ModelMap map) {
+		
+		
+		map.put("ponuda", new Ponuda());
+		map.put("smestaj", sm_service.findOne(id));
+		
+		
+		return "addPonuda";
+		
+	}
+	
+	@RequestMapping(value = "/getSvePonude/add", method = RequestMethod.POST)
+	public String addPonude(@ModelAttribute("ponuda") Ponuda ponuda, ModelMap map) {
+		
+		p_service.save(ponuda);
+		Smestaj s = sm_service.findOne(ponuda.getSmestaj().getId());
+		s.getMojePonude().add(ponuda);
+		sm_service.save(s);
+		
+		return "redirect:/smestaji/getSviSmestaji";
+	
+	}
 
 }

@@ -1,0 +1,35 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Dodaj ponudu</title>
+	</head>
+	<body>
+		<h3>Dodaj ponudu:</h3>
+		<form th:action="@{/smestaji/getSvePonude/add/}" th:object="${ponuda}" method ="post">
+			<table>
+				<tr>
+					<td>Cena:</td>
+					<td><input type = "number" th:field="*{cena}"></td>
+				</tr>
+				<tr>
+					<td>Broj kreveta:</td>
+					<td><input type = "number" th:field="*{brojKreveta}"></td>
+				</tr>
+				<tr>
+					<td>Od:</td>
+					<td><input type = "text" th:field="*{od}"></td>
+				</tr>
+				<tr>
+					<td>Do:</td>
+					<td><input type = "text" th:field="*{doDatuma}"></td>
+				</tr>
+				<tr>
+					<td><input type="hidden" th:value="${smestaj.id}" th:attr="name='smestaj'" />
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><input type = "submit" value="Save"></td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>
