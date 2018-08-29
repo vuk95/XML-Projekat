@@ -40,7 +40,7 @@
 									+"<td>" + data[i].email + "</td>"
 									+"<td>" + banned + "</td>"
 									+"<td><a id=\"ban\" href='http://localhost:8085/users/"+ data[i].id  + "'role=\"button\" aria-pressed=\"true\" class=\"btn btn-outline-primary btn-sm\"><i class=\"fas fa-ban\"></i></a></td>"
-									+"<td><a href=\"#\" role=\"button\" aria-pressed=\"true\" class=\"btn btn-outline-primary btn-sm\"><i class=\"fas fa-trash-alt\"></i></a></td>"
+									+"<td><a id=\"delete\" href='http://localhost:8085/users/"+ data[i].id  + "'role=\"button\" aria-pressed=\"true\" class=\"btn btn-outline-primary btn-sm\"><i class=\"fas fa-trash-alt\"></i></a></td>"
 								+"</tr>";
 						$("#tabela").append(newRow);
 					}
@@ -59,6 +59,22 @@
 					top.location.href = "/users.html";
 				}
 			});
+		});
+		
+		$(document).on("click", "#delete", function(event){
+			event.preventDefault();
+			var confirmed = confirm("Da li ste sigurni da zelite da obrisete korisnika?");
+			if(confirmed) {
+				var url = $(this).attr("href");
+				var tr_parent = $(this).closest("tr");
+				$.ajax({
+					url: url,
+					type: "DELETE",
+					success: function() {
+						tr_parent.remove();
+					}
+				});
+			}			
 		});
   	</script>  
 </head>

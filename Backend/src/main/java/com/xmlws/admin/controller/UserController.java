@@ -102,4 +102,13 @@ public class UserController {
 		return new ResponseEntity<>(korisnik, HttpStatus.OK);
 	}
 	
+	@CrossOrigin
+	@RequestMapping(value="/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<?> obrisiRegistrovanogKorisnika(@PathVariable Long id) {
+		RegistrovaniKorisnik korisnik = registrovaniKorisnikService.findById(id);
+		registrovaniKorisnikService.delete(korisnik);
+		
+		return new ResponseEntity<>(korisnik, HttpStatus.OK);
+	}
+	
 }

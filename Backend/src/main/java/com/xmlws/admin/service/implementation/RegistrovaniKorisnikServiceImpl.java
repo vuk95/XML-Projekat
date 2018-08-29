@@ -36,4 +36,11 @@ public class RegistrovaniKorisnikServiceImpl implements RegistrovaniKorisnikServ
 		return registrovaniKorisnikRepo.save(korisnik);
 	}
 
+	@Override
+	public RegistrovaniKorisnik delete(RegistrovaniKorisnik korisnik) {
+		registrovaniKorisnikRepo.delete(korisnik);
+		
+		return korisnik;
+	}
+
 }

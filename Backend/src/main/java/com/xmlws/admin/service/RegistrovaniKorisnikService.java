@@ -11,4 +11,6 @@ public interface RegistrovaniKorisnikService {
 	public List<RegistrovaniKorisnik> findAll();
 	
 	public RegistrovaniKorisnik save(RegistrovaniKorisnik korisnik);
+	
+	public RegistrovaniKorisnik delete(RegistrovaniKorisnik korisnik);
 }
