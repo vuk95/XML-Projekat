@@ -31,7 +31,6 @@ public class AgentServiceImpl implements AgentService {
 		agent.setEmail(agentDTO.getEmail());
 		agent.setPoslovniMaticniBroj(agentDTO.getPoslovniMaticniBroj());
 		agent.setZabranjen(false);
-		agent.setSmestaj(new ArrayList<Smestaj>());
 		agent.setLozinka("password");
 		
 		agentRepo.save(agent);

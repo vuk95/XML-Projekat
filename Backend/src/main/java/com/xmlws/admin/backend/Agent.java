@@ -46,9 +46,6 @@ public class Agent
     @XmlAttribute(name = "Poslovni_maticni_broj")
     protected String poslovniMaticniBroj;
     
-    @OneToMany
-    public List<Smestaj> smestaj = new ArrayList<Smestaj>();
-
     public Agent() {
     	
     }
@@ -82,14 +79,4 @@ public class Agent
     public void setPoslovniMaticniBroj(String value) {
         this.poslovniMaticniBroj = value;
     }
-
-	public List<Smestaj> getSmestaj() {
-		return smestaj;
-	}
-
-	public void setSmestaj(List<Smestaj> smestaj) {
-		this.smestaj = smestaj;
-	}
-    
-    
 }
