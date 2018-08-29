@@ -1,5 +1,16 @@
 -- KORISNICI
 INSERT INTO korisnik(dtype,email,ime,lozinka,prezime,zabranjen) VALUES ('RegistrovaniKorisnik','pera@gmail.com','Petar','password','Peric',0);
+INSERT INTO korisnik(dtype,email,ime,lozinka,prezime,zabranjen) VALUES ('RegistrovaniKorisnik','jovan352@gmail.com','Jovan','password','Jovanovic',0);
+INSERT INTO korisnik(dtype,email,ime,lozinka,prezime,zabranjen) VALUES ('RegistrovaniKorisnik','sale22@gmail.com','Sasa','password','Ilic',0);
+INSERT INTO korisnik(dtype,email,ime,lozinka,prezime,zabranjen) VALUES ('RegistrovaniKorisnik','ricardo@gmail.com','Rikardo','password','Gomes',0);
+INSERT INTO korisnik(dtype,email,ime,lozinka,prezime,zabranjen) VALUES ('RegistrovaniKorisnik','zakaric@gmail.com','Goran','password','Zakaric',0);
+INSERT INTO korisnik(dtype,email,ime,lozinka,prezime,zabranjen) VALUES ('RegistrovaniKorisnik','daca10@gmail.com','Danilo','password','Pantic',0);
+INSERT INTO korisnik(dtype,email,ime,lozinka,prezime,zabranjen) VALUES ('RegistrovaniKorisnik','djerlek_armin@gmail.com','Armin','password','Djerlek',0);
+INSERT INTO korisnik(dtype,email,ime,lozinka,prezime,zabranjen) VALUES ('RegistrovaniKorisnik','vule85@gmail.com','Miroslav','password','Vulicevic',1);
+INSERT INTO korisnik(dtype,email,ime,lozinka,prezime,zabranjen) VALUES ('RegistrovaniKorisnik','23vanja@gmail.com','Vanja','password','Marinkovic',0);
+INSERT INTO korisnik(dtype,email,ime,lozinka,prezime,zabranjen) VALUES ('RegistrovaniKorisnik','mihajlo_andr@gmail.com','Mihajlo','password','Andric',1);
+INSERT INTO korisnik(dtype,email,ime,lozinka,prezime,zabranjen) VALUES ('RegistrovaniKorisnik','novica12ubica@gmail.com','Novica','password','Velickovic',0);
+
 INSERT INTO korisnik(dtype,email,ime,lozinka,prezime,zabranjen) VALUES ('Admin','admin@gmail.com','Stole','password','Markovic',0);
 INSERT INTO korisnik(dtype,email,ime,lozinka,prezime,zabranjen,poslovni_maticni_broj) VALUES ('Agent','ana@gmail.com','Ana','password','Ivanovic',0,'02357483342');
 
