@@ -132,4 +132,15 @@
             <xs:element name="Smestaj" type="ag:Smestaj"/>
         </xs:sequence>
     </xs:complexType>
+    
+    <xs:complexType name="Komentar">
+        <xs:sequence>
+            <xs:element name="Sadrzaj" type="xs:string"/>
+            <xs:element name="Odobren" type="xs:boolean"/>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="Smestaj" type="ag:Smestaj"/>
+            <xs:element name="RegistrovaniKorisnik" type="ag:RegistrovaniKorisnik"/>
+        </xs:sequence>
+    </xs:complexType>
+    
 </xs:schema>
