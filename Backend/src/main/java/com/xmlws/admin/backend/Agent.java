@@ -8,7 +8,11 @@
 
 package com.xmlws.admin.backend;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -37,11 +41,24 @@ import javax.xml.bind.annotation.XmlType;
 @Entity
 public class Agent
     extends Korisnik
-{
+{	
 
     @XmlAttribute(name = "Poslovni_maticni_broj")
     protected String poslovniMaticniBroj;
+    
+    @OneToMany
+    public List<Smestaj> smestaj = new ArrayList<Smestaj>();
 
+    public Agent() {
+    	
+    }
+
+    public Agent(Long id, String ime, String prezime, String email, String lozinka,String poslovniMaticniBroj) {
+    	super(id, ime, prezime, email, lozinka);
+		this.poslovniMaticniBroj = poslovniMaticniBroj;
+	}
+    
+    
     /**
      * Gets the value of the poslovniMaticniBroj property.
      * 
@@ -66,4 +83,13 @@ public class Agent
         this.poslovniMaticniBroj = value;
     }
 
+	public List<Smestaj> getSmestaj() {
+		return smestaj;
+	}
+
+	public void setSmestaj(List<Smestaj> smestaj) {
+		this.smestaj = smestaj;
+	}
+    
+    
 }

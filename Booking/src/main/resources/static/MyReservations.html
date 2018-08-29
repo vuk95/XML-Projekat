@@ -23,6 +23,7 @@ $(document).ready(function(){
 						+ "<td class=\"kategorija\">" + data[i].ponuda.smestaj.lokacija + "</td>"
 						+ "<td class=\"kategorija\">" + data[i].ponuda.smestaj.kategorija + "</td>"
 						+ "<td class=\"kategorija\">" + data[i].ponuda.smestaj.tip + "</td>"
+						+ "<td class=\"vlasnik\">" + data[i].ponuda.smestaj.agent.ime + "</td>"
 						+ "<td class=\"kategorija\">" + data[i].ponuda.brojKreveta + "</td>"
 						+ "<td class=\"kategorija\">" + data[i].ponuda.od + "</td>"
 						+ "<td class=\"kategorija\">" + data[i].ponuda.doDatuma + "</td>"
@@ -31,6 +32,8 @@ $(document).ready(function(){
 						+ "<td class=\"od\">" + data[i].potvrdjeno + "</td>"
 						+ "<td><a class=\"cancel\" href='http://localhost:8085/otkazi/" + data[i].id + "'>" 
 						+ "<img src='images/remove.gif'/></a></td>"
+						+ "<td><a class=\"chat\" href='Chat.html'>" 
+						+ "<img src='images/message1.png'/></a></td>"
 					+ "</tr>"
 					$("#dataTable").append(newRow);
 				
@@ -104,12 +107,15 @@ margin-top: 12px;
   				<th>Lokacija</th>
 				<th>Kategorija</th>
 				<th>Tip</th>
+				<th>Vlasnik</th>
 				<th>Broj kreveta</th>
   				<th>Datum polaska</th>
   				<th>Datum dolaska</th>
   				<th>Cena</th>
   				<th>Datum realizacije</th>
   				<th>Status</th>
+  				<th></th>
+  				<th></th>
   				</tr>
 				</tbody></table>
 		</div>

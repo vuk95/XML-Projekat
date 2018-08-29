@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -58,6 +60,7 @@ import javax.xml.bind.annotation.XmlType;
     RegistrovaniKorisnik.class
 })
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Korisnik {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)   
@@ -73,6 +76,20 @@ public abstract class Korisnik {
     @XmlElement(name = "Zabranjen")
     protected boolean zabranjen;
 
+    
+    public Korisnik() {}
+
+    public Korisnik(long id, String ime, String prezime, String email, String lozinka) {
+	
+		this.id = id;
+		this.ime = ime;
+		this.prezime = prezime;
+		this.email = email;
+		this.lozinka = lozinka;
+		
+	}
+    
+    
     /**
      * Gets the value of the id property.
      * 
