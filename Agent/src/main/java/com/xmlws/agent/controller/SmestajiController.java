@@ -8,10 +8,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.xmlws.agent.back.AddPonudaRequest;
+import com.xmlws.agent.back.AddPonudaResponse;
 import com.xmlws.agent.back.AddSmestajRequest;
 import com.xmlws.agent.back.AddSmestajResponse;
 import com.xmlws.agent.back.BackendServicePort;
 import com.xmlws.agent.back.BackendServicePortService;
+import com.xmlws.agent.back.GetSmestajRequest;
+import com.xmlws.agent.back.GetSmestajResponse;
 import com.xmlws.agent.model.Ponuda;
 import com.xmlws.agent.model.Smestaj;
 import com.xmlws.agent.service.PonudaService;
@@ -113,9 +117,45 @@ public class SmestajiController {
 	public String addPonude(@ModelAttribute("ponuda") Ponuda ponuda, ModelMap map) {
 		
 		p_service.save(ponuda);
+		
+		com.xmlws.agent.back.Ponuda demoPonuda = new com.xmlws.agent.back.Ponuda();
+		demoPonuda.setId(ponuda.getId());
+		demoPonuda.setBrojKreveta(ponuda.getBrojKreveta());
+		demoPonuda.setOd(ponuda.getOd());
+		demoPonuda.setDoDatuma(ponuda.getDoDatuma());
+		demoPonuda.setCena(ponuda.getCena());
+		
+		BackendServicePortService backServicePortService = new BackendServicePortService();
+		BackendServicePort port = backServicePortService.getBackendServicePortSoap11();
+		
+		GetSmestajRequest getSmestajRequest = new GetSmestajRequest();
+		getSmestajRequest.setNaziv(ponuda.getSmestaj().getNaziv());
+		GetSmestajResponse getSmestajResponse = port.getSmestaj(getSmestajRequest);
+		
+		com.xmlws.agent.back.Smestaj getted = getSmestajResponse.getSmestaj();
+		
+		demoPonuda.setSmestaj(getSmestajResponse.getSmestaj());
+		
+		AddPonudaRequest addPonudaRequest = new AddPonudaRequest();
+		addPonudaRequest.setPonuda(demoPonuda);
+		AddPonudaResponse addPonudaResponse = port.addPonuda(addPonudaRequest);
+		
+		System.out.println("U glavnu bazu upisana ponuda: " + addPonudaResponse.getPonuda().getCena());
+		
+		
 		Smestaj s = sm_service.findOne(ponuda.getSmestaj().getId());
 		s.getMojePonude().add(ponuda);
 		sm_service.save(s);
+		
+		//Nesto jebe da ga doda u listu
+		//getted.getPonuda().add(demoPonuda);
+		
+		//AddSmestajRequest addSmestajRequest = new AddSmestajRequest();
+		//addSmestajRequest.setSmestaj(getted);
+		//AddSmestajResponse addSmestajResponse = port.addSmestaj(addSmestajRequest);
+		
+		//System.out.println("U glavnoj bazi azuriran smestaj: " + addSmestajResponse.getSmestaj().getLokacija());
+		
 		
 		return "redirect:/smestaji/getSviSmestaji";
 	

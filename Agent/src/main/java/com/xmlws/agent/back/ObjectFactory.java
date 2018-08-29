@@ -46,11 +46,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link AddSmestajResponse }
+     * Create an instance of {@link AddPonudaResponse }
      * 
      */
-    public AddSmestajResponse createAddSmestajResponse() {
-        return new AddSmestajResponse();
+    public AddPonudaResponse createAddPonudaResponse() {
+        return new AddPonudaResponse();
     }
 
     /**
@@ -59,6 +59,38 @@ public class ObjectFactory {
      */
     public Ponuda createPonuda() {
         return new Ponuda();
+    }
+
+    /**
+     * Create an instance of {@link AddPonudaRequest }
+     * 
+     */
+    public AddPonudaRequest createAddPonudaRequest() {
+        return new AddPonudaRequest();
+    }
+
+    /**
+     * Create an instance of {@link GetSmestajResponse }
+     * 
+     */
+    public GetSmestajResponse createGetSmestajResponse() {
+        return new GetSmestajResponse();
+    }
+
+    /**
+     * Create an instance of {@link AddSmestajResponse }
+     * 
+     */
+    public AddSmestajResponse createAddSmestajResponse() {
+        return new AddSmestajResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetSmestajRequest }
+     * 
+     */
+    public GetSmestajRequest createGetSmestajRequest() {
+        return new GetSmestajRequest();
     }
 
     /**

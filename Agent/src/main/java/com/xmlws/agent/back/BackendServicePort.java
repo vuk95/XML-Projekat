@@ -25,6 +25,30 @@ public interface BackendServicePort {
 
     /**
      * 
+     * @param addPonudaRequest
+     * @return
+     *     returns com.xmlws.admin.backend.AddPonudaResponse
+     */
+    @WebMethod
+    @WebResult(name = "addPonudaResponse", targetNamespace = "admin.xmlws.com/backend", partName = "addPonudaResponse")
+    public AddPonudaResponse addPonuda(
+        @WebParam(name = "addPonudaRequest", targetNamespace = "admin.xmlws.com/backend", partName = "addPonudaRequest")
+        AddPonudaRequest addPonudaRequest);
+
+    /**
+     * 
+     * @param getSmestajRequest
+     * @return
+     *     returns com.xmlws.admin.backend.GetSmestajResponse
+     */
+    @WebMethod
+    @WebResult(name = "getSmestajResponse", targetNamespace = "admin.xmlws.com/backend", partName = "getSmestajResponse")
+    public GetSmestajResponse getSmestaj(
+        @WebParam(name = "getSmestajRequest", targetNamespace = "admin.xmlws.com/backend", partName = "getSmestajRequest")
+        GetSmestajRequest getSmestajRequest);
+
+    /**
+     * 
      * @param addSmestajRequest
      * @return
      *     returns com.xmlws.admin.backend.AddSmestajResponse

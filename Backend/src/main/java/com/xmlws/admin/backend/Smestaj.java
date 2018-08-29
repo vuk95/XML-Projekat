@@ -8,6 +8,9 @@
 
 package com.xmlws.admin.backend;
 
+import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.LazyCollection;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +27,7 @@ import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -107,14 +111,19 @@ public class Smestaj {
     @XmlElement(required = true)
     protected String naziv;
     @XmlElement(name = "Image")
+    @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "mojeSlike",
 				joinColumns = @JoinColumn(name = "smestaj_id", referencedColumnName = "smestaj_id"),
 				inverseJoinColumns = @JoinColumn(name = "image_id", referencedColumnName = "image_id"))
-    protected List<Image> image;
+    protected List<Image> image = new ArrayList<Image>();
     @XmlElement(name = "Ponuda")
-    @OneToMany
-    protected List<Ponuda> ponuda;
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(cascade = CascadeType.ALL)
+   	@JoinTable(name = "mojePonude",
+   				joinColumns = @JoinColumn(name = "smestaj_id", referencedColumnName = "smestaj_id"),
+   				inverseJoinColumns = @JoinColumn(name = "ponuda_id", referencedColumnName = "ponuda_id"))
+    protected List<Ponuda> ponuda = new ArrayList<Ponuda>();
     @XmlElement(name = "Parking")
     protected boolean parking;
     @XmlElement(name = "Wifi")

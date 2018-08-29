@@ -23,7 +23,7 @@ public class Ponuda {
 	
     private BigDecimal cena;
     
-    private BigInteger brojKreveta;
+    private String brojKreveta;
     
     private String od;
     
@@ -48,11 +48,11 @@ public class Ponuda {
 		this.cena = cena;
 	}
 
-	public BigInteger getBrojKreveta() {
+	public String getBrojKreveta() {
 		return brojKreveta;
 	}
 
-	public void setBrojKreveta(BigInteger brojKreveta) {
+	public void setBrojKreveta(String brojKreveta) {
 		this.brojKreveta = brojKreveta;
 	}
 
