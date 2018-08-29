@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Administratorska aplikacija</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+    
+    <!-- Lato web font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    
+    <!-- Bootstrap core JavaScript -->
+    <script src="scripts/jquery.min.js"></script>
+    <script src="scripts/bootstrap.bundle.min.js"></script>
+    
+    <script>
+    $(document).ready(function(){
+		$.ajax({
+			url: "http://localhost:8085/users/agents"
+		}).then(
+			function(data) {
+				for(i = 0; i < data.length; i++) {
+					newRow = "<tr>"
+								+"<td>" + data[i].ime + "</td>"
+								+"<td>" + data[i].prezime + "</td>"
+								+"<td>" + data[i].email + "</td>"
+								+"<td>" + data[i].poslovniMaticniBroj + "</td>"
+							+"</tr>";
+					$("#tabela").append(newRow);
+				}
+		});
+		
+		$("#add").click(function() {
+			formData = JSON.stringify({
+				ime:$("#addForm [name='ime']").val(),
+				prezime:$("#addForm [name='prezime']").val(),
+				email:$("#addForm [name='email']").val(),
+				name:$("#addForm [name='ime']").val(),
+				poslovniMaticniBroj:$("#addForm [name='poslovniMaticniBroj']").val(),
+			});
+			
+			$.ajax({
+				url: "http://localhost:8085/users/agents",
+				type: "POST",
+				data: formData,
+				contentType: "application/json",
+				datatype: 'json',
+				success: function(data) {
+					top.location.href = "/agents.html";
+				},
+				error: function(data) {
+					alert("Doslo je do greske!");
+				}
+			});
+			$("#addModal").modal('toggle');
+		});
+		
+	});    
+    </script>
+</head>
+<body>
+
+    <div id="wrapper" class="toggled">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="/index.html"><i class="fas fa-user-secret" style="margin-right: 10px;"></i>admin</a>
+                </li>
+                 <br>
+                <li class="sidebar-links">
+                    <a href="/users.html"><i class="fas fa-user" style="margin-right: 10px;"></i>Korisnici</a>
+                </li>
+                <li class="sidebar-links">
+                    <a href="/agents.html"><i class="fas fa-user-tie" style="margin-right: 10px;"></i>Agenti</a>
+                </li>
+                <li class="sidebar-links">
+                    <a href="#"><i class="fas fa-comments" style="margin-right: 10px;"></i>Komentari</a>
+                </li>
+                <li class="sidebar-links">
+                    <a href="#"><i class="fas fa-book" style="margin-right: 10px;"></i>Šifrarnici</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+		<nav class="navbar navbar-default justify-content-end">
+			<a href="#" class="btn btn-outline-danger" role="button" aria-pressed="true">Odjavi se</a>
+		</nav>
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container">
+                <div class="button-container">
+                	<a href="#" role="button" aria-pressed="true" data-toggle="modal" data-target="#addModal" data-toggle="tooltip" class="btn btn-outline-primary">Novi agent</a>
+                </div>
+                
+                <table id="tabela">
+                	<tr>
+                		<th>Ime</th>
+                		<th>Prezime</th>
+                		<th>E-mail</th>
+                		<th>Poslovni matični broj</th>
+                	</tr>
+                </table>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+		<div class="modal fade" id="addModal" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Podaci o novom agentu</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          			<span aria-hidden="true">&times;</span>
+		        		</button>
+					</div>
+					<form id="addForm">
+					<div class="modal-body">
+						<input type="text" class="form-control" name="ime" placeholder="Ime">
+						<br>
+						<input type="text" class="form-control" name="prezime" placeholder="Prezime">
+						<br>
+						<input type="text" class="form-control" name="email" placeholder="E-mail">
+						<br>
+						<input type="text" class="form-control" name="poslovniMaticniBroj" placeholder="Poslovni maticni broj">
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+		        		<button type="button" class="btn btn-primary" id="add">Potvrda</button>
+					</div>
+					</form>
+				</div>			
+			</div>
+		</div>
+
+    </div>
+    <!-- /#wrapper -->
+
+</body>
+</html>

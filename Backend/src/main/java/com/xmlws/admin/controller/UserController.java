@@ -14,12 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.xmlws.admin.dto.AgentFormDTO;
 import com.xmlws.admin.dto.LoggedUserDTO;
 import com.xmlws.admin.dto.LoginDTO;
 import com.xmlws.admin.backend.Admin;
 import com.xmlws.admin.backend.Agent;
 import com.xmlws.admin.backend.Korisnik;
 import com.xmlws.admin.backend.RegistrovaniKorisnik;
+import com.xmlws.admin.service.AgentService;
 import com.xmlws.admin.service.KorisnikService;
 import com.xmlws.admin.service.RegistrovaniKorisnikService;
 
@@ -33,6 +35,9 @@ public class UserController {
 	@Autowired
 	private RegistrovaniKorisnikService registrovaniKorisnikService;
 	
+	@Autowired
+	private AgentService agentService;
+
 	
 	@CrossOrigin
 	@RequestMapping(value = "/loginAdmin", method = RequestMethod.POST)
@@ -109,6 +114,20 @@ public class UserController {
 		registrovaniKorisnikService.delete(korisnik);
 		
 		return new ResponseEntity<>(korisnik, HttpStatus.OK);
+	}
+	
+	@CrossOrigin
+	@RequestMapping(value="/agents", method = RequestMethod.GET)
+	public ResponseEntity<?> getAgenti() {
+		return new ResponseEntity<>(agentService.findAll(), HttpStatus.OK);
+	}
+	
+	@CrossOrigin
+	@RequestMapping(value="/agents", method = RequestMethod.POST, consumes="application/json")
+	public ResponseEntity<?> noviAgent(@RequestBody AgentFormDTO dto) {
+		Agent agent = agentService.registerNew(dto);
+		
+		return new ResponseEntity<>(agent ,HttpStatus.OK);
 	}
 	
 }

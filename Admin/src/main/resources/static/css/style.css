@@ -71,6 +71,11 @@ body {
   margin-right: -250px;
 }
 
+div.button-container {
+	text-align: right;
+	margin-bottom: 10px;
+}
+
 table#tabela {
 	font-family: 'Lato', sans-serif;
 	width: 100%;
@@ -102,6 +107,24 @@ table#tabela tr:hover {
 	background-color: #f3f3f3;
 }
 
+a.btn.btn-outline-primary {
+	color: #0e5ace;
+	border-color: #0e5ace;
+	box-shadow:none !important;
+    outline:0px !important;
+}
+
+a.btn.btn-outline-primary:hover {
+	background-color: #0e5ace;
+	color: #fff;
+	border-color: #0e5ace
+}
+
+a.btn.btn-outline-primary:focus, a.btn.btn-outline-primary:active {
+	box-shadow:none !important;
+    outline:0px !important;
+}
+
 a.btn.btn-outline-primary.btn-sm {
 	color: #0e5ace;
 	border-color: #0e5ace;
@@ -116,6 +139,25 @@ a.btn.btn-outline-primary.btn-sm:hover {
 }
 
 a.btn.btn-outline-primary.btn-sm:hover:focus, button.btn.btn-outline-primary.btn-sm:hover:active {
+	box-shadow:none !important;
+    outline:0px !important;
+}
+
+button.btn.btn-primary {
+	background-color: #0e5ace;
+	color: #fff;
+	border-color: #0e5ace;
+	box-shadow:none !important;
+    outline:0px !important;
+}
+
+button.btn.btn-primary:hover {
+	background-color: #0b50ba;
+	color: #fff;
+	border-color: #0b50ba;
+}
+
+button.btn.btn-primary:active, button.btn.btn-primary:focus {
 	box-shadow:none !important;
     outline:0px !important;
 }
