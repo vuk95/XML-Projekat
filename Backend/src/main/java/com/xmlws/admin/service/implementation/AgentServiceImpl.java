@@ -1,13 +1,11 @@
 package com.xmlws.admin.service.implementation;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.xmlws.admin.backend.Agent;
-import com.xmlws.admin.backend.Smestaj;
 import com.xmlws.admin.dto.AgentFormDTO;
 import com.xmlws.admin.repository.AgentRepository;
 import com.xmlws.admin.service.AgentService;
