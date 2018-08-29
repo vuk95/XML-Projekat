@@ -80,7 +80,7 @@
         </xs:sequence>
     </xs:complexType>
 
-    <xs:complexType name="Korisnik">
+    <xs:complexType abstract="true" name="Korisnik">
         <xs:sequence>
             <xs:element name="id" type="xs:long"/>
             <xs:element name="Ime" type="xs:string"/>
