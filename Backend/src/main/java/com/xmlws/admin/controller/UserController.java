@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,6 +19,7 @@ import com.xmlws.admin.dto.LoginDTO;
 import com.xmlws.admin.backend.Admin;
 import com.xmlws.admin.backend.Agent;
 import com.xmlws.admin.backend.Korisnik;
+import com.xmlws.admin.backend.RegistrovaniKorisnik;
 import com.xmlws.admin.service.KorisnikService;
 import com.xmlws.admin.service.RegistrovaniKorisnikService;
 
@@ -53,7 +55,7 @@ public class UserController {
 		}
 	}
 	
-	@CrossOrigin()
+	@CrossOrigin
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/loggedIn", method = RequestMethod.GET)
 	public ResponseEntity<?> getLoggedUser(HttpServletResponse response, HttpServletRequest request) {
@@ -72,11 +74,32 @@ public class UserController {
 		return new ResponseEntity<>(new LoggedUserDTO(korisnik.getEmail(), role, korisnik.getId()), HttpStatus.OK);
 	}
 	
-	@CrossOrigin()
+	@CrossOrigin
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ResponseEntity<?> getRegistrovaniKorisnici() {
 		
 		return new ResponseEntity<>(registrovaniKorisnikService.findAll(), HttpStatus.OK);
+	}
+	
+	@CrossOrigin
+	@RequestMapping(value="/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> getRegistrovaniKorisnikById(@PathVariable Long id) {
+		
+		return new ResponseEntity<>(registrovaniKorisnikService.findById(id), HttpStatus.OK);
+	}
+	
+	@CrossOrigin
+	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<?> blokirajRegistrovanogKorisnika(@PathVariable Long id) {
+		RegistrovaniKorisnik korisnik = registrovaniKorisnikService.findById(id);
+		if(korisnik.isZabranjen()) {
+			korisnik.setZabranjen(false);
+		} else {
+			korisnik.setZabranjen(true);
+		}
+		registrovaniKorisnikService.save(korisnik);
+		
+		return new ResponseEntity<>(korisnik, HttpStatus.OK);
 	}
 	
 }

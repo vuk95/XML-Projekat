@@ -1,6 +1,7 @@
 package com.xmlws.admin.service.implementation;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,21 @@ public class RegistrovaniKorisnikServiceImpl implements RegistrovaniKorisnikServ
 	@Override
 	public List<RegistrovaniKorisnik> findAll() {
 		return registrovaniKorisnikRepo.findAll();
+	}
+
+	@Override
+	public RegistrovaniKorisnik findById(Long id) {
+		Optional<RegistrovaniKorisnik> korisnik = registrovaniKorisnikRepo.findById(id);
+		if(korisnik.isPresent()) {
+			return korisnik.get();
+		} else {
+			return null;
+		}
+	}
+
+	@Override
+	public RegistrovaniKorisnik save(RegistrovaniKorisnik korisnik) {
+		return registrovaniKorisnikRepo.save(korisnik);
 	}
 
 }

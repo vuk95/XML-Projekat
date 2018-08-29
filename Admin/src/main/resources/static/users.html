@@ -17,8 +17,50 @@
     
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    
   
+  	<!-- Bootstrap core JavaScript -->
+    <script src="scripts/jquery.min.js"></script>
+    <script src="scripts/bootstrap.bundle.min.js"></script>
+  
+  	<script>
+		$(document).ready(function(){
+			$.ajax({
+				url: "http://localhost:8085/users"
+			}).then(
+				function(data) {
+					for(i = 0; i < data.length; i++) {
+						banned = '<i class="fas fa-times"></i>';
+						if(data[i].zabranjen) {
+							banned = '<i class="fas fa-check"></i>';
+						} 
+						
+						newRow = "<tr>"
+									+"<td>" + data[i].ime + "</td>"
+									+"<td>" + data[i].prezime + "</td>"
+									+"<td>" + data[i].email + "</td>"
+									+"<td>" + banned + "</td>"
+									+"<td><a id=\"ban\" href='http://localhost:8085/users/"+ data[i].id  + "'role=\"button\" aria-pressed=\"true\" class=\"btn btn-outline-primary btn-sm\"><i class=\"fas fa-ban\"></i></a></td>"
+									+"<td><a href=\"#\" role=\"button\" aria-pressed=\"true\" class=\"btn btn-outline-primary btn-sm\"><i class=\"fas fa-trash-alt\"></i></a></td>"
+								+"</tr>";
+						$("#tabela").append(newRow);
+					}
+				});
+			
+		});
+		
+		$(document).on("click", "#ban", function(event){
+			event.preventDefault();
+			
+			var url = $(this).attr("href");
+			$.ajax({
+				url: url,
+				type: "PUT",
+				success: function() {
+					top.location.href = "/users.html";
+				}
+			});
+		});
+  	</script>  
 </head>
 <body>
 
@@ -63,46 +105,7 @@
 	                	<th>Blokiraj</th>
 	                	<th>Obriši</th>
 	                </tr>
-	                <tr>
-						<td>Dimitrije</td>
-						<td>Mihajlovski</td>
-						<td>dimmihzr@gmail.com</td>
-						<td>false</td>
-						<td><button type="button" class="btn btn-outline-primary btn-sm"><i class="fas fa-ban"></i></button></td>
-						<td><button type="button" class="btn btn-outline-primary btn-sm"><i class="fas fa-trash-alt"></i></button></td>	  					
-	  				</tr>
-	  				<tr>
-						<td>Sasa</td>
-						<td>Ilic</td>
-						<td>sale22@gmail.com</td>
-						<td>false</td>
-						<td><button type="button" class="btn btn-outline-primary btn-sm"><i class="fas fa-ban"></i></button></td>
-						<td><button type="button" class="btn btn-outline-primary btn-sm"><i class="fas fa-trash-alt"></i></button></td>	 	  					
-	  				</tr>
-	  				<tr>
-						<td>Rikardo</td>
-						<td>Gomes</td>
-						<td>gomes@gmail.com</td>
-						<td>false</td>
-						<td><button type="button" class="btn btn-outline-primary btn-sm"><i class="fas fa-ban"></i></button></td>
-						<td><button type="button" class="btn btn-outline-primary btn-sm"><i class="fas fa-trash-alt"></i></button></td>	 	  					
-	  				</tr>
-	  				<tr>
-						<td>Bogdan</td>
-						<td>Bogdanovic</td>
-						<td>bogi@gmail.com</td>
-						<td>false</td>
-						<td><button type="button" class="btn btn-outline-primary btn-sm"><i class="fas fa-ban"></i></button></td>
-						<td><button type="button" class="btn btn-outline-primary btn-sm"><i class="fas fa-trash-alt"></i></button></td>	 	  					
-	  				</tr>
-	  				<tr>
-						<td>Leandre</td>
-						<td>Tawamba</td>
-						<td>tavvi@gmail.com</td>
-						<td>true</td>
-						<td><button type="button" class="btn btn-outline-primary btn-sm"><i class="fas fa-ban"></i></button></td>
-						<td><button type="button" class="btn btn-outline-primary btn-sm"><i class="fas fa-trash-alt"></i></button></td> 	  					
-	  				</tr>
+	                
                 </table>
             </div>
         </div>
@@ -110,10 +113,6 @@
 
     </div>
     <!-- /#wrapper -->
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="scripts/jquery.min.js"></script>
-    <script src="scripts/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
