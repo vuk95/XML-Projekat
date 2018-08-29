@@ -32,7 +32,7 @@ $(document).ready(function(){
 						+ "<td class=\"od\">" + data[i].potvrdjeno + "</td>"
 						+ "<td><a class=\"cancel\" href='http://localhost:8085/otkazi/" + data[i].id + "'>" 
 						+ "<img src='images/remove.gif'/></a></td>"
-						+ "<td><a class=\"chat\" href='Chat.html'>" 
+						+ "<td><a class=\"chat\" href='http://localhost:8085/agent/" + data[i].id + "'>" 
 						+ "<img src='images/message1.png'/></a></td>"
 					+ "</tr>"
 					$("#dataTable").append(newRow);
@@ -67,7 +67,35 @@ $(document).on("click", ".cancel", function(event){
 	}
 	
 });	
-});	
+
+$(document).on("click", ".chat", function(event){
+	//ne salji get zahtev
+		event.preventDefault(); 
+	
+		var url = $(this).attr("href")
+	
+		//red koji se treba izbrisati ako je brisanje na serveru bilo uspesno
+		$.ajax({
+        	url: url,
+        	type: "GET",
+    		contentType:"application/json",
+    		dataType:"json",
+        	success: function(data){
+        		if(data != null) {
+        			var queryString = "?param1=" + data.id
+    				window.location.href = "Chat.html" + queryString;
+    			}
+    		},
+    		error: function(jqxhr,textStatus,errorThrown) {
+    			alert(errorThrown);
+    		}	 
+				
+		});
+});
+
+
+});
+
 </script>
 
 

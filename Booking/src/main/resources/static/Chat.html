@@ -10,6 +10,25 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<title>Chat</title>
 
+<script>
+
+$(document).ready(function(){
+	
+	var queryString = decodeURIComponent(window.location.search);
+	queryString = queryString.substring(8);
+	
+	$.ajax({
+		url: "http://localhost:8085/agent/" + queryString
+	}).then(
+		function(data) {
+			$("#Name").append("<strong>" + data.ime + "</strong>");	
+			
+		});
+});
+
+</script>
+
+
 <style>
 h3 {
 text-align:center;
