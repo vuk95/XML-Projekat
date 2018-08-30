@@ -162,6 +162,35 @@ button.btn.btn-primary:active, button.btn.btn-primary:focus {
     outline:0px !important;
 }
 
+div.col-sm {
+	height: 150px;
+	margin-left: 20px;
+	margin-right: 20px;
+	border-radius: 5px;
+}
+
+#first-box {
+	background-color: #0f3f88;
+}
+
+#second-box {
+	background-color: #0e5ace;
+}
+
+#third-box {
+	background-color: #3e89fa;
+}
+
+#h1-number {
+	font-size: 60px;
+	color: #fff;
+}
+
+#p-description {
+	font-size: 14px;
+	color: #b7c5db;	
+}
+
 /* Sidebar Styles */
 
 .sidebar-nav {
