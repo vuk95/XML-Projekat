@@ -1,0 +1,81 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<script src="scripts/jquery-3.2.1.min.js"></script>
+	<script src="scripts/tether.min.js"></script>
+	<script src="scripts/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="stylesheets/style.css">
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<title>Comment</title>
+
+
+<style>
+h3 {
+text-align:center;
+font-family:"Comic Sans MS", cursive, sans-serif;
+font-size: 28px;
+}
+.row {
+margin-top: 20px;
+}
+.slika {
+margin-top: 12px;
+}
+.contact-form{ margin-top:15px;}
+.contact-form .textarea{ min-height:220px; resize:none;}
+.form-control{ box-shadow:none; border-color:#eee; height:49px;}
+.form-control:focus{ box-shadow:none; border-color:#00b09c;}
+.form-control-feedback{ line-height:50px;}
+.main-btn{ background:#00b09c; border-color:#00b09c; color:#fff;}
+.main-btn:hover{ background:#00a491;color:#fff;}
+.form-control-feedback {
+line-height: 50px;
+top: 0px;
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+		<div class="container">
+			<ul class="nav navbar-nav navbar-left">
+				<li><span class="glyphicon glyphicon-home"></span></li>			
+				<li><a href="#">Pocetna</a></li>
+				<li><a href="#">Kontakt</a></li>
+				<li><a href="#"><b>RSD</b></a></li>
+				<li class="slika"><img src="images/Serbia.png"></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#">Registracija</a></li>
+				<li><a href="/logout">Prijava</a></li>
+			</ul>		
+		</div>
+	</nav>
+
+	<div class="container">
+	<div class="row">
+		<h3>Ostavi komentar <span class="glyphicon glyphicon-comment"></span></h3>
+		<form role="form" id="contact-form" class="contact-form">
+                    
+                  	<div class="row">
+                  		<div class="col-md-12">
+                  		<div class="form-group">
+                            <textarea class="form-control textarea" rows="3" name="sadrzaj" id="sadrzaj" placeholder="Comment"></textarea>
+                  		</div>
+                  	</div>
+                    </div>
+                    <div class="row">
+                    <div class="col-md-12">
+                  <button type="button" id="send" class="btn main-btn pull-right">Post a comment</button>
+                  </div>
+                  </div>
+                </form>
+	</div>
+</div>
+
+
+
+</body>
+</html>

@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.xmlws.admin.backend.Agent;
 import com.xmlws.admin.backend.Ponuda;
 import com.xmlws.admin.backend.Rezervacija;
+import com.xmlws.admin.backend.Smestaj;
 import com.xmlws.admin.converters.RezervacijaToRezervacijaDTO;
 import com.xmlws.admin.service.PonudaService;
 import com.xmlws.admin.service.RezervaciijaService;
@@ -69,6 +71,20 @@ public class RezervacijaController {
 		
 		return new ResponseEntity<>(rezervacija,HttpStatus.OK);
 	}
-	
-	
+		
+	//Na osnovu id-a rezervacije pokusavam da nadjem smestaj
+	@CrossOrigin
+	@RequestMapping(value = "/smestaj/{id}" , method = RequestMethod.GET)
+	public ResponseEntity<Smestaj> getSmestaj(@PathVariable Long id) {
+		
+		Rezervacija rezervacija = rezervacijaService.findOne(id);
+		
+		if(rezervacija == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
+		Smestaj smestaj = rezervacija.getPonuda().getSmestaj();
+		
+		return new ResponseEntity<>(smestaj,HttpStatus.OK);
+	}
 }
