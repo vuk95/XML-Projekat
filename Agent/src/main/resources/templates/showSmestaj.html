@@ -20,12 +20,14 @@
 				<th>Broj kreveta</th>
 				<th>od</th>
 				<th>do</th>
+				<th>Rezervacije</th>
 			</tr>
 			<tr th:each="ponuda, iterStat: ${ponude}">
 				<td th:text="${ponuda.cena}"></td>
 				<td th:text="${ponuda.brojKreveta}"></td>
 				<td th:text="${ponuda.od}"></td>
 				<td th:text="${ponuda.doDatuma}"></td>
+				<td><a th:href="${'/smestaji/getSveRez/' + ponuda.id}">Rezervacije za odobravanje</a></td>
 			</tr>
 		</table>
 		<a th:href="${'/smestaji/getSvePonude/add/' + smestaj.id}">Dodaj novu ponudu</a>

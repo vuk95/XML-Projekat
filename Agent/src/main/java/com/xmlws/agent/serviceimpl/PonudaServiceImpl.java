@@ -18,4 +18,9 @@ public class PonudaServiceImpl implements PonudaService{
 		return repo.save(p);
 	}
 
+	@Override
+	public Ponuda findOne(Long id) {
+		return repo.getOne(id);
+	}
+
 }

@@ -17,8 +17,10 @@ import com.xmlws.agent.back.BackendServicePortService;
 import com.xmlws.agent.back.GetSmestajRequest;
 import com.xmlws.agent.back.GetSmestajResponse;
 import com.xmlws.agent.model.Ponuda;
+import com.xmlws.agent.model.Rezervacija;
 import com.xmlws.agent.model.Smestaj;
 import com.xmlws.agent.service.PonudaService;
+import com.xmlws.agent.service.RezervacijaService;
 import com.xmlws.agent.service.SmestajService;
 
 @Controller
@@ -31,6 +33,10 @@ public class SmestajiController {
 	@Autowired
 	private PonudaService p_service;
 	
+	@Autowired
+	private RezervacijaService rez_service;
+	
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index() {
 		
@@ -39,7 +45,7 @@ public class SmestajiController {
 	}
 	
 	@RequestMapping(value = "/getSviSmestaji", method = RequestMethod.GET)
-	public String rekviziti(ModelMap map) {
+	public String sviSmestaji(ModelMap map) {
 		
 		map.put("smestaji", sm_service.findAll());
 		return "sviSmestaji";
@@ -160,5 +166,28 @@ public class SmestajiController {
 		return "redirect:/smestaji/getSviSmestaji";
 	
 	}
-
+	
+	@RequestMapping(value = "getSveRez/{id}", method = RequestMethod.GET)
+    public String showRez(@PathVariable Long id, ModelMap map){
+		
+		Ponuda p = p_service.findOne(id);
+		map.put("rezervacije", p.getRezervacije());
+		
+    	return "rezZaPonudu";
+		
+    }
+	
+	@RequestMapping(value = "potvrdiRez/{id}", method = RequestMethod.GET)
+    public String acceptRes(@PathVariable Long id, ModelMap map){
+		
+		Rezervacija r = rez_service.findOne(id);
+		
+		r.setPotvrdjeno(true);
+		rez_service.save(r);
+		//map.put("rezervacije", p.getRezervacije());
+		
+    	return "redirect:/smestaji/getSveRez/" + r.getPonuda().getId();
+		
+    }
+	
 }
