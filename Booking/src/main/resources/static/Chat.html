@@ -46,8 +46,8 @@ $(document).ready(function(){
 			datatype: 'json',
 			success: function(data) {
 				 alert('Poruka je uspesno poslata!');
-				 //var qs = decodeURIComponent(window.location.search);
- 				// window.location.href = "MyReservations.html" + qs;
+				 	var qs = decodeURIComponent(window.location.search);
+ 					window.location.href = "MyReservations.html" + qs;
 			  },
 			  error: function(data) {
 				  alert('Slanje poruke nije uspelo!');
