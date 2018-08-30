@@ -7,6 +7,8 @@ import com.xmlws.admin.dto.AgentFormDTO;
 
 public interface AgentService {
 
+	public Agent findOne(Long id);
+	
 	public List<Agent> findAll();
 	
 	public Agent registerNew(AgentFormDTO agentDTO);

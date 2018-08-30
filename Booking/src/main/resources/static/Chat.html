@@ -18,10 +18,14 @@ $(document).ready(function(){
 	queryString = queryString.substring(8);
 	
 	$.ajax({
-		url: "http://localhost:8085/agent/" + queryString
+		url: "http://localhost:8085/agent/getAgent/" + queryString
 	}).then(
 		function(data) {
-			$("#Name").append("<strong>" + data.ime + "</strong>");	
+			
+			newRow = "<input type=\"text\" class=\"form-control\" name=\"Name\" style=\"font-weight: bold\" id=\"Name\" disabled value=\""+ data.ime + "\">"
+					
+					$("#ime").append(newRow);
+					$("#mail").append("<input type=\"text\" class=\"form-control\" name=\"email\" style=\"font-weight: bold\" id=\"email\" disabled value=\""+ data.email + "\">");
 			
 		});
 });
@@ -72,21 +76,23 @@ top: 0px;
 		</div>
 	</nav>
 
-<div class="container">
+	<div class="container">
 	<div class="row">
 		<h3>Contact us <span class="glyphicon glyphicon-phone"></span></h3>
 		<form role="form" id="contact-form" class="contact-form">
                     <div class="row">
                 		<div class="col-md-6">
                   		<div class="form-group">
-                            <input type="text" class="form-control" name="Name" autocomplete="off" id="Name" placeholder="Name">
+                            <div id="ime"></div>
                   		</div>
                   	</div>
+                    	
                     	<div class="col-md-6">
                   		<div class="form-group">
-                            <input type="email" class="form-control" name="email" autocomplete="off" id="email" placeholder="E-mail">
+                  		<div id="mail"></div>
                   		</div>
                   	</div>
+                  	
                   	</div>
                   	<div class="row">
                   		<div class="col-md-12">
@@ -97,7 +103,7 @@ top: 0px;
                     </div>
                     <div class="row">
                     <div class="col-md-12">
-                  <button type="submit" class="btn main-btn pull-right">Send a message</button>
+                  <button type="button" class="btn main-btn pull-right">Send a message</button>
                   </div>
                   </div>
                 </form>

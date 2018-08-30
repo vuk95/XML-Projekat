@@ -11,12 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.xmlws.admin.backend.Agent;
 import com.xmlws.admin.backend.Rezervacija;
+import com.xmlws.admin.service.AgentService;
 import com.xmlws.admin.service.RezervaciijaService;
 
 @RestController
 @RequestMapping(value = "/agent")
 public class AgentController {
 	
+	@Autowired
+	private AgentService agentService;
 	
 	@Autowired
 	private RezervaciijaService rezervacijaService;
@@ -33,6 +36,15 @@ public class AgentController {
 		}
 		
 		Agent agent = rezervacija.getPonuda().getSmestaj().getAgent();
+		
+		return new ResponseEntity<>(agent,HttpStatus.OK);
+	}
+	
+	@CrossOrigin
+	@RequestMapping(value = "/getAgent/{id}" , method = RequestMethod.GET)
+	public ResponseEntity<?> getAgenta(@PathVariable Long id) {
+		
+		Agent agent = agentService.findOne(id);
 		
 		return new ResponseEntity<>(agent,HttpStatus.OK);
 	}

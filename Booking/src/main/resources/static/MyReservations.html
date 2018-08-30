@@ -67,13 +67,14 @@ $(document).on("click", ".cancel", function(event){
 	}
 	
 });	
+});
 
+$(document).ready(function() {
 $(document).on("click", ".chat", function(event){
 	//ne salji get zahtev
 		event.preventDefault(); 
 	
 		var url = $(this).attr("href")
-		
 	
 		//red koji se treba izbrisati ako je brisanje na serveru bilo uspesno
 		$.ajax({
@@ -84,7 +85,6 @@ $(document).on("click", ".chat", function(event){
         	success: function(data){
         		if(data != null) {
         			var queryString = "?param1=" + data.id
-        					alert(queryString);
     				window.location.href = "Chat.html" + queryString;
     			}
     		},

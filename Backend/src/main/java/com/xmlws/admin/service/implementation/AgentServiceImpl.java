@@ -17,6 +17,11 @@ public class AgentServiceImpl implements AgentService {
 	private AgentRepository agentRepo;
 	
 	@Override
+	public Agent findOne(Long id) {
+		return agentRepo.getOne(id);
+	}
+	
+	@Override
 	public List<Agent> findAll() {
 		return agentRepo.findAll();
 	}
