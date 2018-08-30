@@ -21,6 +21,41 @@
     <!-- Bootstrap core JavaScript -->
     <script src="scripts/jquery.min.js"></script>
     <script src="scripts/bootstrap.bundle.min.js"></script>
+    
+    <script>
+    	$(document).ready(function(){ 
+    		$.ajax({
+    			url: "http://localhost:8085/users/number"
+    		}).then(
+    			function(data) {
+    				$("#first-box").append("<h1 id=\"h1-number\">" + data.response +"</h1>");
+    				$("#first-box").append("<p id=\"p-description\">Korisnika</p>");
+    			}	
+    		);
+    	});
+    	
+    	$(document).ready(function(){ 
+    		$.ajax({
+    			url: "http://localhost:8085/users/agents/number"
+    		}).then(
+    			function(data) {
+    				$("#second-box").append("<h1 id=\"h1-number\">" + data.response +"</h1>");
+    				$("#second-box").append("<p id=\"p-description\">Agenta</p>");
+    			}	
+    		);
+    	});
+    	
+    	$(document).ready(function(){ 
+    		$.ajax({
+    			url: "http://localhost:8085/comments/unapproved/number"
+    		}).then(
+    			function(data) {
+    				$("#third-box").append("<h1 id=\"h1-number\">" + data.response +"</h1>");
+    				$("#third-box").append("<p id=\"p-description\">Neodobrena komentara</p>");
+    			}	
+    		);
+    	});
+    </script>
 </head>
 <body>
 
@@ -55,13 +90,19 @@
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <h1>Simple Sidebar</h1>
-                
-                <h1 class="something">Something</h1>
-                <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
-                <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
-            </div>
+            <div class="container">
+  				<div class="row">
+    				<div id="first-box" class="col-sm">
+      					
+    				</div>
+    				<div id="second-box" class="col-sm">
+      					
+    				</div>
+    				<div id="third-box" class="col-sm">
+      					
+    				</div>
+  				</div>
+			</div>
         </div>
         <!-- /#page-content-wrapper -->
 
