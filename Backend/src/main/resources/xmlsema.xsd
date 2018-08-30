@@ -2,6 +2,38 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
     targetNamespace="admin.xmlws.com/backend" xmlns:ag="admin.xmlws.com/backend">
 	
+	<xs:element name="getRezervacijaRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getRezervacijaResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Rezervacija" type="ag:Rezervacija"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+        <xs:element name="updateRezevacijaRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Rezervacija" type="ag:Rezervacija"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updateRezervacijaResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Rezervacija" type="ag:Rezervacija"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+	
 	<xs:element name="getSmestajRequest">
         <xs:complexType>
             <xs:sequence>
@@ -141,6 +173,21 @@
             <xs:element name="Smestaj" type="ag:Smestaj"/>
             <xs:element name="RegistrovaniKorisnik" type="ag:RegistrovaniKorisnik"/>
         </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="Poruka">
+
+        <xs:sequence>
+            
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="RegistrovaniKorisnik" type="ag:RegistrovaniKorisnik"/>
+            <xs:element name="Agent" type="ag:Agent"/>
+            <xs:element name="procitana" type="xs:boolean"/>
+            <xs:element name="sadrzaj" type="xs:string"/>
+            
+            
+        </xs:sequence>
+        
     </xs:complexType>
     
 </xs:schema>
