@@ -31,6 +31,8 @@ import javax.xml.bind.annotation.XmlType;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 /**
  * <p>Java class for Ponuda complex type.
@@ -85,6 +87,7 @@ public class Ponuda {
 	@JoinTable(name = "mojeRezervacije",
 				joinColumns = @JoinColumn(name = "ponuda_id", referencedColumnName = "ponuda_id"),
 				inverseJoinColumns = @JoinColumn(name = "rezervacija_id", referencedColumnName = "rezervacija_id"))
+    @JsonIgnore
     protected List<Rezervacija> rezervacija;
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

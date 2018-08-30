@@ -9,6 +9,9 @@
 package com.xmlws.admin.backend;
 
 import org.hibernate.annotations.LazyCollectionOption;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.hibernate.annotations.LazyCollection;
 
 import java.util.ArrayList;
@@ -123,6 +126,7 @@ public class Smestaj {
    	@JoinTable(name = "mojePonude",
    				joinColumns = @JoinColumn(name = "smestaj_id", referencedColumnName = "smestaj_id"),
    				inverseJoinColumns = @JoinColumn(name = "ponuda_id", referencedColumnName = "ponuda_id"))
+    @JsonIgnore
     protected List<Ponuda> ponuda = new ArrayList<Ponuda>();
     @XmlElement(name = "Parking")
     protected boolean parking;
