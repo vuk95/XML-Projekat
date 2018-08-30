@@ -31,8 +31,12 @@ $(document).ready(function(){
 	
 	$("#send").click(function(){
 		//pripremamo JSON koji cemo poslati
-		var data = {}
-		data["sadrzaj"] = $("#sendForm [name='sadrzaj']").val();
+		//var data = {}
+		//data["sadrzaj"] = $("#sendForm [name='sadrzaj']").val();
+		
+		formData = JSON.stringify({
+		   sadrzaj:$("#sendForm [name='sadrzaj']").val(),
+        });
 		
 		//sadrzaj = $('#sadrzaj').val();
 		//alert(sadrzaj)
@@ -40,7 +44,7 @@ $(document).ready(function(){
 		$.ajax({
 			url: "http://localhost:8085/poruka/" + queryString ,
 			type: "POST",
-			data: data,
+			data: formData,
 			//saljemo json i ocekujemo json nazad
 			contentType: "application/json",
 			datatype: 'json',
@@ -124,7 +128,7 @@ top: 0px;
                   	<div class="row">
                   		<div class="col-md-12">
                   		<div class="form-group">
-                            <textarea class="form-control textarea" rows="3" name="sadrzaj" id="sadrzaj" placeholder="Message"></textarea>
+                            <textarea class="form-control textarea" rows="3" name="sadrzaj" id="message" placeholder="Message"></textarea>
                   		</div>
                   	</div>
                     </div>
