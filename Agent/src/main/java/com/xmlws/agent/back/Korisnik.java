@@ -46,7 +46,7 @@ import javax.xml.bind.annotation.XmlType;
     Admin.class,
     RegistrovaniKorisnik.class
 })
-public class Korisnik {
+public abstract class Korisnik {
 
     protected long id;
     @XmlElement(name = "Ime", required = true)

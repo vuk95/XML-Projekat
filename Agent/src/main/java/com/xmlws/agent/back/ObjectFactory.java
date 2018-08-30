@@ -46,6 +46,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link UpdateRezervacijaResponse }
+     * 
+     */
+    public UpdateRezervacijaResponse createUpdateRezervacijaResponse() {
+        return new UpdateRezervacijaResponse();
+    }
+
+    /**
+     * Create an instance of {@link Rezervacija }
+     * 
+     */
+    public Rezervacija createRezervacija() {
+        return new Rezervacija();
+    }
+
+    /**
      * Create an instance of {@link AddPonudaResponse }
      * 
      */
@@ -59,6 +75,22 @@ public class ObjectFactory {
      */
     public Ponuda createPonuda() {
         return new Ponuda();
+    }
+
+    /**
+     * Create an instance of {@link UpdateRezervacijaRequest }
+     * 
+     */
+    public UpdateRezervacijaRequest createUpdateRezervacijaRequest() {
+        return new UpdateRezervacijaRequest();
+    }
+
+    /**
+     * Create an instance of {@link GetRezervacijaResponse }
+     * 
+     */
+    public GetRezervacijaResponse createGetRezervacijaResponse() {
+        return new GetRezervacijaResponse();
     }
 
     /**
@@ -86,6 +118,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetRezervacijaRequest }
+     * 
+     */
+    public GetRezervacijaRequest createGetRezervacijaRequest() {
+        return new GetRezervacijaRequest();
+    }
+
+    /**
      * Create an instance of {@link GetSmestajRequest }
      * 
      */
@@ -102,22 +142,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Korisnik }
-     * 
-     */
-    public Korisnik createKorisnik() {
-        return new Korisnik();
-    }
-
-    /**
-     * Create an instance of {@link Rezervacija }
-     * 
-     */
-    public Rezervacija createRezervacija() {
-        return new Rezervacija();
-    }
-
-    /**
      * Create an instance of {@link Image }
      * 
      */
@@ -131,6 +155,22 @@ public class ObjectFactory {
      */
     public Admin createAdmin() {
         return new Admin();
+    }
+
+    /**
+     * Create an instance of {@link Komentar }
+     * 
+     */
+    public Komentar createKomentar() {
+        return new Komentar();
+    }
+
+    /**
+     * Create an instance of {@link Poruka }
+     * 
+     */
+    public Poruka createPoruka() {
+        return new Poruka();
     }
 
     /**

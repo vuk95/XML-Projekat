@@ -18,4 +18,9 @@ public class OfferSoapServiceImpl implements OfferSoapService{
 		return repository.save(p);
 	}
 
+	@Override
+	public Ponuda findOne(Long id) {
+		return repository.getOne(id);
+	}
+
 }

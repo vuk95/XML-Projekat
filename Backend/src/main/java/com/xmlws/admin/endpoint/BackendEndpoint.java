@@ -10,10 +10,16 @@ import com.xmlws.admin.backend.AddPonudaRequest;
 import com.xmlws.admin.backend.AddPonudaResponse;
 import com.xmlws.admin.backend.AddSmestajRequest;
 import com.xmlws.admin.backend.AddSmestajResponse;
+import com.xmlws.admin.backend.GetPonudaRequest;
+import com.xmlws.admin.backend.GetPonudaResponse;
 import com.xmlws.admin.backend.GetSmestajRequest;
 import com.xmlws.admin.backend.GetSmestajResponse;
+import com.xmlws.admin.backend.Ponuda;
 import com.xmlws.admin.backend.Smestaj;
+import com.xmlws.admin.backend.UpdateRezervacijaRequest;
+import com.xmlws.admin.backend.UpdateRezervacijaResponse;
 import com.xmlws.admin.service.OfferSoapService;
+import com.xmlws.admin.service.RezervaciijaService;
 import com.xmlws.admin.service.SmService;
 
 @Endpoint
@@ -24,6 +30,9 @@ public class BackendEndpoint {
 	
 	@Autowired
 	private OfferSoapService offerService;
+	
+	@Autowired
+	private RezervaciijaService rezService;
 	
 	@PayloadRoot(namespace = "admin.xmlws.com/backend",
             localPart = "addSmestajRequest")
@@ -58,5 +67,27 @@ public class BackendEndpoint {
         response.setSmestaj(s);
         return response;
     }
-
+	
+	@PayloadRoot(namespace = "admin.xmlws.com/backend",
+            localPart = "updateRezervacijaRequest")
+    @ResponsePayload
+    public UpdateRezervacijaResponse updateRezervacija(@RequestPayload UpdateRezervacijaRequest request) {
+		UpdateRezervacijaResponse response = new UpdateRezervacijaResponse();
+		
+		response.setRezervacija(rezService.save(request.getRezervacija()));
+		
+        return response;
+    }
+	
+	@PayloadRoot(namespace = "admin.xmlws.com/backend",
+            localPart = "getPonudaRequest")
+    @ResponsePayload
+    public GetPonudaResponse getPon(@RequestPayload GetPonudaRequest request) {
+		GetPonudaResponse response = new GetPonudaResponse();
+		
+		
+		Ponuda p = offerService.findOne(request.getId());
+		response.setPonuda(p);
+        return response;
+    }
 }
