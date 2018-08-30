@@ -25,6 +25,30 @@ public interface BackendServicePort {
 
     /**
      * 
+     * @param updateRezervacijaRequest
+     * @return
+     *     returns com.xmlws.admin.backend.UpdateRezervacijaResponse
+     */
+    @WebMethod
+    @WebResult(name = "updateRezervacijaResponse", targetNamespace = "admin.xmlws.com/backend", partName = "updateRezervacijaResponse")
+    public UpdateRezervacijaResponse updateRezervacija(
+        @WebParam(name = "updateRezervacijaRequest", targetNamespace = "admin.xmlws.com/backend", partName = "updateRezervacijaRequest")
+        UpdateRezervacijaRequest updateRezervacijaRequest);
+
+    /**
+     * 
+     * @param getRezervacijaRequest
+     * @return
+     *     returns com.xmlws.admin.backend.GetRezervacijaResponse
+     */
+    @WebMethod
+    @WebResult(name = "getRezervacijaResponse", targetNamespace = "admin.xmlws.com/backend", partName = "getRezervacijaResponse")
+    public GetRezervacijaResponse getRezervacija(
+        @WebParam(name = "getRezervacijaRequest", targetNamespace = "admin.xmlws.com/backend", partName = "getRezervacijaRequest")
+        GetRezervacijaRequest getRezervacijaRequest);
+
+    /**
+     * 
      * @param addPonudaRequest
      * @return
      *     returns com.xmlws.admin.backend.AddPonudaResponse

@@ -15,6 +15,7 @@ INSERT INTO korisnik(dtype,email,ime,lozinka,prezime,zabranjen) VALUES ('Admin',
 INSERT INTO korisnik(dtype,email,ime,lozinka,prezime,zabranjen,poslovni_maticni_broj) VALUES ('Agent','ana@gmail.com','Ana','password','Ivanovic',0,'02357483340');
 INSERT INTO korisnik(dtype,email,ime,lozinka,prezime,zabranjen,poslovni_maticni_broj) VALUES ('Agent','jokernolo@gmail.com','Novak','nolo','Djokovic',0,'02357483341');
 INSERT INTO korisnik(dtype,email,ime,lozinka,prezime,zabranjen,poslovni_maticni_broj) VALUES ('Agent','stefanmilovic2@gmail.com','Stefan','sm22','Milovic',0,'02357483342');
+
 --Smestaj
 INSERT INTO smestaj (kategorija,lokacija,naziv,ocena,opis,tip, parking, wifi, dorucak, polupansion, pansion, tv, kuhinja, kupatilo,agent_id) 
 values ('1','Vrbas','Hotel Backa','2','Jedini hotel u Vrbasu','Hotel', 1, 1, 1, 0, 0, 1, 1, 0,13);
@@ -36,6 +37,21 @@ INSERT INTO ponuda (do_datuma,broj_kreveta,cena,od,smestaj_smestaj_id) values ('
 INSERT INTO ponuda (do_datuma,broj_kreveta,cena,od,smestaj_smestaj_id) values ('2018-08-26','4','13000','2018-08-16',4);
 INSERT INTO ponuda (do_datuma,broj_kreveta,cena,od,smestaj_smestaj_id) values ('2018-08-25','2','9600','2018-08-17',5);
 INSERT INTO ponuda (do_datuma,broj_kreveta,cena,od,smestaj_smestaj_id) values ('2018-08-20','2','8500','2018-08-18',6);
+
+INSERT INTO moje_ponude (smestaj_id, ponuda_id) values (1, 1);
+INSERT INTO moje_ponude (smestaj_id, ponuda_id) values (2, 2);
+INSERT INTO moje_ponude (smestaj_id, ponuda_id) values (3, 3);
+INSERT INTO moje_ponude (smestaj_id, ponuda_id) values (4, 4);
+INSERT INTO moje_ponude (smestaj_id, ponuda_id) values (5, 5);
+INSERT INTO moje_ponude (smestaj_id, ponuda_id) values (6, 6);
+
+INSERT INTO rezervacija (korisnik_id, potvrdjeno, datum_realizacije, ponuda_ponuda_id) values (1, 0, '2018-05-15', 1);
+INSERT INTO rezervacija (korisnik_id, potvrdjeno, datum_realizacije, ponuda_ponuda_id) values (2, 0, '2018-05-15', 1);
+INSERT INTO rezervacija (korisnik_id, potvrdjeno, datum_realizacije, ponuda_ponuda_id) values (1, 0, '2018-05-15', 2);
+
+INSERT INTO moje_rezervacije (ponuda_id, rezervacija_id) values (1, 1);
+INSERT INTO moje_rezervacije (ponuda_id, rezervacija_id) values (1, 2);
+INSERT INTO moje_rezervacije (ponuda_id, rezervacija_id) values (2, 3);
 
 --KOMENTARI
 INSERT INTO komentar (odobren,sadrzaj,registrovani_korisnik_id,smestaj_smestaj_id) VALUES (false,'Pogled je prelep.',2,4);

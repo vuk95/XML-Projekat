@@ -1,5 +1,9 @@
 package com.xmlws.admin.controller;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +28,15 @@ public class KomentarController {
 	public ResponseEntity<?> getNeodobreneKomentare() {
 		
 		return new ResponseEntity<>(komentarService.nadjiNeodobrene(), HttpStatus.OK);
+	}
+	
+	@CrossOrigin
+	@RequestMapping(value = "/unapproved/number", method = RequestMethod.GET)
+	public Map<?, Integer> brojNeodobrenihKomentara() {
+		List<Komentar> komentari = komentarService.nadjiNeodobrene();
+		int number = komentari.size();
+		
+		return Collections.singletonMap("response", number);
 	}
 	
 	@CrossOrigin

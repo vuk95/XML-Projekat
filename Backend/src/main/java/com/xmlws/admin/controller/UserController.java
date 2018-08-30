@@ -1,5 +1,9 @@
 package com.xmlws.admin.controller;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -117,6 +121,15 @@ public class UserController {
 	}
 	
 	@CrossOrigin
+	@RequestMapping(value="/number", method = RequestMethod.GET, produces = "application/json")
+	public Map<?, Integer> ukupnoKorisnika() {
+		List<RegistrovaniKorisnik> korisnici = registrovaniKorisnikService.findAll();
+		int number = korisnici.size();
+		
+		return Collections.singletonMap("response", number);
+	}
+	
+	@CrossOrigin
 	@RequestMapping(value="/agents", method = RequestMethod.GET)
 	public ResponseEntity<?> getAgenti() {
 		return new ResponseEntity<>(agentService.findAll(), HttpStatus.OK);
@@ -128,6 +141,15 @@ public class UserController {
 		Agent agent = agentService.registerNew(dto);
 		
 		return new ResponseEntity<>(agent ,HttpStatus.OK);
+	}
+	
+	@CrossOrigin
+	@RequestMapping(value="/agents/number", method = RequestMethod.GET, produces = "application/json")
+	public Map<?, Integer> ukupnoAgenata() {
+		List<Agent> agenti = agentService.findAll();
+		int number = agenti.size();
+		
+		return Collections.singletonMap("response", number);
 	}
 	
 }
