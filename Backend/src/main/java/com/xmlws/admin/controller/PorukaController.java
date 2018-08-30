@@ -25,7 +25,7 @@ public class PorukaController {
 	
 	@CrossOrigin
 	@RequestMapping(value = "/poruka/{id}" , method = RequestMethod.POST , consumes="application/json")
-	public ResponseEntity<?> send(@PathVariable Long id) {
+	public ResponseEntity<Poruka> send(@PathVariable Long id) {
 		
 		Agent agent = agentService.findOne(id);
 		
