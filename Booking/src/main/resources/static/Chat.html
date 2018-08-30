@@ -28,6 +28,33 @@ $(document).ready(function(){
 					$("#mail").append("<input type=\"text\" class=\"form-control\" name=\"email\" style=\"font-weight: bold\" id=\"email\" disabled value=\""+ data.email + "\">");
 			
 		});
+	
+	$("#send").click(function(){
+		//pripremamo JSON koji cemo poslati
+		var data = {}
+		data["sadrzaj"] = $("#sendForm [name='sadrzaj']").val();
+		
+		//sadrzaj = $('#sadrzaj').val();
+		//alert(sadrzaj)
+		
+		$.ajax({
+			url: "http://localhost:8085/poruka/" + queryString ,
+			type: "POST",
+			data: data,
+			//saljemo json i ocekujemo json nazad
+			contentType: "application/json",
+			datatype: 'json',
+			success: function(data) {
+				 alert('Poruka je uspesno poslata!');
+				 //var qs = decodeURIComponent(window.location.search);
+ 				// window.location.href = "MyReservations.html" + qs;
+			  },
+			  error: function(data) {
+				  alert('Slanje poruke nije uspelo!');
+			  }
+			});
+		
+	});
 });
 
 </script>
@@ -79,7 +106,7 @@ top: 0px;
 	<div class="container">
 	<div class="row">
 		<h3>Contact us <span class="glyphicon glyphicon-phone"></span></h3>
-		<form role="form" id="contact-form" class="contact-form">
+		<form id="sendForm">
                     <div class="row">
                 		<div class="col-md-6">
                   		<div class="form-group">
@@ -97,13 +124,13 @@ top: 0px;
                   	<div class="row">
                   		<div class="col-md-12">
                   		<div class="form-group">
-                            <textarea class="form-control textarea" rows="3" name="Message" id="Message" placeholder="Message"></textarea>
+                            <textarea class="form-control textarea" rows="3" name="sadrzaj" id="sadrzaj" placeholder="Message"></textarea>
                   		</div>
                   	</div>
                     </div>
                     <div class="row">
                     <div class="col-md-12">
-                  <button type="button" class="btn main-btn pull-right">Send a message</button>
+                  <button type="button" id="send" class="btn main-btn pull-right">Send a message</button>
                   </div>
                   </div>
                 </form>
