@@ -1,5 +1,7 @@
 package com.xmlws.agent.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -101,10 +103,26 @@ public class SmestajiController {
 	
 	@RequestMapping(value = "getSviSmestaji/show/{id}", method = RequestMethod.GET)
     public String showById(@PathVariable Long id, ModelMap map){
+		
+		ArrayList<Ponuda> svePonude = new ArrayList<Ponuda>();
+		ArrayList<Ponuda> mojePonude = new ArrayList<Ponuda>();
+		
+		Smestaj s = sm_service.findOne(id);
+		
+		svePonude = (ArrayList<Ponuda>) p_service.findALl();
+		for(int i = 0; i < svePonude.size(); i++) {
+			if(svePonude.get(i).getSmestaj().equals(s)) {
+				mojePonude.add(svePonude.get(i));
+			}
+			
+		}
+		
 
     	map.put("smestaj",sm_service.findOne(id));
     	map.put("slike", sm_service.findOne(id).getMojeSlike());
-    	map.put("ponude", sm_service.findOne(id).getMojePonude());
+    	//map.put("ponude", sm_service.findOne(id).getMojePonude());
+    	map.put("ponude", mojePonude);
+    	
     	return "showSmestaj";
 		
     }
@@ -169,8 +187,20 @@ public class SmestajiController {
 	@RequestMapping(value = "getSveRez/{id}", method = RequestMethod.GET)
     public String showRez(@PathVariable Long id, ModelMap map){
 		
+		ArrayList<Rezervacija> sveRezervacije = new ArrayList<Rezervacija>();
+		ArrayList<Rezervacija> mojeRezervacije = new ArrayList<Rezervacija>();
+		
 		Ponuda p = p_service.findOne(id);
-		map.put("rezervacije", p.getRezervacije());
+		
+		sveRezervacije = (ArrayList<Rezervacija>) rez_service.findAll();
+		
+		for(int i = 0; i < sveRezervacije.size(); i++) {
+			if(sveRezervacije.get(i).getPonuda().equals(p)) {
+				mojeRezervacije.add(sveRezervacije.get(i));
+			}
+		}
+		
+		map.put("rezervacije", mojeRezervacije);
 		
     	return "rezZaPonudu";
 		

@@ -1,5 +1,7 @@
 package com.xmlws.agent.serviceimpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,11 @@ public class PonudaServiceImpl implements PonudaService{
 	@Override
 	public Ponuda findOne(Long id) {
 		return repo.getOne(id);
+	}
+
+	@Override
+	public List<Ponuda> findALl() {
+		return repo.findAll();
 	}
 
 }
