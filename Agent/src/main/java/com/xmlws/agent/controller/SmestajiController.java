@@ -101,6 +101,28 @@ public class SmestajiController {
 	
 	}
 	
+	@RequestMapping(value = "getSviSmestaji/zauzmi/{id}", method = RequestMethod.GET)
+    public String zauzmi(@PathVariable Long id, ModelMap map){
+		
+		
+		Smestaj s = sm_service.findOne(id);
+		s.setZauzet(true);
+		sm_service.save(s);
+		
+		return "redirect:/smestaji/getSviSmestaji";
+	}
+	
+	@RequestMapping(value = "getSviSmestaji/oslobodi/{id}", method = RequestMethod.GET)
+    public String free(@PathVariable Long id, ModelMap map){
+		
+		
+		Smestaj s = sm_service.findOne(id);
+		s.setZauzet(false);
+		sm_service.save(s);
+		
+		return "redirect:/smestaji/getSviSmestaji";
+	}
+	
 	@RequestMapping(value = "getSviSmestaji/show/{id}", method = RequestMethod.GET)
     public String showById(@PathVariable Long id, ModelMap map){
 		

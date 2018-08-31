@@ -53,7 +53,9 @@ public class Smestaj {
     private boolean kupatilo;
     
     private String naziv;
-     
+    
+    private boolean zauzet;
+    
     @OneToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "mojeSlike",
 				joinColumns = @JoinColumn(name = "smestaj_id", referencedColumnName = "smestaj_id"),
@@ -65,7 +67,7 @@ public class Smestaj {
 				joinColumns = @JoinColumn(name = "smestaj_id", referencedColumnName = "smestaj_id"),
 				inverseJoinColumns = @JoinColumn(name = "ponuda_id", referencedColumnName = "ponuda_id"))
 	private List<Ponuda> mojePonude = new ArrayList<Ponuda>();
-    
+     
     public Long getId() {
 		return id;
 	}
@@ -175,7 +177,11 @@ public class Smestaj {
 	public void setMojePonude(List<Ponuda> mojePonude) {
 		this.mojePonude = mojePonude;
 	}
+	public boolean isZauzet() {
+		return zauzet;
+	}
+	public void setZauzet(boolean zauzet) {
+		this.zauzet = zauzet;
+	}
 	
-	
-
 }

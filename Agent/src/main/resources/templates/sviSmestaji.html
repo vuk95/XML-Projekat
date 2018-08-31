@@ -12,14 +12,19 @@
 				<th>Adresa</th>
 				<th>Opis</th>
 				<th>Tip</th>
+				<th>Zauzet</th>
 				<th>Detaljnije</th>
+				<th>Zauzmi smestaj</th>
 			</tr>
 			<tr th:each="smestaj, iterStat: ${smestaji}">
 				<td th:text="${smestaj.naziv}"></td>
 				<td th:text="${smestaj.lokacija}"></td>
 				<td th:text="${smestaj.opis}"></td>
 				<td th:text="${smestaj.tip}"></td>
+				<td th:text="${smestaj.zauzet}"></td>	
 				<td><a th:href="${'/smestaji/getSviSmestaji/show/' + smestaj.id}">Detaljnije</a></td>
+				<td th:if = "${smestaj.zauzet} == false"><a th:href="${'/smestaji/getSviSmestaji/zauzmi/' + smestaj.id}">Zauzmi</a></td>
+				<td th:if = "${smestaj.zauzet} == true"><a th:href="${'/smestaji/getSviSmestaji/oslobodi/' + smestaj.id}">Oslobodi</a></td>	
 			</tr>
 		</table>
 	</body>

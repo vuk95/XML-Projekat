@@ -13,7 +13,11 @@
 				<td><img th:src="@{'/imgsmestaji/' + ${smestaj.id} + '/smestajiimage/' + ${image.id}}" width="360" height="240"></td>
 			</tr>
 		</table>
-		<h3>Ponude smestaja</h3>
+		<h2>Ponude smestaja</h2>
+		<div th:if = "${smestaj.zauzet} == true">
+		  <h4>Ne mozete dodavati nove ponude niti odobravati rezervacije dok je smestaj zauzet!</h4>
+		</div>
+		<div th:if = "${smestaj.zauzet} == false">
 		<table border = "1">
 			<tr>
 				<th>Cena</th>
@@ -31,5 +35,6 @@
 			</tr>
 		</table>
 		<a th:href="${'/smestaji/getSvePonude/add/' + smestaj.id}">Dodaj novu ponudu</a>
+		</div>
 	</body>
 </html>
