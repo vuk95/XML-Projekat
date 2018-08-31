@@ -34,6 +34,13 @@ $(document).ready(function(){
 		//var data = {}
 		//data["sadrzaj"] = $("#sendForm [name='sadrzaj']").val();
 		
+		var sadrzaj = $('#message').val();
+		if (sadrzaj==null || sadrzaj=="")
+        {
+            alert("Sadrzaj poruke ne sme biti prazan!");
+            return false;
+        }
+		
 		formData = JSON.stringify({
 		   sadrzaj:$("#sendForm [name='sadrzaj']").val(),
         });
