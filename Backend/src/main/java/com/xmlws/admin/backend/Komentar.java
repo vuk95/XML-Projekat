@@ -8,6 +8,7 @@
 
 package com.xmlws.admin.backend;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -58,7 +59,8 @@ public class Komentar {
     @XmlElement(name = "Odobren")
     protected boolean odobren;
     @Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)   
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "komentar_id")
     protected long id;
     @XmlElement(name = "Smestaj", required = true)
     @ManyToOne
