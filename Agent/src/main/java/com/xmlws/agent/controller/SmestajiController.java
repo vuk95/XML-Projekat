@@ -167,9 +167,9 @@ public class SmestajiController {
 		System.out.println("U glavnu bazu upisana ponuda: " + addPonudaResponse.getPonuda().getCena());
 		
 		
-		Smestaj s = sm_service.findOne(ponuda.getSmestaj().getId());
-		s.getMojePonude().add(ponuda);
-		sm_service.save(s);
+		//Smestaj s = sm_service.findOne(ponuda.getSmestaj().getId());
+		//s.getMojePonude().add(ponuda);
+		//sm_service.save(s);
 		
 		//getted.getPonuda().add(demoPonuda);
 		
@@ -210,53 +210,112 @@ public class SmestajiController {
     public String acceptRes(@PathVariable Long id, ModelMap map){
 		
 		Rezervacija r = rez_service.findOne(id);
+		ArrayList<Rezervacija> ostaleRezervacije = new ArrayList<Rezervacija>();
+		ostaleRezervacije = (ArrayList<Rezervacija>) rez_service.findByPonudaId(r.getPonuda().getId());
 		
-		r.setPotvrdjeno(true);
+		r.setPotvrdjeno(false);
 		
-		rez_service.save(r);
-		
-		com.xmlws.agent.back.Rezervacija demoRezervacija = new com.xmlws.agent.back.Rezervacija();
-		
-		demoRezervacija.setPotvrdjeno(r.isPotvrdjeno());
-		demoRezervacija.setId(r.getId());
-		demoRezervacija.setDatumRealizacije(r.getDatumRealizacije());
-		
-		com.xmlws.agent.back.Ponuda demoPonuda = new com.xmlws.agent.back.Ponuda();
-		demoPonuda.setBrojKreveta(r.getPonuda().getBrojKreveta());
-		demoPonuda.setId(r.getPonuda().getId());
-		demoPonuda.setDoDatuma(r.getPonuda().getDoDatuma());
-		demoPonuda.setOd(r.getPonuda().getOd());
-		
-		BackendServicePortService backServicePortService = new BackendServicePortService();
-		BackendServicePort port = backServicePortService.getBackendServicePortSoap11();
-		
-		
-		GetSmestajRequest getSmestajRequest = new GetSmestajRequest();
-		getSmestajRequest.setNaziv(r.getPonuda().getSmestaj().getNaziv());
-		GetSmestajResponse getSmestajResponse = port.getSmestaj(getSmestajRequest);
-		
-		com.xmlws.agent.back.Smestaj getovaniSmestaj = getSmestajResponse.getSmestaj();
-	
-		demoPonuda.setSmestaj(getovaniSmestaj);
+		for(int i = 0; i < ostaleRezervacije.size(); i++) {
+			
+			if(ostaleRezervacije.get(i).getId() == r.getId()) {
+				ostaleRezervacije.get(i).setPotvrdjeno(true);
+				r.setPotvrdjeno(true);
 				
-		demoRezervacija.setPonuda(demoPonuda);
-		
-		com.xmlws.agent.back.RegistrovaniKorisnik demoKorisnik  = new com.xmlws.agent.back.RegistrovaniKorisnik();
-		demoKorisnik.setEmail(r.getKorisnik().getEmail());
-		demoKorisnik.setId(r.getKorisnik().getId());
-		demoKorisnik.setIme(r.getKorisnik().getIme());
-		demoKorisnik.setLozinka(r.getKorisnik().getLozinka());
-		demoKorisnik.setPrezime(r.getKorisnik().getPrezime());
-		demoKorisnik.setZabranjen(r.getKorisnik().isZabranjen());
-		
-		demoRezervacija.setKorisnik(demoKorisnik);
-		
-		UpdateRezervacijaRequest updateRezervacijaRequest = new UpdateRezervacijaRequest();
-		updateRezervacijaRequest.setRezervacija(demoRezervacija);
-		UpdateRezervacijaResponse updateRezervacijaResponse = port.updateRezervacija(updateRezervacijaRequest);
-		
-		System.out.println("U glavnu bazu azurirana rezervacija: " + updateRezervacijaResponse.getRezervacija().getId());
-		
+				com.xmlws.agent.back.Rezervacija demoRezervacija = new com.xmlws.agent.back.Rezervacija();
+				demoRezervacija.setPotvrdjeno(r.isPotvrdjeno());
+				demoRezervacija.setId(r.getId());
+				demoRezervacija.setDatumRealizacije(r.getDatumRealizacije());
+				
+				com.xmlws.agent.back.Ponuda demoPonuda = new com.xmlws.agent.back.Ponuda();
+				demoPonuda.setBrojKreveta(r.getPonuda().getBrojKreveta());
+				demoPonuda.setId(r.getPonuda().getId());
+				demoPonuda.setDoDatuma(r.getPonuda().getDoDatuma());
+				demoPonuda.setOd(r.getPonuda().getOd());
+				
+				BackendServicePortService backServicePortService = new BackendServicePortService();
+				BackendServicePort port = backServicePortService.getBackendServicePortSoap11();
+				
+				
+				GetSmestajRequest getSmestajRequest = new GetSmestajRequest();
+				getSmestajRequest.setNaziv(r.getPonuda().getSmestaj().getNaziv());
+				GetSmestajResponse getSmestajResponse = port.getSmestaj(getSmestajRequest);
+				
+				com.xmlws.agent.back.Smestaj getovaniSmestaj = getSmestajResponse.getSmestaj();
+			
+				demoPonuda.setSmestaj(getovaniSmestaj);
+						
+				demoRezervacija.setPonuda(demoPonuda);
+				
+				com.xmlws.agent.back.RegistrovaniKorisnik demoKorisnik  = new com.xmlws.agent.back.RegistrovaniKorisnik();
+				demoKorisnik.setEmail(r.getKorisnik().getEmail());
+				demoKorisnik.setId(r.getKorisnik().getId());
+				demoKorisnik.setIme(r.getKorisnik().getIme());
+				demoKorisnik.setLozinka(r.getKorisnik().getLozinka());
+				demoKorisnik.setPrezime(r.getKorisnik().getPrezime());
+				demoKorisnik.setZabranjen(r.getKorisnik().isZabranjen());
+				
+				demoRezervacija.setKorisnik(demoKorisnik);
+				
+				rez_service.save(r);
+				
+				UpdateRezervacijaRequest updateRezervacijaRequest = new UpdateRezervacijaRequest();
+				updateRezervacijaRequest.setRezervacija(demoRezervacija);
+				UpdateRezervacijaResponse updateRezervacijaResponse = port.updateRezervacija(updateRezervacijaRequest);
+				
+				
+				System.out.println("U glavnu bazu azurirana rezervacija: " + updateRezervacijaResponse.getRezervacija().getId());
+						
+			}
+			else {
+				ostaleRezervacije.get(i).setPotvrdjeno(false);
+				
+				com.xmlws.agent.back.Rezervacija demoRezervacija = new com.xmlws.agent.back.Rezervacija();
+				demoRezervacija.setPotvrdjeno(ostaleRezervacije.get(i).isPotvrdjeno());
+				demoRezervacija.setId(ostaleRezervacije.get(i).getId());
+				demoRezervacija.setDatumRealizacije(ostaleRezervacije.get(i).getDatumRealizacije());
+				
+				com.xmlws.agent.back.Ponuda demoPonuda = new com.xmlws.agent.back.Ponuda();
+				demoPonuda.setBrojKreveta(ostaleRezervacije.get(i).getPonuda().getBrojKreveta());
+				demoPonuda.setId(ostaleRezervacije.get(i).getPonuda().getId());
+				demoPonuda.setDoDatuma(ostaleRezervacije.get(i).getPonuda().getDoDatuma());
+				demoPonuda.setOd(ostaleRezervacije.get(i).getPonuda().getOd());
+				
+				BackendServicePortService backServicePortService = new BackendServicePortService();
+				BackendServicePort port = backServicePortService.getBackendServicePortSoap11();
+				
+				
+				GetSmestajRequest getSmestajRequest = new GetSmestajRequest();
+				getSmestajRequest.setNaziv(ostaleRezervacije.get(i).getPonuda().getSmestaj().getNaziv());
+				GetSmestajResponse getSmestajResponse = port.getSmestaj(getSmestajRequest);
+				
+				com.xmlws.agent.back.Smestaj getovaniSmestaj = getSmestajResponse.getSmestaj();
+			
+				demoPonuda.setSmestaj(getovaniSmestaj);
+						
+				demoRezervacija.setPonuda(demoPonuda);
+				
+				com.xmlws.agent.back.RegistrovaniKorisnik demoKorisnik  = new com.xmlws.agent.back.RegistrovaniKorisnik();
+				demoKorisnik.setEmail(ostaleRezervacije.get(i).getKorisnik().getEmail());
+				demoKorisnik.setId(ostaleRezervacije.get(i).getKorisnik().getId());
+				demoKorisnik.setIme(ostaleRezervacije.get(i).getKorisnik().getIme());
+				demoKorisnik.setLozinka(ostaleRezervacije.get(i).getKorisnik().getLozinka());
+				demoKorisnik.setPrezime(ostaleRezervacije.get(i).getKorisnik().getPrezime());
+				demoKorisnik.setZabranjen(ostaleRezervacije.get(i).getKorisnik().isZabranjen());
+				
+				demoRezervacija.setKorisnik(demoKorisnik);
+				
+				rez_service.save(r);
+				
+				UpdateRezervacijaRequest updateRezervacijaRequest = new UpdateRezervacijaRequest();
+				updateRezervacijaRequest.setRezervacija(demoRezervacija);
+				UpdateRezervacijaResponse updateRezervacijaResponse = port.updateRezervacija(updateRezervacijaRequest);
+				
+				System.out.println("U glavnu bazu azurirana rezervacija: " + updateRezervacijaResponse.getRezervacija().getId());
+
+			}
+			
+		}
+			
     	return "redirect:/smestaji/getSveRez/" + r.getPonuda().getId();
 		
     }

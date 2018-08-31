@@ -12,4 +12,6 @@ public interface RezervacijaService {
 	
 	public Rezervacija save(Rezervacija r);
 	
+	public List<Rezervacija> findByPonudaId(Long id);
+	
 }

@@ -38,17 +38,17 @@ INSERT INTO ponuda (do_datuma,broj_kreveta,cena,od,smestaj_smestaj_id) values ('
 INSERT INTO ponuda (do_datuma,broj_kreveta,cena,od,smestaj_smestaj_id) values ('2018-08-25','2','9600','2018-08-17',5);
 INSERT INTO ponuda (do_datuma,broj_kreveta,cena,od,smestaj_smestaj_id) values ('2018-08-20','2','8500','2018-08-18',6);
 
-INSERT INTO moje_ponude (smestaj_id, ponuda_id) values (1, 1);
-INSERT INTO moje_ponude (smestaj_id, ponuda_id) values (2, 2);
-INSERT INTO moje_ponude (smestaj_id, ponuda_id) values (3, 3);
-INSERT INTO moje_ponude (smestaj_id, ponuda_id) values (4, 4);
-INSERT INTO moje_ponude (smestaj_id, ponuda_id) values (5, 5);
-INSERT INTO moje_ponude (smestaj_id, ponuda_id) values (6, 6);
+--INSERT INTO moje_ponude (smestaj_id, ponuda_id) values (1, 1);
+--INSERT INTO moje_ponude (smestaj_id, ponuda_id) values (2, 2);
+--INSERT INTO moje_ponude (smestaj_id, ponuda_id) values (3, 3);
+--INSERT INTO moje_ponude (smestaj_id, ponuda_id) values (4, 4);
+--INSERT INTO moje_ponude (smestaj_id, ponuda_id) values (5, 5);
+--INSERT INTO moje_ponude (smestaj_id, ponuda_id) values (6, 6);
 
 INSERT INTO rezervacija (korisnik_id, potvrdjeno, datum_realizacije, ponuda_ponuda_id) values (1, 0, '2018-05-15', 1);
 INSERT INTO rezervacija (korisnik_id, potvrdjeno, datum_realizacije, ponuda_ponuda_id) values (2, 0, '2018-05-15', 1);
 INSERT INTO rezervacija (korisnik_id, potvrdjeno, datum_realizacije, ponuda_ponuda_id) values (1, 0, '2018-05-15', 2);
 
-INSERT INTO moje_rezervacije (ponuda_id, rezervacija_id) values (1, 1);
-INSERT INTO moje_rezervacije (ponuda_id, rezervacija_id) values (1, 2);
-INSERT INTO moje_rezervacije (ponuda_id, rezervacija_id) values (2, 3);
+--INSERT INTO moje_rezervacije (ponuda_id, rezervacija_id) values (1, 1);
+--INSERT INTO moje_rezervacije (ponuda_id, rezervacija_id) values (1, 2);
+--INSERT INTO moje_rezervacije (ponuda_id, rezervacija_id) values (2, 3);

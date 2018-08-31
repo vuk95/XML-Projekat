@@ -30,4 +30,9 @@ public class RezervacijaServiceImpl implements RezervacijaService{
 		return rezRepository.save(r);
 	}
 
+	@Override
+	public List<Rezervacija> findByPonudaId(Long id) {
+		return rezRepository.findByPonudaId(id);
+	}
+
 }
