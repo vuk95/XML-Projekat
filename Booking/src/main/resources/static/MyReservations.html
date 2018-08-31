@@ -17,6 +17,9 @@ $(document).ready(function(){
 	}).then(
 		function(data) {
 			for(i = 0; i < data.length; i++) {
+				
+				if(data[i].potvrdjeno == false) {
+				
 				newRow = 
 					"<tr>"
 						+ "<td class=\"kategorija\">" + data[i].ponuda.smestaj.naziv + "</td>"
@@ -29,7 +32,7 @@ $(document).ready(function(){
 						+ "<td class=\"kategorija\">" + data[i].ponuda.doDatuma + "</td>"
 						+ "<td class=\"kategorija\">" + data[i].ponuda.cena + "</td>"
 						+ "<td class=\"lokacija\">" + data[i].datumRealizacije + "</td>"
-						+ "<td class=\"od\">" + data[i].potvrdjeno + "</td>"
+						+ "<td class=\"od\">" + "Na cekanju" + "</td>"
 						+ "<td><a class=\"cancel\" href='http://localhost:8085/otkazi/" + data[i].id + "'>" 
 						+ "<img src='images/remove.gif'/></a></td>"
 						+ "<td><a class=\"chat\" href='http://localhost:8085/agent/" + data[i].id + "'>" 
@@ -38,7 +41,33 @@ $(document).ready(function(){
 						+ "<img src='images/comment.png'/></a></td>"
 					+ "</tr>"
 					$("#dataTable").append(newRow);
+				}
 				
+				if(data[i].potvrdjeno == true)  {
+					
+					newRow = 
+						"<tr>"
+							+ "<td class=\"kategorija\">" + data[i].ponuda.smestaj.naziv + "</td>"
+							+ "<td class=\"kategorija\">" + data[i].ponuda.smestaj.lokacija + "</td>"
+							+ "<td class=\"kategorija\">" + data[i].ponuda.smestaj.kategorija + "</td>"
+							+ "<td class=\"kategorija\">" + data[i].ponuda.smestaj.tip + "</td>"
+							+ "<td class=\"vlasnik\">" + data[i].ponuda.smestaj.agent.ime + "</td>"
+							+ "<td class=\"kategorija\">" + data[i].ponuda.brojKreveta + "</td>"
+							+ "<td class=\"kategorija\">" + data[i].ponuda.od + "</td>"
+							+ "<td class=\"kategorija\">" + data[i].ponuda.doDatuma + "</td>"
+							+ "<td class=\"kategorija\">" + data[i].ponuda.cena + "</td>"
+							+ "<td class=\"lokacija\">" + data[i].datumRealizacije + "</td>"
+							+ "<td class=\"od\">" + "Potvrdjeno" + "</td>"
+							+ "<td><a class=\"cancel\" href='http://localhost:8085/otkazi/" + data[i].id + "'>" 
+							+ "<img src='images/remove.gif'/></a></td>"
+							+ "<td><a class=\"chat\" href='http://localhost:8085/agent/" + data[i].id + "'>" 
+							+ "<img src='images/message1.png'/></a></td>"
+							+ "<td><a class=\"comment\" href='http://localhost:8085/smestaj/" + data[i].id + "'>"
+							+ "<img src='images/comment.png'/></a></td>"
+						+ "</tr>"
+						$("#dataTable").append(newRow);
+					
+				}
 			}
 		}
 	)
