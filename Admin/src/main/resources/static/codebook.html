@@ -22,40 +22,6 @@
     <script src="scripts/jquery.min.js"></script>
     <script src="scripts/bootstrap.bundle.min.js"></script>
     
-    <script>
-    $(document).ready(function(){ 
-    	$.ajax({
-    		url: "http://localhost:8085/comments/unapproved"
-    	}).then(
-    		function(data) {
-				for(i = 0; i < data.length; i++) {
-					newRow = "<tr>"
-								+"<td>" + data[i].registrovaniKorisnik.ime + " " + data[i].registrovaniKorisnik.prezime + "</td>"
-								+"<td>" + data[i].sadrzaj + "</td>"
-								+"<td>" + data[i].smestaj.naziv + "</td>"
-								+"<td><a id=\"approve\" href='http://localhost:8085/comments/"+ data[i].id  + "'role=\"button\" aria-pressed=\"true\" class=\"btn btn-outline-primary btn-sm\"><i class=\"fas fa-check\"></i></a></td>"
-							+"</tr>";
-					$("#tabela").append(newRow);
-				}
-    		}
-    	);
-    	
-    });
-    
-    $(document).on("click", "#approve", function(event){
-		event.preventDefault();
-		
-		var url = $(this).attr("href");
-		var tr_parent = $(this).closest("tr");
-		$.ajax({
-			url: url,
-			type: "PUT",
-			success: function() {
-				tr_parent.remove();
-			}
-		});
-	});
-    </script>
 </head>
 <body>
 
@@ -91,15 +57,8 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container">
-                <table id="tabela">
-                	<tr>
-                		<th>Korisnik</th>
-                		<th>Sadržaj</th>
-                		<th>Smeštaj</th>
-                		<th>Odobri</th>
-                	</tr>
-                </table>
-            </div>
+            
+			</div>
         </div>
         <!-- /#page-content-wrapper -->
 

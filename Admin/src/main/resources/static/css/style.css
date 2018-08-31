@@ -162,6 +162,20 @@ button.btn.btn-primary:active, button.btn.btn-primary:focus {
     outline:0px !important;
 }
 
+#login-btn {
+	background-color: #0e5ace;
+	color: #fff;
+	border-color: #0e5ace;
+	box-shadow:none !important;
+    outline:0px !important;
+}
+
+#login-btn:hover {
+	background-color: #0b50ba;
+	color: #fff;
+	border-color: #0b50ba;
+}
+
 div.col-sm {
 	height: 150px;
 	margin-left: 20px;
