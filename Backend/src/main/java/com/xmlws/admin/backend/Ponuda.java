@@ -84,10 +84,7 @@ public class Ponuda {
     @XmlElement(name = "Rezervacija")
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "mojeRezervacije",
-				joinColumns = @JoinColumn(name = "ponuda_id", referencedColumnName = "ponuda_id"),
-				inverseJoinColumns = @JoinColumn(name = "rezervacija_id", referencedColumnName = "rezervacija_id"))
-    @JsonIgnore
+	@JsonIgnore
     protected List<Rezervacija> rezervacija;
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

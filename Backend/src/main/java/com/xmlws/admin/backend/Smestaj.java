@@ -27,7 +27,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  * <p>Java class for Smestaj complex type.
@@ -111,6 +112,7 @@ public class Smestaj {
     @XmlElement(required = true)
     protected String naziv;
     @XmlElement(name = "Image")
+    @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "mojeSlike",
 				joinColumns = @JoinColumn(name = "smestaj_id", referencedColumnName = "smestaj_id"),
@@ -118,13 +120,12 @@ public class Smestaj {
     @JsonIgnore
     protected List<Image> image;
     @XmlElement(name = "Ponuda")
+    @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "mojePonude",
-				joinColumns = @JoinColumn(name = "smestaj_id", referencedColumnName = "smestaj_id"),
-				inverseJoinColumns = @JoinColumn(name = "ponuda_id", referencedColumnName = "ponuda_id"))
-    @JsonIgnore
+	@JsonIgnore
     protected List<Ponuda> ponuda;
     @XmlElement(name = "Komentar")
+    @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "mojiKomentari",
 				joinColumns = @JoinColumn(name = "smestaj_id", referencedColumnName = "smestaj_id"),

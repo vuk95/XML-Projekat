@@ -140,8 +140,6 @@ public class SmestajiController {
 		getSmestajRequest.setNaziv(ponuda.getSmestaj().getNaziv());
 		GetSmestajResponse getSmestajResponse = port.getSmestaj(getSmestajRequest);
 		
-		com.xmlws.agent.back.Smestaj getted = getSmestajResponse.getSmestaj();
-		
 		demoPonuda.setSmestaj(getSmestajResponse.getSmestaj());
 		
 		AddPonudaRequest addPonudaRequest = new AddPonudaRequest();
@@ -155,7 +153,6 @@ public class SmestajiController {
 		s.getMojePonude().add(ponuda);
 		sm_service.save(s);
 		
-		//Nesto jebe da ga doda u listu
 		//getted.getPonuda().add(demoPonuda);
 		
 		//AddSmestajRequest addSmestajRequest = new AddSmestajRequest();
@@ -204,22 +201,31 @@ public class SmestajiController {
 		BackendServicePort port = backServicePortService.getBackendServicePortSoap11();
 		
 		
-		//GetSmestajRequest getSmestajRequest = new GetSmestajRequest();
-		//getSmestajRequest.setNaziv(r.getPonuda().getSmestaj().getNaziv());
-		//GetSmestajResponse getSmestajResponse = port.getSmestaj(getSmestajRequest);
+		GetSmestajRequest getSmestajRequest = new GetSmestajRequest();
+		getSmestajRequest.setNaziv(r.getPonuda().getSmestaj().getNaziv());
+		GetSmestajResponse getSmestajResponse = port.getSmestaj(getSmestajRequest);
 		
-		//com.xmlws.agent.back.Smestaj getovaniSmestaj = getSmestajResponse.getSmestaj();
-		
-		//demoPonuda.setSmestaj(getovaniSmestaj);
+		com.xmlws.agent.back.Smestaj getovaniSmestaj = getSmestajResponse.getSmestaj();
+	
+		demoPonuda.setSmestaj(getovaniSmestaj);
 				
-		//demoRezervacija.setPonuda(demoPonuda);
+		demoRezervacija.setPonuda(demoPonuda);
+		
+		com.xmlws.agent.back.RegistrovaniKorisnik demoKorisnik  = new com.xmlws.agent.back.RegistrovaniKorisnik();
+		demoKorisnik.setEmail(r.getKorisnik().getEmail());
+		demoKorisnik.setId(r.getKorisnik().getId());
+		demoKorisnik.setIme(r.getKorisnik().getIme());
+		demoKorisnik.setLozinka(r.getKorisnik().getLozinka());
+		demoKorisnik.setPrezime(r.getKorisnik().getPrezime());
+		demoKorisnik.setZabranjen(r.getKorisnik().isZabranjen());
+		
+		demoRezervacija.setKorisnik(demoKorisnik);
 		
 		UpdateRezervacijaRequest updateRezervacijaRequest = new UpdateRezervacijaRequest();
 		updateRezervacijaRequest.setRezervacija(demoRezervacija);
 		UpdateRezervacijaResponse updateRezervacijaResponse = port.updateRezervacija(updateRezervacijaRequest);
 		
 		System.out.println("U glavnu bazu azurirana rezervacija: " + updateRezervacijaResponse.getRezervacija().getId());
-		
 		
     	return "redirect:/smestaji/getSveRez/" + r.getPonuda().getId();
 		
