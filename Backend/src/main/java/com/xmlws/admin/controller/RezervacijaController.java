@@ -75,7 +75,7 @@ public class RezervacijaController {
 	//Na osnovu id-a rezervacije pokusavam da nadjem smestaj
 	@CrossOrigin
 	@RequestMapping(value = "/smestaj/{id}" , method = RequestMethod.GET)
-	public ResponseEntity<Smestaj> getSmestaj(@PathVariable Long id) {
+	public ResponseEntity<Rezervacija> getSmestaj(@PathVariable Long id) {
 		
 		Rezervacija rezervacija = rezervacijaService.findOne(id);
 		
@@ -83,8 +83,6 @@ public class RezervacijaController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		
-		Smestaj smestaj = rezervacija.getPonuda().getSmestaj();
-		
-		return new ResponseEntity<>(smestaj,HttpStatus.OK);
+		return new ResponseEntity<>(rezervacija,HttpStatus.OK);
 	}
 }

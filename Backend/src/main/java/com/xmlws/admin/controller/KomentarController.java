@@ -9,12 +9,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.xmlws.admin.backend.Komentar;
+import com.xmlws.admin.backend.Rezervacija;
+import com.xmlws.admin.backend.Smestaj;
 import com.xmlws.admin.service.KomentarService;
+import com.xmlws.admin.service.RezervaciijaService;
 
 @RestController
 @RequestMapping(value = "/comments")
@@ -22,6 +26,9 @@ public class KomentarController {
 
 	@Autowired
 	private KomentarService komentarService;
+	
+	@Autowired
+	private RezervaciijaService rezervacijaService;
 	
 	@CrossOrigin
 	@RequestMapping(value = "/unapproved", method = RequestMethod.GET)
@@ -55,4 +62,19 @@ public class KomentarController {
 		return new ResponseEntity<>(komentar, HttpStatus.OK);
 	}
 	
+	@CrossOrigin
+	@RequestMapping(value = "/komentar/{id}" , method = RequestMethod.POST ,consumes="application/json")
+	public ResponseEntity<Komentar> post(@PathVariable Long id,@RequestBody Komentar komentar) {
+		
+		Rezervacija rezervacija = rezervacijaService.findOne(id);
+		
+		Smestaj smestaj = rezervacija.getPonuda().getSmestaj();
+		
+		komentar.setSmestaj(smestaj);
+		komentar.setOdobren(false);
+		
+		Komentar newComment = komentarService.save(komentar);
+		
+		return new ResponseEntity<>(newComment,HttpStatus.OK);
+	}
 }

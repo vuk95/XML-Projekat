@@ -26,6 +26,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 /**
  * <p>Java class for Smestaj complex type.
@@ -113,18 +115,21 @@ public class Smestaj {
 	@JoinTable(name = "mojeSlike",
 				joinColumns = @JoinColumn(name = "smestaj_id", referencedColumnName = "smestaj_id"),
 				inverseJoinColumns = @JoinColumn(name = "image_id", referencedColumnName = "image_id"))
+    @JsonIgnore
     protected List<Image> image;
     @XmlElement(name = "Ponuda")
     @OneToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "mojePonude",
 				joinColumns = @JoinColumn(name = "smestaj_id", referencedColumnName = "smestaj_id"),
 				inverseJoinColumns = @JoinColumn(name = "ponuda_id", referencedColumnName = "ponuda_id"))
+    @JsonIgnore
     protected List<Ponuda> ponuda;
     @XmlElement(name = "Komentar")
     @OneToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "mojiKomentari",
 				joinColumns = @JoinColumn(name = "smestaj_id", referencedColumnName = "smestaj_id"),
 				inverseJoinColumns = @JoinColumn(name = "komentar_id", referencedColumnName = "komentar_id"))
+    @JsonIgnore
     protected List<Komentar> komentar;
     @XmlElement(name = "Parking")
     protected boolean parking;

@@ -10,6 +10,47 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<title>Comment</title>
 
+<script>
+
+$(document).ready(function(){
+	
+	var queryString = decodeURIComponent(window.location.search);
+	queryString = queryString.substring(8);
+	
+	$("#post").click(function(){
+		//pripremamo JSON koji cemo poslati
+		//var data = {}
+		//data["sadrzaj"] = $("#sendForm [name='sadrzaj']").val();
+		
+		formData = JSON.stringify({
+		   sadrzaj:$("#postForm [name='sadrzaj']").val(),
+        });
+		
+		//sadrzaj = $('#sadrzaj').val();
+		//alert(sadrzaj)
+		
+		$.ajax({
+			url: "http://localhost:8085/comments/komentar/" + queryString ,
+			type: "POST",
+			data: formData,
+			//saljemo json i ocekujemo json nazad
+			contentType: "application/json",
+			datatype: 'json',
+			success: function(data) {
+				 alert('Komentar je uspesno dodat!');
+				 	var qs = decodeURIComponent(window.location.search);
+ 					window.location.href = "MyReservations.html" + qs;
+			  },
+			  error: function(data) {
+				  alert('Slanje komentara nije uspelo!');
+			  }
+			});
+		
+	});
+});
+
+</script>
+
 
 <style>
 h3 {
@@ -57,7 +98,7 @@ top: 0px;
 	<div class="container">
 	<div class="row">
 		<h3>Ostavi komentar <span class="glyphicon glyphicon-comment"></span></h3>
-		<form role="form" id="contact-form" class="contact-form">
+		<form id="postForm" class="contact-form">
                     
                   	<div class="row">
                   		<div class="col-md-12">
@@ -68,7 +109,7 @@ top: 0px;
                     </div>
                     <div class="row">
                     <div class="col-md-12">
-                  <button type="button" id="send" class="btn main-btn pull-right">Post a comment</button>
+                  <button type="button" id="post" class="btn main-btn pull-right">Post a comment</button>
                   </div>
                   </div>
                 </form>
