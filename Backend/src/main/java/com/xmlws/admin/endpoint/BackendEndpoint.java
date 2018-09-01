@@ -1,5 +1,7 @@
 package com.xmlws.admin.endpoint;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -10,6 +12,8 @@ import com.xmlws.admin.backend.AddPonudaRequest;
 import com.xmlws.admin.backend.AddPonudaResponse;
 import com.xmlws.admin.backend.AddSmestajRequest;
 import com.xmlws.admin.backend.AddSmestajResponse;
+import com.xmlws.admin.backend.GetAllSmestajRequest;
+import com.xmlws.admin.backend.GetAllSmestajResponse;
 import com.xmlws.admin.backend.GetPonudaRequest;
 import com.xmlws.admin.backend.GetPonudaResponse;
 import com.xmlws.admin.backend.GetSmestajRequest;
@@ -89,5 +93,18 @@ public class BackendEndpoint {
 		Ponuda p = offerService.findOne(request.getId());
 		response.setPonuda(p);
         return response;
+    }
+	
+	@PayloadRoot(namespace = "admin.xmlws.com/backend",
+            localPart = "getAllSmestajRequest")
+    @ResponsePayload
+    public GetAllSmestajResponse getAllSmestaj(@RequestPayload GetAllSmestajRequest request) {
+		GetAllSmestajResponse response = new GetAllSmestajResponse();
+		
+		List<Smestaj> smestajList=smestajService.getSmestajByAgent(request.getEmail());
+	
+		response.setSmestaj(smestajList);
+        return response;
+        
     }
 }

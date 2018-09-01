@@ -2,6 +2,23 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
     targetNamespace="admin.xmlws.com/backend" xmlns:ag="admin.xmlws.com/backend">
 	
+	<xs:element name="getAllSmestajRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="email" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getAllSmestajResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="Smestaj" type="ag:Smestaj"/> 
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+	
+	
 	<xs:element name="getPonudaRequest">
         <xs:complexType>
             <xs:sequence>

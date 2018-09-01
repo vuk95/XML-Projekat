@@ -26,6 +26,7 @@ import com.xmlws.agent.model.Smestaj;
 import com.xmlws.agent.service.PonudaService;
 import com.xmlws.agent.service.RezervacijaService;
 import com.xmlws.agent.service.SmestajService;
+import com.xmlws.agent.service.SynchronizeService;
 
 @Controller
 @RequestMapping("/smestaji")
@@ -40,6 +41,9 @@ public class SmestajiController {
 	@Autowired
 	private RezervacijaService rez_service;
 	
+	@Autowired
+	private SynchronizeService synchroservice;
+	
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index() {
@@ -50,6 +54,9 @@ public class SmestajiController {
 	
 	@RequestMapping(value = "/getSviSmestaji", method = RequestMethod.GET)
 	public String sviSmestaji(ModelMap map) {
+		
+		//SAMO PROBNO PRAVI TEK KAD BUDE LOGIN
+		//synchroservice.getAllSmestajByAgent("ana@gmail.com");
 		
 		map.put("smestaji", sm_service.findAll());
 		return "sviSmestaji";

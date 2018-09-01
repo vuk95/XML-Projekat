@@ -1,5 +1,7 @@
 package com.xmlws.admin.service.implementation;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,11 @@ public class SmServiceImpl implements SmService{
 	@Override
 	public Smestaj findOne(String naziv) {
 		return repository.findByNaziv(naziv);
+	}
+
+	@Override
+	public List<Smestaj> getSmestajByAgent(String email) {
+		return repository.findByAgentEmail(email);
 	}
 
 }
