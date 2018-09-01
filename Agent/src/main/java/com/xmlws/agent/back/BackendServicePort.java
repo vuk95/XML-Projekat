@@ -83,4 +83,16 @@ public interface BackendServicePort {
         @WebParam(name = "addSmestajRequest", targetNamespace = "admin.xmlws.com/backend", partName = "addSmestajRequest")
         AddSmestajRequest addSmestajRequest);
 
+    /**
+     * 
+     * @param getPonudaRequest
+     * @return
+     *     returns com.xmlws.admin.backend.GetPonudaResponse
+     */
+    @WebMethod
+    @WebResult(name = "getPonudaResponse", targetNamespace = "admin.xmlws.com/backend", partName = "getPonudaResponse")
+    public GetPonudaResponse getPonuda(
+        @WebParam(name = "getPonudaRequest", targetNamespace = "admin.xmlws.com/backend", partName = "getPonudaRequest")
+        GetPonudaRequest getPonudaRequest);
+
 }

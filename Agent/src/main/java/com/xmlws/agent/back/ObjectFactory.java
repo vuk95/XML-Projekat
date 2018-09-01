@@ -30,6 +30,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetPonudaResponse }
+     * 
+     */
+    public GetPonudaResponse createGetPonudaResponse() {
+        return new GetPonudaResponse();
+    }
+
+    /**
+     * Create an instance of {@link Ponuda }
+     * 
+     */
+    public Ponuda createPonuda() {
+        return new Ponuda();
+    }
+
+    /**
      * Create an instance of {@link AddSmestajRequest }
      * 
      */
@@ -70,11 +86,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Ponuda }
+     * Create an instance of {@link GetPonudaRequest }
      * 
      */
-    public Ponuda createPonuda() {
-        return new Ponuda();
+    public GetPonudaRequest createGetPonudaRequest() {
+        return new GetPonudaRequest();
     }
 
     /**
@@ -139,6 +155,14 @@ public class ObjectFactory {
      */
     public Agent createAgent() {
         return new Agent();
+    }
+
+    /**
+     * Create an instance of {@link Sifrarnik }
+     * 
+     */
+    public Sifrarnik createSifrarnik() {
+        return new Sifrarnik();
     }
 
     /**

@@ -109,6 +109,33 @@ public class SmestajiController {
 		s.setZauzet(true);
 		sm_service.save(s);
 		
+		com.xmlws.agent.back.Smestaj demoSmestaj = new com.xmlws.agent.back.Smestaj();
+		demoSmestaj.setNaziv(s.getNaziv());
+		demoSmestaj.setAgent(null);
+		demoSmestaj.setId(s.getId());
+		demoSmestaj.setKategorija(s.getKategorija());
+		demoSmestaj.setLokacija(s.getLokacija());
+		demoSmestaj.setOcena(s.getOcena());
+		demoSmestaj.setOpis(s.getOpis());
+		demoSmestaj.setTip(s.getTip());
+		demoSmestaj.setWifi(s.isWifi());
+		demoSmestaj.setTV(s.isTv());
+		demoSmestaj.setPolupansion(s.isPolupansion());
+		demoSmestaj.setPansion(s.isPansion());
+		demoSmestaj.setParking(s.isParking());
+		demoSmestaj.setKupatilo(s.isKupatilo());
+		demoSmestaj.setKuhinja(s.isKuhinja());
+		demoSmestaj.setDorucak(s.isDorucak());
+		demoSmestaj.setZauzet(s.isZauzet());
+			
+		BackendServicePortService backServicePortService = new BackendServicePortService();
+		BackendServicePort port = backServicePortService.getBackendServicePortSoap11();
+		AddSmestajRequest addSmestajRequest = new AddSmestajRequest();
+		addSmestajRequest.setSmestaj(demoSmestaj);
+		AddSmestajResponse addSmestajResponse = port.addSmestaj(addSmestajRequest);
+		
+		System.out.println("U glavnu bazu azuriran smestaj: " + addSmestajResponse.getSmestaj().getLokacija());
+		
 		return "redirect:/smestaji/getSviSmestaji";
 	}
 	
@@ -119,6 +146,33 @@ public class SmestajiController {
 		Smestaj s = sm_service.findOne(id);
 		s.setZauzet(false);
 		sm_service.save(s);
+		
+		com.xmlws.agent.back.Smestaj demoSmestaj = new com.xmlws.agent.back.Smestaj();
+		demoSmestaj.setNaziv(s.getNaziv());
+		demoSmestaj.setAgent(null);
+		demoSmestaj.setId(s.getId());
+		demoSmestaj.setKategorija(s.getKategorija());
+		demoSmestaj.setLokacija(s.getLokacija());
+		demoSmestaj.setOcena(s.getOcena());
+		demoSmestaj.setOpis(s.getOpis());
+		demoSmestaj.setTip(s.getTip());
+		demoSmestaj.setWifi(s.isWifi());
+		demoSmestaj.setTV(s.isTv());
+		demoSmestaj.setPolupansion(s.isPolupansion());
+		demoSmestaj.setPansion(s.isPansion());
+		demoSmestaj.setParking(s.isParking());
+		demoSmestaj.setKupatilo(s.isKupatilo());
+		demoSmestaj.setKuhinja(s.isKuhinja());
+		demoSmestaj.setDorucak(s.isDorucak());
+		demoSmestaj.setZauzet(s.isZauzet());
+			
+		BackendServicePortService backServicePortService = new BackendServicePortService();
+		BackendServicePort port = backServicePortService.getBackendServicePortSoap11();
+		AddSmestajRequest addSmestajRequest = new AddSmestajRequest();
+		addSmestajRequest.setSmestaj(demoSmestaj);
+		AddSmestajResponse addSmestajResponse = port.addSmestaj(addSmestajRequest);
+		
+		System.out.println("U glavnu bazu azuriran smestaj: " + addSmestajResponse.getSmestaj().getLokacija());
 		
 		return "redirect:/smestaji/getSviSmestaji";
 	}

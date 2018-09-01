@@ -119,6 +119,8 @@
             <xs:element name="TV" type="xs:boolean"/>
             <xs:element name="Kuhinja" type="xs:boolean"/>
             <xs:element name="Kupatilo" type="xs:boolean"/>
+            <xs:element name="Sifrarnik" type="ag:Sifrarnik"/>
+            <xs:element name="zauzet" type="xs:boolean"/>
         </xs:sequence>
     </xs:complexType>
 
@@ -202,6 +204,18 @@
             <xs:element name="procitana" type="xs:boolean"/>
             <xs:element name="sadrzaj" type="xs:string"/>
             
+            
+        </xs:sequence>
+        
+    </xs:complexType>
+    
+    <xs:complexType name="Sifrarnik">
+
+        <xs:sequence>
+            
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="sifra" type="xs:string"/>
+            <xs:element name="vrednost" type="xs:string"/>
             
         </xs:sequence>
         
