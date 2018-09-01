@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -45,13 +46,22 @@ public class UserController {
 	
 	@CrossOrigin
 	@RequestMapping(value = "/loginAdmin", method = RequestMethod.POST)
-	public ResponseEntity<?> loginAdmin(@RequestBody LoginDTO dto) {
+	public ResponseEntity<?> loginAdmin(@RequestBody LoginDTO dto, HttpSession session, HttpServletResponse response, HttpServletRequest request) {
 		Korisnik user = korisnikService.findByEmail(dto.getEmail());
  		if(user != null) {
 			if(user instanceof Admin) {
 				if(dto.getLozinka().equals(user.getLozinka())) {
-					korisnikService.setCurrentUser(user);
+//					korisnikService.setCurrentUser(user);
+					session.setAttribute("userId", user.getId());
+					
 					System.out.println("ULOGOVAO SE!");
+					Long userId = (Long) session.getAttribute("userId");
+					if(userId == null) {
+						userId = (long) 0;
+					}
+					
+					System.out.println("iz loginAdmin:  " + userId);
+					System.out.println("iz loginAdmin:  " + session.getId());
 					return new ResponseEntity<>("Uspesno ste se prijavili!", HttpStatus.OK);
 				} else {
 					return new ResponseEntity<>("Pogresna lozinka!", HttpStatus.BAD_REQUEST);
@@ -65,22 +75,31 @@ public class UserController {
 	}
 	
 	@CrossOrigin
-	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/loggedIn", method = RequestMethod.GET)
-	public ResponseEntity<?> getLoggedUser(HttpServletResponse response, HttpServletRequest request) {
-		Korisnik korisnik = korisnikService.getCurrentUser();
-		response.addCookie(request.getCookies()[0]);
-		if(korisnik == null) {
-			return new ResponseEntity<>(HttpStatus.MOVED_PERMANENTLY);
-		}
-		String role = "KORISNIK";
-		if(korisnik instanceof Admin) {
-			role = "ADMIN";
-		} else if(korisnik instanceof Agent) {
-			role = "AGENT";
+	public ResponseEntity<?> getLoggedUser(HttpSession session) {
+//		Korisnik korisnik = korisnikService.getCurrentUser();
+//		response.addCookie(request.getCookies()[0]);
+//		if(korisnik == null) {
+//			return new ResponseEntity<>(HttpStatus.MOVED_PERMANENTLY);
+//		}
+//		String role = "KORISNIK";
+//		if(korisnik instanceof Admin) {
+//			role = "ADMIN";
+//		} else if(korisnik instanceof Agent) {
+//			role = "AGENT";
+//		}
+//		
+//		return new ResponseEntity<>(new LoggedUserDTO(korisnik.getEmail(), role, korisnik.getId()), HttpStatus.OK);
+		
+		Long userId = (Long) session.getAttribute("userId");
+		if(userId == null) {
+			userId = (long) 0;
 		}
 		
-		return new ResponseEntity<>(new LoggedUserDTO(korisnik.getEmail(), role, korisnik.getId()), HttpStatus.OK);
+		System.out.println("iz loggedIn:  " + userId);
+		System.out.println("iz loggedIn:  " + session.getId());
+		
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
 	@CrossOrigin
