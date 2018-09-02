@@ -1,5 +1,6 @@
 package com.xmlws.admin.controller;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -48,6 +49,19 @@ public class RezervacijaController {
 		
 		return new ResponseEntity<>(rezervacije,HttpStatus.OK);
 	}
+	
+/*	public ResponseEntity<List<Rezervacija>> getUserReservation() {
+		
+		List<Rezervacija> rezervacije = new ArrayList<Rezervacija>();
+		
+		Long userId = (long) 1;
+		
+		RegistrovaniKorisnik korisnik  = registrovaniService.findById(userId);
+		
+		
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+*/
 	
 	@CrossOrigin
 	@RequestMapping(value = "/rezervacija/{id}" , method = RequestMethod.POST , consumes="application/json")

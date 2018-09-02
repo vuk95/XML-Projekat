@@ -73,6 +73,36 @@ public class UserController {
 	}
 	
 	@CrossOrigin
+	@RequestMapping(value = "/loginRegularUser", method = RequestMethod.POST)
+	public ResponseEntity<?> loginRegularUser(@RequestBody LoginDTO dto, HttpSession session, HttpServletResponse response, HttpServletRequest request) {
+		Korisnik user = korisnikService.findByEmail(dto.getEmail());
+ 		if(user != null) {
+			if(user instanceof RegistrovaniKorisnik) {
+				if(dto.getLozinka().equals(user.getLozinka())) {
+//					korisnikService.setCurrentUser(user);
+					//session.setAttribute("userId", user.getId());
+					
+					request.setAttribute("userEmail", user.getEmail());
+					
+					System.out.println("ULOGOVAO SE!");
+					
+					String email = request.getAttribute("userEmail").toString();
+					
+					System.out.println("iz loginUser:  " + email);
+					//System.out.println("iz loginAdmin:  " + session.getId());
+					return new ResponseEntity<>("Uspesno ste se prijavili!", HttpStatus.OK);
+				} else {
+					return new ResponseEntity<>("Pogresna lozinka!", HttpStatus.BAD_REQUEST);
+				}
+			} else {
+				return new ResponseEntity<>("Nemate prava pristupa!", HttpStatus.UNAUTHORIZED);
+			}
+		} else {
+			return new ResponseEntity<>("Ne postoji admin sa tim emailom!", HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@CrossOrigin
 	@RequestMapping(value = "/loggedIn", method = RequestMethod.GET)
 	public ResponseEntity<?> getLoggedUser(HttpSession session) {
 //		Korisnik korisnik = korisnikService.getCurrentUser();
