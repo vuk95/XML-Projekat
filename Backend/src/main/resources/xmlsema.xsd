@@ -161,7 +161,23 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+	
+	    <xs:element name="addImageRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Image" type="ag:Image"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
+    <xs:element name="addImageResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Image" type="ag:Image"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+	
     <xs:complexType name="Smestaj">
         <xs:sequence>
         	<xs:element name="Agent" type="ag:Agent"/>

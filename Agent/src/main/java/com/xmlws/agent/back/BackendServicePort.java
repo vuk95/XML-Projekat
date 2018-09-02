@@ -25,6 +25,18 @@ public interface BackendServicePort {
 
     /**
      * 
+     * @param addImageRequest
+     * @return
+     *     returns com.xmlws.admin.backend.AddImageResponse
+     */
+    @WebMethod
+    @WebResult(name = "addImageResponse", targetNamespace = "admin.xmlws.com/backend", partName = "addImageResponse")
+    public AddImageResponse addImage(
+        @WebParam(name = "addImageRequest", targetNamespace = "admin.xmlws.com/backend", partName = "addImageRequest")
+        AddImageRequest addImageRequest);
+
+    /**
+     * 
      * @param getAllPonudaRequest
      * @return
      *     returns com.xmlws.admin.backend.GetAllPonudaResponse

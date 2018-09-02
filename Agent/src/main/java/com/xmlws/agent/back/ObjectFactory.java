@@ -62,6 +62,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link AddImageRequest }
+     * 
+     */
+    public AddImageRequest createAddImageRequest() {
+        return new AddImageRequest();
+    }
+
+    /**
+     * Create an instance of {@link Image }
+     * 
+     */
+    public Image createImage() {
+        return new Image();
+    }
+
+    /**
      * Create an instance of {@link GetAllPonudaRequest }
      * 
      */
@@ -158,6 +174,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link AddImageResponse }
+     * 
+     */
+    public AddImageResponse createAddImageResponse() {
+        return new AddImageResponse();
+    }
+
+    /**
      * Create an instance of {@link GetAllPonudaResponse }
      * 
      */
@@ -227,14 +251,6 @@ public class ObjectFactory {
      */
     public Sifrarnik createSifrarnik() {
         return new Sifrarnik();
-    }
-
-    /**
-     * Create an instance of {@link Image }
-     * 
-     */
-    public Image createImage() {
-        return new Image();
     }
 
     /**

@@ -8,6 +8,8 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
+import com.xmlws.admin.backend.AddImageRequest;
+import com.xmlws.admin.backend.AddImageResponse;
 import com.xmlws.admin.backend.AddPonudaRequest;
 import com.xmlws.admin.backend.AddPonudaResponse;
 import com.xmlws.admin.backend.AddSmestajRequest;
@@ -29,6 +31,7 @@ import com.xmlws.admin.backend.Rezervacija;
 import com.xmlws.admin.backend.Smestaj;
 import com.xmlws.admin.backend.UpdateRezervacijaRequest;
 import com.xmlws.admin.backend.UpdateRezervacijaResponse;
+import com.xmlws.admin.service.ImageService;
 import com.xmlws.admin.service.OfferSoapService;
 import com.xmlws.admin.service.RezervaciijaService;
 import com.xmlws.admin.service.SmService;
@@ -45,6 +48,9 @@ public class BackendEndpoint {
 	@Autowired
 	private RezervaciijaService rezService;
 	
+	@Autowired
+	private ImageService imgService;
+	
 	@PayloadRoot(namespace = "admin.xmlws.com/backend",
             localPart = "addSmestajRequest")
     @ResponsePayload
@@ -52,6 +58,16 @@ public class BackendEndpoint {
 		AddSmestajResponse response = new AddSmestajResponse();
 		
 		response.setSmestaj(smestajService.save(request.getSmestaj()));
+        return response;
+    }
+	
+	@PayloadRoot(namespace = "admin.xmlws.com/backend",
+            localPart = "addImageRequest")
+    @ResponsePayload
+    public AddImageResponse addImage(@RequestPayload AddImageRequest request) {
+		AddImageResponse response = new AddImageResponse();
+		
+		response.setImage(imgService.save(request.getImage()));
         return response;
     }
 	

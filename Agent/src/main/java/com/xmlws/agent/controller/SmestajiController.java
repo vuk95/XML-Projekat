@@ -52,14 +52,31 @@ public class SmestajiController {
 		
 	}
 	
-	@RequestMapping(value = "/getSviSmestaji", method = RequestMethod.GET)
-	public String sviSmestaji(ModelMap map) {
+	@RequestMapping(value = "/sync", method = RequestMethod.GET)
+	public String sync(ModelMap map) {
 		
 		//SAMO PROBNO PRAVI TEK KAD BUDE LOGIN
 		//synchroservice.getAllSmestajByAgent("ana@gmail.com");
 		synchroservice.getAllSmestaj();
 		synchroservice.getAllPonuda();
 		synchroservice.getAllRezervacija();
+		
+		map.put("smestaji", sm_service.findAll());
+		return "sviSmestaji";
+		
+	}
+	
+	@RequestMapping(value = "/getSviSmestaji", method = RequestMethod.GET)
+	public String sviSmestaji(ModelMap map) {
+		
+		
+		//SAMO PROBNO PRAVI TEK KAD BUDE LOGIN
+		//synchroservice.getAllSmestajByAgent("ana@gmail.com");
+		/*
+		synchroservice.getAllSmestaj();
+		synchroservice.getAllPonuda();
+		synchroservice.getAllRezervacija();
+		*/
 		
 		map.put("smestaji", sm_service.findAll());
 		return "sviSmestaji";
@@ -98,7 +115,7 @@ public class SmestajiController {
 		demoSmestaj.setKupatilo(smestaj.isKupatilo());
 		demoSmestaj.setKuhinja(smestaj.isKuhinja());
 		demoSmestaj.setDorucak(smestaj.isDorucak());
-			
+		
 		BackendServicePortService backServicePortService = new BackendServicePortService();
 		BackendServicePort port = backServicePortService.getBackendServicePortSoap11();
 		AddSmestajRequest addSmestajRequest = new AddSmestajRequest();
