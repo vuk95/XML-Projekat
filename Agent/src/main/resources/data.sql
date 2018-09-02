@@ -52,3 +52,8 @@ INSERT INTO korisnik(dtype,email,ime,lozinka,prezime,zabranjen,poslovni_maticni_
 --INSERT INTO moje_rezervacije (ponuda_id, rezervacija_id) values (1, 1);
 --INSERT INTO moje_rezervacije (ponuda_id, rezervacija_id) values (1, 2);
 --INSERT INTO moje_rezervacije (ponuda_id, rezervacija_id) values (2, 3);
+
+
+insert into poruka(registrovani_korisnik_id, agent_id, procitana, sadrzaj, id_primljene) values (1, 13, 0, 'abc', null);
+insert into poruka(registrovani_korisnik_id, agent_id, procitana, sadrzaj, id_primljene) values (2, 13, 0, 'abcefg', null);
+insert into poruka(registrovani_korisnik_id, agent_id, procitana, sadrzaj, id_primljene) values (1, 14, 0, 'abc', null);

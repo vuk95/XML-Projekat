@@ -21,12 +21,16 @@ import com.xmlws.agent.back.GetSmestajResponse;
 import com.xmlws.agent.back.UpdateRezervacijaRequest;
 import com.xmlws.agent.back.UpdateRezervacijaResponse;
 import com.xmlws.agent.model.Ponuda;
+import com.xmlws.agent.model.Poruka;
 import com.xmlws.agent.model.Rezervacija;
 import com.xmlws.agent.model.Smestaj;
+import com.xmlws.agent.repository.UserRepository;
 import com.xmlws.agent.service.PonudaService;
+import com.xmlws.agent.service.PorukaService;
 import com.xmlws.agent.service.RezervacijaService;
 import com.xmlws.agent.service.SmestajService;
 import com.xmlws.agent.service.SynchronizeService;
+import com.xmlws.agent.service.UserService;
 
 @Controller
 @RequestMapping("/smestaji")
@@ -44,6 +48,11 @@ public class SmestajiController {
 	@Autowired
 	private SynchronizeService synchroservice;
 	
+	@Autowired
+	private PorukaService porukaService;
+	
+	@Autowired
+	private UserService korisnickiService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index() {
@@ -68,15 +77,6 @@ public class SmestajiController {
 	
 	@RequestMapping(value = "/getSviSmestaji", method = RequestMethod.GET)
 	public String sviSmestaji(ModelMap map) {
-		
-		
-		//SAMO PROBNO PRAVI TEK KAD BUDE LOGIN
-		//synchroservice.getAllSmestajByAgent("ana@gmail.com");
-		/*
-		synchroservice.getAllSmestaj();
-		synchroservice.getAllPonuda();
-		synchroservice.getAllRezervacija();
-		*/
 		
 		map.put("smestaji", sm_service.findAll());
 		return "sviSmestaji";
@@ -422,5 +422,50 @@ public class SmestajiController {
     	return "redirect:/smestaji/getSveRez/" + r.getPonuda().getId();
 		
     }
+	
+	@RequestMapping(value = "/inbox", method = RequestMethod.GET)
+	public String inbox(ModelMap map) {
+		
+		map.put("poruke", porukaService.findAll());
+		return "inbox";
+		
+	}
+	
+	@RequestMapping(value = "/inbox/reply/{id}", method = RequestMethod.GET)
+	public String reply(@PathVariable Long id, ModelMap map) {
+		
+		Poruka p = new Poruka();
+		p.setAgent(porukaService.findOne(id).getAgent());
+		p.setRegistrovaniKorisnik(porukaService.findOne(id).getRegistrovaniKorisnik());
+		p.setProcitana(false);
+		p.setSadrzaj("");
+		porukaService.save(p);
+		
+		map.put("poruka", p);
+		map.put("agent", porukaService.findOne(id).getAgent());
+		map.put("registrovaniKorisnik", porukaService.findOne(id).getRegistrovaniKorisnik());
+		map.put("id", id);
+		
+		return "addPoruka";
+		
+	}
+	
+	@RequestMapping(value = "inbox/reply/{id}", method = RequestMethod.POST)
+	public String add(@PathVariable Long id, @ModelAttribute("poruka") Poruka por, ModelMap map) {
+		
+		
+		Poruka zaSlanje = porukaService.findOne(por.getId());
+		Poruka primljena = porukaService.findOne(id);
+		
+		primljena.setProcitana(true);
+		porukaService.save(primljena);
+		
+		zaSlanje.setSadrzaj(por.getSadrzaj());
+		zaSlanje.setIdPrimljene(id);
+		
+		porukaService.save(zaSlanje);
+		
+		return "redirect:/smestaji/inbox";
+	}
 	
 }

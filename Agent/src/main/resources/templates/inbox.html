@@ -1,0 +1,47 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Inbox</title>
+	</head>
+	<body>
+		<h3>Inbox</h3>
+		
+		<h5>Primljene poruke:</h5>
+		
+		<table border = "1">
+			<tr>
+				<th>Id poruke</th>
+				<th>Primaoc</th>
+				<th>Posiljaoc</th>
+				<th>Sadrzaj</th>
+				<th>Odgovori</th>
+			</tr>
+			<tr th:each="poruka, iterStat: ${poruke}">
+				
+				<td th:if = "${poruka.idPrimljene == null}" th:text="${poruka.id}"></td>
+				<td th:if = "${poruka.idPrimljene == null}" th:text="${poruka.agent.email}"></td>
+				<td th:if = "${poruka.idPrimljene == null}" th:text="${poruka.registrovaniKorisnik.email}"></td>
+				<td th:if = "${poruka.idPrimljene == null}" th:text="${poruka.sadrzaj}"></td>
+				<td th:if = "${poruka.idPrimljene == null}"> <a th:href="${'/smestaji/inbox/reply/' + poruka.id}">Odgovori</a></td>
+	
+			</tr>
+		</table>
+		
+		<h5>Poslati odgovori:</h5>
+		
+		<table border = "1">
+			<tr>
+				<th>Id primljene poruke</th>
+				<th>Posiljaoc</th>
+				<th>Primaoc</th>
+				<th>Sadrzaj</th>
+			</tr>
+			<tr th:each="poruka, iterStat: ${poruke}">
+				<td th:if = "${poruka.idPrimljene != null}" th:text="${poruka.idPrimljene}"></td>
+				<td  th:if = "${poruka.idPrimljene != null}" th:text="${poruka.agent.email}"></td>
+				<td  th:if = "${poruka.idPrimljene != null}" th:text="${poruka.registrovaniKorisnik.email}"></td>
+				<td  th:if = "${poruka.idPrimljene != null}" th:text="${poruka.sadrzaj}"></td>
+			</tr>
+		</table>
+	</body>
+</html>

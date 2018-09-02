@@ -1,0 +1,21 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Reply</title>
+	</head>
+	<body>
+		<h3>Odgovori na poruku:</h3>
+		<form th:action="${'/smestaji/inbox/reply/' + id}" th:object="${poruka}" method ="post">
+			<table>
+				<tr>
+					<td>Sadrzaj:</td>
+					<td><textarea rows="6" cols="22" th:field="*{sadrzaj}"></textarea></td>
+				</tr>	
+				
+				<tr>
+					<td><input type="hidden" th:field="*{id}" /></td>
+					<td><input type = "submit" value="Send"></td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>
