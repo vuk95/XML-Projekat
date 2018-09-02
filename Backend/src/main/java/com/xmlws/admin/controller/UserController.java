@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.xmlws.admin.dto.AgentFormDTO;
-import com.xmlws.admin.dto.LoggedUserDTO;
 import com.xmlws.admin.dto.LoginDTO;
 import com.xmlws.admin.backend.Admin;
 import com.xmlws.admin.backend.Agent;
@@ -52,16 +50,16 @@ public class UserController {
 			if(user instanceof Admin) {
 				if(dto.getLozinka().equals(user.getLozinka())) {
 //					korisnikService.setCurrentUser(user);
-					session.setAttribute("userId", user.getId());
+					//session.setAttribute("userId", user.getId());
+					
+					request.setAttribute("userEmail", user.getEmail());
 					
 					System.out.println("ULOGOVAO SE!");
-					Long userId = (Long) session.getAttribute("userId");
-					if(userId == null) {
-						userId = (long) 0;
-					}
 					
-					System.out.println("iz loginAdmin:  " + userId);
-					System.out.println("iz loginAdmin:  " + session.getId());
+					String email = request.getAttribute("userEmail").toString();
+					
+					System.out.println("iz loginAdmin:  " + email);
+					//System.out.println("iz loginAdmin:  " + session.getId());
 					return new ResponseEntity<>("Uspesno ste se prijavili!", HttpStatus.OK);
 				} else {
 					return new ResponseEntity<>("Pogresna lozinka!", HttpStatus.BAD_REQUEST);
@@ -93,7 +91,7 @@ public class UserController {
 		
 		Long userId = (Long) session.getAttribute("userId");
 		if(userId == null) {
-			userId = (long) 0;
+			userId = (long) 12;
 		}
 		
 		System.out.println("iz loggedIn:  " + userId);
