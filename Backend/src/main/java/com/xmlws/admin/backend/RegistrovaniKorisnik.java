@@ -8,9 +8,14 @@
 
 package com.xmlws.admin.backend;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -35,7 +40,42 @@ import javax.xml.bind.annotation.XmlType;
 @Entity
 public class RegistrovaniKorisnik
     extends Korisnik
-{
+{	
+	
+	 @XmlTransient
+	 @OneToMany(cascade = CascadeType.ALL)
+	 private List<Rezervacija> rezervacije;
+	 
+	 @XmlTransient
+	 @OneToMany(cascade = CascadeType.ALL)
+	 protected List<Komentar> komentari;
+	 
+	 @XmlTransient
+	 @OneToMany(cascade = CascadeType.ALL)
+	 private List<Poruka> poruke;
 
+	public List<Rezervacija> getRezervacije() {
+		return rezervacije;
+	}
 
+	public void setRezervacije(List<Rezervacija> rezervacije) {
+		this.rezervacije = rezervacije;
+	}
+
+	public List<Komentar> getKomentari() {
+		return komentari;
+	}
+
+	public void setKomentari(List<Komentar> komentari) {
+		this.komentari = komentari;
+	}
+
+	public List<Poruka> getPoruke() {
+		return poruke;
+	}
+
+	public void setPoruke(List<Poruka> poruke) {
+		this.poruke = poruke;
+	}
+	
 }
