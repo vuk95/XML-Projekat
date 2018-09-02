@@ -14,11 +14,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.xmlws.admin.backend.Agent;
+import com.xmlws.admin.backend.Korisnik;
 import com.xmlws.admin.backend.Ponuda;
+import com.xmlws.admin.backend.RegistrovaniKorisnik;
 import com.xmlws.admin.backend.Rezervacija;
 import com.xmlws.admin.backend.Smestaj;
 import com.xmlws.admin.converters.RezervacijaToRezervacijaDTO;
+import com.xmlws.admin.service.KorisnikService;
 import com.xmlws.admin.service.PonudaService;
+import com.xmlws.admin.service.RegistrovaniKorisnikService;
 import com.xmlws.admin.service.RezervaciijaService;
 
 @RestController
@@ -32,6 +36,9 @@ public class RezervacijaController {
 	
 	@Autowired
 	private RezervacijaToRezervacijaDTO toRezervacijaDTO;
+		
+	@Autowired
+	private RegistrovaniKorisnikService registrovaniService;
 	
 	@CrossOrigin
 	@RequestMapping(value = "/sve_rezervacije" , method = RequestMethod.GET)
@@ -56,6 +63,13 @@ public class RezervacijaController {
 		rezervacija.setDatumRealizacije(datumRezervacije.toString());
 		rezervacija.setPotvrdjeno(false);
 		rezervacija.setPonuda(ponuda);
+		
+		
+		Long userId = (long) 1;
+		
+		RegistrovaniKorisnik korisnik  = registrovaniService.findById(userId);
+		
+		rezervacija.setRegistrovaniKorisnik(korisnik);
 		
 		Rezervacija newReservation = rezervacijaService.save(rezervacija);
 		//Ponuda retPonuda = ponudaService.save(ponuda);

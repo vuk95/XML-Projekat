@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.xmlws.admin.backend.Agent;
 import com.xmlws.admin.backend.Poruka;
+import com.xmlws.admin.backend.RegistrovaniKorisnik;
 import com.xmlws.admin.service.AgentService;
 import com.xmlws.admin.service.PorukaService;
+import com.xmlws.admin.service.RegistrovaniKorisnikService;
 
 @RestController
 public class PorukaController {
@@ -24,6 +26,9 @@ public class PorukaController {
 	@Autowired
 	private AgentService agentService;
 	
+	@Autowired
+	private RegistrovaniKorisnikService registrovaniService;
+	
 	@CrossOrigin
 	@RequestMapping(value = "/poruka/{id}" , method = RequestMethod.POST , consumes="application/json")
 	public ResponseEntity<Poruka> send(@PathVariable Long id,@RequestBody Poruka poruka) {
@@ -32,6 +37,12 @@ public class PorukaController {
 			
 		poruka.setAgent(agent);
 		poruka.setProcitana(false);
+		
+		Long userId = (long) 1;
+		
+		RegistrovaniKorisnik korisnik  = registrovaniService.findById(userId);
+		
+		poruka.setRegistrovaniKorisnik(korisnik);
 		
 		Poruka newMessage = porukaService.save(poruka); 
 		

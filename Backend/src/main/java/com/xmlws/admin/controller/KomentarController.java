@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.xmlws.admin.backend.Komentar;
+import com.xmlws.admin.backend.RegistrovaniKorisnik;
 import com.xmlws.admin.backend.Rezervacija;
 import com.xmlws.admin.backend.Smestaj;
 import com.xmlws.admin.service.KomentarService;
+import com.xmlws.admin.service.RegistrovaniKorisnikService;
 import com.xmlws.admin.service.RezervaciijaService;
 
 @RestController
@@ -29,6 +31,9 @@ public class KomentarController {
 	
 	@Autowired
 	private RezervaciijaService rezervacijaService;
+	
+	@Autowired
+	private RegistrovaniKorisnikService registrovaniService;
 	
 	@CrossOrigin
 	@RequestMapping(value = "/unapproved", method = RequestMethod.GET)
@@ -72,6 +77,11 @@ public class KomentarController {
 		
 		komentar.setSmestaj(smestaj);
 		komentar.setOdobren(false);
+		
+		Long userId = (long) 1;
+		
+		RegistrovaniKorisnik korisnik  = registrovaniService.findById(userId);
+		komentar.setRegistrovaniKorisnik(korisnik);
 		
 		Komentar newComment = komentarService.save(komentar);
 		
