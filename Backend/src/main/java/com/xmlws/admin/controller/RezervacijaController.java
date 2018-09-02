@@ -50,7 +50,9 @@ public class RezervacijaController {
 		return new ResponseEntity<>(rezervacije,HttpStatus.OK);
 	}
 	
-/*	public ResponseEntity<List<Rezervacija>> getUserReservation() {
+/*	@CrossOrigin
+	@RequestMapping(value = "/korisnikove_rezervacije" , method = RequestMethod.GET)
+	public ResponseEntity<List<Rezervacija>> getUserReservation() {
 		
 		List<Rezervacija> rezervacije = new ArrayList<Rezervacija>();
 		
@@ -58,11 +60,16 @@ public class RezervacijaController {
 		
 		RegistrovaniKorisnik korisnik  = registrovaniService.findById(userId);
 		
+		for(int i=0;i<korisnik.getRezervacije().size();i++) {
+			
+			rezervacije.add(korisnik.getRezervacije().get(i));
+			
+		}
 		
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>(rezervacije,HttpStatus.OK);
 	}
-*/
-	
+
+*/	
 	@CrossOrigin
 	@RequestMapping(value = "/rezervacija/{id}" , method = RequestMethod.POST , consumes="application/json")
 	public ResponseEntity<?> reserve(@PathVariable Long id) {
