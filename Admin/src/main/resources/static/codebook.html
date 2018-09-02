@@ -22,6 +22,46 @@
     <script src="scripts/jquery.min.js"></script>
     <script src="scripts/bootstrap.bundle.min.js"></script>
     
+    <script>
+	    $(document).ready(function(){
+			$.ajax({
+				url: "http://localhost:8085/codes"
+			}).then(
+				function(data) {
+					for(i = 0; i < data.length; i++) {
+						newRow = "<tr>"
+									+"<td>" + data[i].sifra + "</td>"
+									+"<td>" + data[i].vrednost + "</td>"
+									+"<td><a id=\"edit\" href='http://localhost:8085/codes/"+ data[i].id  + "'role=\"button\" aria-pressed=\"true\" class=\"btn btn-outline-primary btn-sm\"><i class=\"fas fa-pencil-alt\"></i></a></td>"
+								+"</tr>";
+						$("#tabela").append(newRow);
+					}
+				});
+			
+			$("#add").click(function() {
+				formData = JSON.stringify({
+					sifra:$("#addForm [name='sifra']").val(),
+					vrednost:$("#addForm [name='vrednost']").val(),
+				});
+				
+				$.ajax({
+					url: "http://localhost:8085/codes",
+					type: "POST",
+					data: formData,
+					contentType: "application/json",
+					datatype: 'json',
+					success: function(data) {
+						top.location.href = "/codebook.html";
+					},
+					error: function(data) {
+						alert("Doslo je do greske!");
+					}
+				});
+				$("#addModal").modal('toggle');
+			});
+			
+		});
+    </script>
 </head>
 <body>
 
@@ -57,10 +97,45 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container">
+            	<div class="button-container">
+                	<a href="#" role="button" aria-pressed="true" data-toggle="modal" data-target="#addModal" data-toggle="tooltip" class="btn btn-outline-primary">Nova šifra</a>
+                </div>
             
+            	<table id="tabela">
+	            	<tr>    
+	                	<th>Šifra</th>
+	                	<th>Vrednost</th>
+	                	<th>Izmeni</th>
+	                </tr>
+	                
+                </table>
 			</div>
         </div>
         <!-- /#page-content-wrapper -->
+	
+		<div class="modal fade" id="addModal" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Podaci o novoj šifri</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          			<span aria-hidden="true">&times;</span>
+		        		</button>
+					</div>
+					<form id="addForm">
+					<div class="modal-body">
+						<input type="text" class="form-control" name="sifra" placeholder="Šifra">
+						<br>
+						<input type="text" class="form-control" name="vrednost" placeholder="Vrednost">
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+		        		<button type="button" class="btn btn-primary" id="add">Potvrda</button>
+					</div>
+					</form>
+				</div>			
+			</div>
+		</div>
 
     </div>
     <!-- /#wrapper -->

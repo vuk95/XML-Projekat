@@ -59,3 +59,14 @@ INSERT INTO komentar (odobren,sadrzaj,registrovani_korisnik_id,smestaj_smestaj_i
 INSERT INTO komentar (odobren,sadrzaj,registrovani_korisnik_id,smestaj_smestaj_id) VALUES (false,'Usluga je katastrofalna.',8,1);
 INSERT INTO komentar (odobren,sadrzaj,registrovani_korisnik_id,smestaj_smestaj_id) VALUES (true,'Prosecan',5,1);
 INSERT INTO komentar (odobren,sadrzaj,registrovani_korisnik_id,smestaj_smestaj_id) VALUES (false,'Hrana je solidna',6,5);
+
+-- SIFRE
+INSERT INTO sifrarnik(sifra, vrednost) VALUES ('352','hotel');
+INSERT INTO sifrarnik(sifra, vrednost) VALUES ('353','apartman');
+INSERT INTO sifrarnik(sifra, vrednost) VALUES ('354','bed&breakfast');
+
+INSERT INTO sifrarnik(sifra, vrednost) VALUES ('771','1');
+INSERT INTO sifrarnik(sifra, vrednost) VALUES ('772','2');
+INSERT INTO sifrarnik(sifra, vrednost) VALUES ('773','3');
+INSERT INTO sifrarnik(sifra, vrednost) VALUES ('774','4');
+INSERT INTO sifrarnik(sifra, vrednost) VALUES ('775','5');
