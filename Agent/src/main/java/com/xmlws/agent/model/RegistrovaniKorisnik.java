@@ -36,6 +36,13 @@ import javax.xml.bind.annotation.XmlType;
 public class RegistrovaniKorisnik
     extends Korisnik
 {
+	
+public RegistrovaniKorisnik() {
+    	
+    }
 
+    public RegistrovaniKorisnik(Long id, String ime, String prezime, String email, String lozinka) {
+    	super(id, ime, prezime, email, lozinka);
+	}
 
 }

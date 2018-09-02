@@ -62,6 +62,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetAllPonudaRequest }
+     * 
+     */
+    public GetAllPonudaRequest createGetAllPonudaRequest() {
+        return new GetAllPonudaRequest();
+    }
+
+    /**
      * Create an instance of {@link GetAllSmestajResponse }
      * 
      */
@@ -83,6 +91,14 @@ public class ObjectFactory {
      */
     public UpdateRezervacijaRequest createUpdateRezervacijaRequest() {
         return new UpdateRezervacijaRequest();
+    }
+
+    /**
+     * Create an instance of {@link GetAllRezervacijaRequest }
+     * 
+     */
+    public GetAllRezervacijaRequest createGetAllRezervacijaRequest() {
+        return new GetAllRezervacijaRequest();
     }
 
     /**
@@ -110,6 +126,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetAllSmResponse }
+     * 
+     */
+    public GetAllSmResponse createGetAllSmResponse() {
+        return new GetAllSmResponse();
+    }
+
+    /**
      * Create an instance of {@link AddSmestajRequest }
      * 
      */
@@ -131,6 +155,30 @@ public class ObjectFactory {
      */
     public GetPonudaRequest createGetPonudaRequest() {
         return new GetPonudaRequest();
+    }
+
+    /**
+     * Create an instance of {@link GetAllPonudaResponse }
+     * 
+     */
+    public GetAllPonudaResponse createGetAllPonudaResponse() {
+        return new GetAllPonudaResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetAllRezervacijaResponse }
+     * 
+     */
+    public GetAllRezervacijaResponse createGetAllRezervacijaResponse() {
+        return new GetAllRezervacijaResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetAllSmRequest }
+     * 
+     */
+    public GetAllSmRequest createGetAllSmRequest() {
+        return new GetAllSmRequest();
     }
 
     /**

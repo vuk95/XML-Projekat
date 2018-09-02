@@ -12,6 +12,12 @@ import com.xmlws.admin.backend.AddPonudaRequest;
 import com.xmlws.admin.backend.AddPonudaResponse;
 import com.xmlws.admin.backend.AddSmestajRequest;
 import com.xmlws.admin.backend.AddSmestajResponse;
+import com.xmlws.admin.backend.GetAllPonudaRequest;
+import com.xmlws.admin.backend.GetAllPonudaResponse;
+import com.xmlws.admin.backend.GetAllRezervacijaRequest;
+import com.xmlws.admin.backend.GetAllRezervacijaResponse;
+import com.xmlws.admin.backend.GetAllSmRequest;
+import com.xmlws.admin.backend.GetAllSmResponse;
 import com.xmlws.admin.backend.GetAllSmestajRequest;
 import com.xmlws.admin.backend.GetAllSmestajResponse;
 import com.xmlws.admin.backend.GetPonudaRequest;
@@ -19,6 +25,7 @@ import com.xmlws.admin.backend.GetPonudaResponse;
 import com.xmlws.admin.backend.GetSmestajRequest;
 import com.xmlws.admin.backend.GetSmestajResponse;
 import com.xmlws.admin.backend.Ponuda;
+import com.xmlws.admin.backend.Rezervacija;
 import com.xmlws.admin.backend.Smestaj;
 import com.xmlws.admin.backend.UpdateRezervacijaRequest;
 import com.xmlws.admin.backend.UpdateRezervacijaResponse;
@@ -104,6 +111,45 @@ public class BackendEndpoint {
 		List<Smestaj> smestajList=smestajService.getSmestajByAgent(request.getEmail());
 	
 		response.setSmestaj(smestajList);
+        return response;
+        
+    }
+	
+	@PayloadRoot(namespace = "admin.xmlws.com/backend",
+            localPart = "getAllSmRequest")
+    @ResponsePayload
+    public GetAllSmResponse getAllSm(@RequestPayload GetAllSmRequest request) {
+		GetAllSmResponse response = new GetAllSmResponse();
+		
+		List<Smestaj> smestajList=smestajService.findAll();
+	
+		response.setSmestaj(smestajList);
+        return response;
+        
+    }
+	
+	@PayloadRoot(namespace = "admin.xmlws.com/backend",
+            localPart = "getAllPonudaRequest")
+    @ResponsePayload
+    public GetAllPonudaResponse getAllPonuda(@RequestPayload GetAllPonudaRequest request) {
+		GetAllPonudaResponse response = new GetAllPonudaResponse();
+		
+		List<Ponuda> ponudaList=offerService.findAll();
+	
+		response.setPonuda(ponudaList);
+        return response;
+        
+    }
+	
+	@PayloadRoot(namespace = "admin.xmlws.com/backend",
+            localPart = "getAllRezervacijaRequest")
+    @ResponsePayload
+    public GetAllRezervacijaResponse getAllRezervacija(@RequestPayload GetAllRezervacijaRequest request) {
+		GetAllRezervacijaResponse response = new GetAllRezervacijaResponse();
+		
+		List<Rezervacija> rezerList= rezService.findAll();
+	
+		response.setRezervacija(rezerList);
         return response;
         
     }

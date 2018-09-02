@@ -1,5 +1,7 @@
 package com.xmlws.admin.service.implementation;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,11 @@ public class OfferSoapServiceImpl implements OfferSoapService{
 	@Override
 	public Ponuda findOne(Long id) {
 		return repository.getOne(id);
+	}
+
+	@Override
+	public List<Ponuda> findAll() {
+		return repository.findAll();
 	}
 
 }

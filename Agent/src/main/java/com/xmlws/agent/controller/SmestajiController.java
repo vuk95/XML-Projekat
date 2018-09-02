@@ -57,6 +57,9 @@ public class SmestajiController {
 		
 		//SAMO PROBNO PRAVI TEK KAD BUDE LOGIN
 		//synchroservice.getAllSmestajByAgent("ana@gmail.com");
+		synchroservice.getAllSmestaj();
+		synchroservice.getAllPonuda();
+		//synchroservice.getAllRezervacija();
 		
 		map.put("smestaji", sm_service.findAll());
 		return "sviSmestaji";

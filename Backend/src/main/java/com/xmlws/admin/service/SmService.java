@@ -9,5 +9,5 @@ public interface SmService {
 	Smestaj save(Smestaj s);
 	Smestaj findOne(String naziv);
 	List<Smestaj> getSmestajByAgent(String email);
-
+	List<Smestaj> findAll();
 }

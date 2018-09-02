@@ -30,4 +30,9 @@ public class SmServiceImpl implements SmService{
 		return repository.findByAgentEmail(email);
 	}
 
+	@Override
+	public List<Smestaj> findAll() {
+		return repository.findAll();
+	}
+
 }
