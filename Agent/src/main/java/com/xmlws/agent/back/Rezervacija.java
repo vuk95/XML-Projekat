@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="Korisnik" type="{admin.xmlws.com/backend}Korisnik"/>
+ *         &lt;element name="RegistrovaniKorisnik" type="{admin.xmlws.com/backend}RegistrovaniKorisnik"/>
  *         &lt;element name="Potvrdjeno" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="Datum_realizacije" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long"/>
@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Rezervacija", propOrder = {
-    "korisnik",
+    "registrovaniKorisnik",
     "potvrdjeno",
     "datumRealizacije",
     "id",
@@ -40,8 +40,8 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class Rezervacija {
 
-    @XmlElement(name = "Korisnik", required = true)
-    protected Korisnik korisnik;
+    @XmlElement(name = "RegistrovaniKorisnik", required = true)
+    protected RegistrovaniKorisnik registrovaniKorisnik;
     @XmlElement(name = "Potvrdjeno")
     protected boolean potvrdjeno;
     @XmlElement(name = "Datum_realizacije", required = true)
@@ -51,27 +51,27 @@ public class Rezervacija {
     protected Ponuda ponuda;
 
     /**
-     * Gets the value of the korisnik property.
+     * Gets the value of the registrovaniKorisnik property.
      * 
      * @return
      *     possible object is
-     *     {@link Korisnik }
+     *     {@link RegistrovaniKorisnik }
      *     
      */
-    public Korisnik getKorisnik() {
-        return korisnik;
+    public RegistrovaniKorisnik getRegistrovaniKorisnik() {
+        return registrovaniKorisnik;
     }
 
     /**
-     * Sets the value of the korisnik property.
+     * Sets the value of the registrovaniKorisnik property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Korisnik }
+     *     {@link RegistrovaniKorisnik }
      *     
      */
-    public void setKorisnik(Korisnik value) {
-        this.korisnik = value;
+    public void setRegistrovaniKorisnik(RegistrovaniKorisnik value) {
+        this.registrovaniKorisnik = value;
     }
 
     /**

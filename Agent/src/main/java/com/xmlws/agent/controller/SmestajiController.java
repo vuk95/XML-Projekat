@@ -59,7 +59,7 @@ public class SmestajiController {
 		//synchroservice.getAllSmestajByAgent("ana@gmail.com");
 		synchroservice.getAllSmestaj();
 		synchroservice.getAllPonuda();
-		//synchroservice.getAllRezervacija();
+		synchroservice.getAllRezervacija();
 		
 		map.put("smestaji", sm_service.findAll());
 		return "sviSmestaji";
@@ -333,14 +333,14 @@ public class SmestajiController {
 				demoRezervacija.setPonuda(demoPonuda);
 				
 				com.xmlws.agent.back.RegistrovaniKorisnik demoKorisnik  = new com.xmlws.agent.back.RegistrovaniKorisnik();
-				demoKorisnik.setEmail(r.getKorisnik().getEmail());
-				demoKorisnik.setId(r.getKorisnik().getId());
-				demoKorisnik.setIme(r.getKorisnik().getIme());
-				demoKorisnik.setLozinka(r.getKorisnik().getLozinka());
-				demoKorisnik.setPrezime(r.getKorisnik().getPrezime());
-				demoKorisnik.setZabranjen(r.getKorisnik().isZabranjen());
+				demoKorisnik.setEmail(r.getRegistrovaniKorisnik().getEmail());
+				demoKorisnik.setId(r.getRegistrovaniKorisnik().getId());
+				demoKorisnik.setIme(r.getRegistrovaniKorisnik().getIme());
+				demoKorisnik.setLozinka(r.getRegistrovaniKorisnik().getLozinka());
+				demoKorisnik.setPrezime(r.getRegistrovaniKorisnik().getPrezime());
+				demoKorisnik.setZabranjen(r.getRegistrovaniKorisnik().isZabranjen());
 				
-				demoRezervacija.setKorisnik(demoKorisnik);
+				demoRezervacija.setRegistrovaniKorisnik(demoKorisnik);
 				
 				rez_service.save(r);
 				
@@ -381,14 +381,14 @@ public class SmestajiController {
 				demoRezervacija.setPonuda(demoPonuda);
 				
 				com.xmlws.agent.back.RegistrovaniKorisnik demoKorisnik  = new com.xmlws.agent.back.RegistrovaniKorisnik();
-				demoKorisnik.setEmail(ostaleRezervacije.get(i).getKorisnik().getEmail());
-				demoKorisnik.setId(ostaleRezervacije.get(i).getKorisnik().getId());
-				demoKorisnik.setIme(ostaleRezervacije.get(i).getKorisnik().getIme());
-				demoKorisnik.setLozinka(ostaleRezervacije.get(i).getKorisnik().getLozinka());
-				demoKorisnik.setPrezime(ostaleRezervacije.get(i).getKorisnik().getPrezime());
-				demoKorisnik.setZabranjen(ostaleRezervacije.get(i).getKorisnik().isZabranjen());
+				demoKorisnik.setEmail(ostaleRezervacije.get(i).getRegistrovaniKorisnik().getEmail());
+				demoKorisnik.setId(ostaleRezervacije.get(i).getRegistrovaniKorisnik().getId());
+				demoKorisnik.setIme(ostaleRezervacije.get(i).getRegistrovaniKorisnik().getIme());
+				demoKorisnik.setLozinka(ostaleRezervacije.get(i).getRegistrovaniKorisnik().getLozinka());
+				demoKorisnik.setPrezime(ostaleRezervacije.get(i).getRegistrovaniKorisnik().getPrezime());
+				demoKorisnik.setZabranjen(ostaleRezervacije.get(i).getRegistrovaniKorisnik().isZabranjen());
 				
-				demoRezervacija.setKorisnik(demoKorisnik);
+				demoRezervacija.setRegistrovaniKorisnik(demoKorisnik);
 				
 				rez_service.save(r);
 				

@@ -15,7 +15,7 @@
 				<th>Potvrdi</th>
 			</tr>
 			<tr th:each="rezervacija, iterStat: ${rezervacije}">
-				<td th:text="${rezervacija.korisnik.prezime}"></td>
+				<td th:text="${rezervacija.registrovaniKorisnik.prezime}"></td>
 				<td th:text="${rezervacija.potvrdjeno}"></td>
 				<td th:text="${rezervacija.datumRealizacije}"></td>
 				<td th:text="${rezervacija.ponuda.id}"></td>

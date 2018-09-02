@@ -37,7 +37,7 @@ public class RegistrovaniKorisnik
     extends Korisnik
 {
 	
-public RegistrovaniKorisnik() {
+	public RegistrovaniKorisnik() {
     	
     }
 

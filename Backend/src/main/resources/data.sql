@@ -45,9 +45,9 @@ INSERT INTO ponuda (do_datuma,broj_kreveta,cena,od,smestaj_smestaj_id) values ('
 --INSERT INTO moje_ponude (smestaj_id, ponuda_id) values (5, 5);
 --INSERT INTO moje_ponude (smestaj_id, ponuda_id) values (6, 6);
 
-INSERT INTO rezervacija (korisnik_id, potvrdjeno, datum_realizacije, ponuda_ponuda_id) values (1, 0, '2018-05-15', 1);
-INSERT INTO rezervacija (korisnik_id, potvrdjeno, datum_realizacije, ponuda_ponuda_id) values (2, 0, '2018-05-15', 1);
-INSERT INTO rezervacija (korisnik_id, potvrdjeno, datum_realizacije, ponuda_ponuda_id) values (1, 0, '2018-05-15', 2);
+INSERT INTO rezervacija (registrovani_korisnik_id, potvrdjeno, datum_realizacije, ponuda_ponuda_id) values (1, 0, '2018-05-15', 1);
+INSERT INTO rezervacija (registrovani_korisnik_id, potvrdjeno, datum_realizacije, ponuda_ponuda_id) values (2, 0, '2018-05-15', 1);
+INSERT INTO rezervacija (registrovani_korisnik_id, potvrdjeno, datum_realizacije, ponuda_ponuda_id) values (1, 0, '2018-05-15', 2);
 
 --INSERT INTO moje_rezervacije (ponuda_id, rezervacija_id) values (1, 1);
 --INSERT INTO moje_rezervacije (ponuda_id, rezervacija_id) values (1, 2);

@@ -228,7 +228,7 @@
 
     <xs:complexType name="Rezervacija">
         <xs:sequence>
-            <xs:element name="Korisnik" type="ag:Korisnik"/>
+            <xs:element name="RegistrovaniKorisnik" type="ag:RegistrovaniKorisnik"/>
             <xs:element name="Potvrdjeno" type="xs:boolean"/>
             <xs:element name="Datum_realizacije" type="xs:string"/>
             <xs:element name="id" type="xs:long"/>
