@@ -29,7 +29,7 @@ $(document).ready(function(){
 		data["lokacija"] = $("#searchForm [name='lokacija']").val();
 	
 		//Neka stoji zakomentarisano zbog lakse pretrage - do trenutka odbrane
-	/*	var place = $('#place').val();
+		var place = $('#place').val();
 		var startDate = $('#startDate').val();
 		var endDate = $('#endDate').val();
 		
@@ -38,7 +38,7 @@ $(document).ready(function(){
             alert("Sva polja moraju biti popunjena!");
             return false;
         }
-	*/	
+		
 		
 		$.ajax({
 			url: "http://localhost:8085/search/" + sort ,

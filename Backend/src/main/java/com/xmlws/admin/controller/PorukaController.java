@@ -1,6 +1,8 @@
 package com.xmlws.admin.controller;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +48,11 @@ public class PorukaController {
 		RegistrovaniKorisnik korisnik  = registrovaniService.findById(userId);
 		
 		poruka.setRegistrovaniKorisnik(korisnik);
+		
+		Calendar kalendar = Calendar.getInstance();
+		Date datum = kalendar.getTime();
+		
+		poruka.setDatum(datum.toString());
 		
 		Poruka newMessage = porukaService.save(poruka); 
 		
