@@ -41,6 +41,8 @@ $(document).ready(function(){
 						+ "<img src='images/comment.png'/></a></td>"
 						+ "<td><a class=\"komentari\" href='http://localhost:8085/smestaj/" + data[i].id + "'>"
 						+ "<img src='images/komentari.png'/></a></td>"
+						+ "<td><a class=\"inbox\" href='http://localhost:8085/agent/" + data[i].id + "'>" 
+						+ "<img src='images/inbox.png'/></a></td>"
 					+ "</tr>"
 					$("#dataTable").append(newRow);
 				}
@@ -68,6 +70,8 @@ $(document).ready(function(){
 							+ "<img src='images/comment.png'/></a></td>"
 							+ "<td><a class=\"komentari\" href='http://localhost:8085/smestaj/" + data[i].id + "'>"
 							+ "<img src='images/komentari.png'/></a></td>"
+							+ "<td><a class=\"inbox\" href='http://localhost:8085/agent/" + data[i].id + "'>" 
+							+ "<img src='images/inbox.png'/></a></td>"
 						+ "</tr>"
 						$("#dataTable").append(newRow);
 					
@@ -191,6 +195,37 @@ $(document).ready(function() {
 
 
 	});
+
+$(document).ready(function() {
+	$(document).on("click", ".inbox", function(event){
+		//ne salji get zahtev
+			event.preventDefault(); 
+		
+			var url = $(this).attr("href")
+		
+			//red koji se treba izbrisati ako je brisanje na serveru bilo uspesno
+			$.ajax({
+	        	url: url,
+	        	type: "GET",
+	    		contentType:"application/json",
+	    		dataType:"json",
+	        	success: function(data){
+	        		if(data != null) {
+	        			var queryString = "?param1=" + data.id
+	    				window.location.href = "Inbox.html" + queryString;
+	    			}
+	    		},
+	    		error: function(jqxhr,textStatus,errorThrown) {
+	    			alert(errorThrown);
+	    		}	 
+					
+			});
+	});
+
+
+	});
+	
+	
 
 </script>
 

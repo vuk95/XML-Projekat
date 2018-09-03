@@ -1,0 +1,74 @@
+<html>
+<head>
+	<title>Comments </title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<script src="scripts/jquery-3.2.1.min.js"></script>
+	<script src="scripts/tether.min.js"></script>
+	<script src="scripts/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="stylesheets/style.css">
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+$(document).ready(function(){
+	
+	var queryString = decodeURIComponent(window.location.search);
+	queryString = queryString.substring(8);
+	
+	$.ajax({
+		url: "http://localhost:8085/inbox/" + queryString ,
+	}).then(
+		function(data) {
+			for(i = 0; i < data.length; i++) {
+					
+				info = "<table class=\"table table-hover\"><tr><td><strong>" + data[i].sadrzaj + ":</strong></td></tr>" 
+				$("#inbox").append(info);
+				
+				}
+			
+		}
+			)	
+				
+			});
+
+	</script>	
+
+
+		
+<style>
+.slika {
+margin-top: 12px;
+}
+</style>
+
+</head>
+
+<body>
+	
+	<nav class="navbar navbar-default">
+		<div class="container">
+			<ul class="nav navbar-nav navbar-left">
+				<li><span class="glyphicon glyphicon-home"></span></li>			
+				<li><a href="HomePage.html">Pocetna</a></li>
+				<li><a href="#">Kontakt</a></li>
+				<li><a href="#"><b>RSD</b></a></li>
+				<li class="slika"><img src="images/Serbia.png"></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#">Registracija</a></li>
+				<li><a href="/logout">Prijava</a></li>
+			</ul>		
+		</div>
+	</nav>
+
+	<div class="container">
+			<div id="box">	
+				<h3>Inbox:</h3>
+				<hr>
+				<div id="inbox"></div>
+		</div>
+		</div>
+</body>
+</html>
+		

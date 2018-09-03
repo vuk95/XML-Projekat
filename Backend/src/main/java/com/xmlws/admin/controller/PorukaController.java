@@ -1,5 +1,8 @@
 package com.xmlws.admin.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,4 +52,27 @@ public class PorukaController {
 		return new ResponseEntity<>(newMessage,HttpStatus.OK);
 	}
 	
+	@CrossOrigin
+	@RequestMapping(value = "/inbox/{id}" , method = RequestMethod.GET)
+	public ResponseEntity<List<Poruka>> inbox(@PathVariable Long id) {
+		
+		ArrayList<Poruka> svePoruke = new ArrayList<Poruka>();
+		ArrayList<Poruka> agentovePoruke = new ArrayList<Poruka>();
+		
+		Agent agent = agentService.findOne(id);
+		
+		svePoruke = (ArrayList<Poruka>) porukaService.findAll();
+		
+		for(int i=0;i<svePoruke.size();i++) {
+			if(svePoruke.get(i).getAgent().equals(agent)) {
+				agentovePoruke.add(svePoruke.get(i));
+			}
+			
+		}
+		
+		return new ResponseEntity<>(agentovePoruke,HttpStatus.OK);
+		
+	}
+	
+		
 }
