@@ -30,6 +30,11 @@ INSERT INTO korisnik(dtype,email,ime,lozinka,prezime,zabranjen,poslovni_maticni_
 --INSERT INTO smestaj (kategorija,lokacija,naziv,ocena,opis,tip, parking, wifi, dorucak, polupansion, pansion, tv, kuhinja, kupatilo, zauzet) 
 --values ('5','Madrid','InterContinental','4','Jedan od najboljih hotela u Madridu','Hotel', 1, 1, 1, 0, 0, 1, 1, 0, 0);
 
+--insert into poruka(registrovani_korisnik_id, agent_id, procitana, sadrzaj, id_primljene) values (1, 13, 0, 'abc', null);
+--insert into poruka(registrovani_korisnik_id, agent_id, procitana, sadrzaj, id_primljene) values (2, 13, 0, 'abcefg', null);
+--insert into poruka(registrovani_korisnik_id, agent_id, procitana, sadrzaj, id_primljene) values (1, 14, 0, 'abc', null);
+
+
 --Ponuda
 --INSERT INTO ponuda (do_datuma,broj_kreveta,cena,od,smestaj_smestaj_id) values ('2018-08-15','1','3500','2018-08-10',1);
 --INSERT INTO ponuda (do_datuma,broj_kreveta,cena,od,smestaj_smestaj_id) values ('2018-08-25','3','11000','2018-08-15',2);
@@ -52,8 +57,3 @@ INSERT INTO korisnik(dtype,email,ime,lozinka,prezime,zabranjen,poslovni_maticni_
 --INSERT INTO moje_rezervacije (ponuda_id, rezervacija_id) values (1, 1);
 --INSERT INTO moje_rezervacije (ponuda_id, rezervacija_id) values (1, 2);
 --INSERT INTO moje_rezervacije (ponuda_id, rezervacija_id) values (2, 3);
-
-
-insert into poruka(registrovani_korisnik_id, agent_id, procitana, sadrzaj, id_primljene) values (1, 13, 0, 'abc', null);
-insert into poruka(registrovani_korisnik_id, agent_id, procitana, sadrzaj, id_primljene) values (2, 13, 0, 'abcefg', null);
-insert into poruka(registrovani_korisnik_id, agent_id, procitana, sadrzaj, id_primljene) values (1, 14, 0, 'abc', null);

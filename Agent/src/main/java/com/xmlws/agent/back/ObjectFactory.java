@@ -30,38 +30,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetPonudaResponse }
-     * 
-     */
-    public GetPonudaResponse createGetPonudaResponse() {
-        return new GetPonudaResponse();
-    }
-
-    /**
-     * Create an instance of {@link Ponuda }
-     * 
-     */
-    public Ponuda createPonuda() {
-        return new Ponuda();
-    }
-
-    /**
-     * Create an instance of {@link UpdateRezervacijaResponse }
-     * 
-     */
-    public UpdateRezervacijaResponse createUpdateRezervacijaResponse() {
-        return new UpdateRezervacijaResponse();
-    }
-
-    /**
-     * Create an instance of {@link Rezervacija }
-     * 
-     */
-    public Rezervacija createRezervacija() {
-        return new Rezervacija();
-    }
-
-    /**
      * Create an instance of {@link AddImageRequest }
      * 
      */
@@ -83,6 +51,30 @@ public class ObjectFactory {
      */
     public GetAllPonudaRequest createGetAllPonudaRequest() {
         return new GetAllPonudaRequest();
+    }
+
+    /**
+     * Create an instance of {@link AddPorukaRequest }
+     * 
+     */
+    public AddPorukaRequest createAddPorukaRequest() {
+        return new AddPorukaRequest();
+    }
+
+    /**
+     * Create an instance of {@link Poruka }
+     * 
+     */
+    public Poruka createPoruka() {
+        return new Poruka();
+    }
+
+    /**
+     * Create an instance of {@link AddPorukaResponse }
+     * 
+     */
+    public AddPorukaResponse createAddPorukaResponse() {
+        return new AddPorukaResponse();
     }
 
     /**
@@ -110,11 +102,75 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Rezervacija }
+     * 
+     */
+    public Rezervacija createRezervacija() {
+        return new Rezervacija();
+    }
+
+    /**
      * Create an instance of {@link GetAllRezervacijaRequest }
      * 
      */
     public GetAllRezervacijaRequest createGetAllRezervacijaRequest() {
         return new GetAllRezervacijaRequest();
+    }
+
+    /**
+     * Create an instance of {@link AddPonudaResponse }
+     * 
+     */
+    public AddPonudaResponse createAddPonudaResponse() {
+        return new AddPonudaResponse();
+    }
+
+    /**
+     * Create an instance of {@link Ponuda }
+     * 
+     */
+    public Ponuda createPonuda() {
+        return new Ponuda();
+    }
+
+    /**
+     * Create an instance of {@link GetRezervacijaResponse }
+     * 
+     */
+    public GetRezervacijaResponse createGetRezervacijaResponse() {
+        return new GetRezervacijaResponse();
+    }
+
+    /**
+     * Create an instance of {@link AddSmestajResponse }
+     * 
+     */
+    public AddSmestajResponse createAddSmestajResponse() {
+        return new AddSmestajResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetPonudaResponse }
+     * 
+     */
+    public GetPonudaResponse createGetPonudaResponse() {
+        return new GetPonudaResponse();
+    }
+
+    /**
+     * Create an instance of {@link UpdateRezervacijaResponse }
+     * 
+     */
+    public UpdateRezervacijaResponse createUpdateRezervacijaResponse() {
+        return new UpdateRezervacijaResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetAllPorukeResponse }
+     * 
+     */
+    public GetAllPorukeResponse createGetAllPorukeResponse() {
+        return new GetAllPorukeResponse();
     }
 
     /**
@@ -158,11 +214,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link AddPonudaResponse }
+     * Create an instance of {@link GetAllPorukeRequest }
      * 
      */
-    public AddPonudaResponse createAddPonudaResponse() {
-        return new AddPonudaResponse();
+    public GetAllPorukeRequest createGetAllPorukeRequest() {
+        return new GetAllPorukeRequest();
     }
 
     /**
@@ -206,27 +262,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetRezervacijaResponse }
-     * 
-     */
-    public GetRezervacijaResponse createGetRezervacijaResponse() {
-        return new GetRezervacijaResponse();
-    }
-
-    /**
      * Create an instance of {@link GetSmestajResponse }
      * 
      */
     public GetSmestajResponse createGetSmestajResponse() {
         return new GetSmestajResponse();
-    }
-
-    /**
-     * Create an instance of {@link AddSmestajResponse }
-     * 
-     */
-    public AddSmestajResponse createAddSmestajResponse() {
-        return new AddSmestajResponse();
     }
 
     /**
@@ -267,14 +307,6 @@ public class ObjectFactory {
      */
     public Komentar createKomentar() {
         return new Komentar();
-    }
-
-    /**
-     * Create an instance of {@link Poruka }
-     * 
-     */
-    public Poruka createPoruka() {
-        return new Poruka();
     }
 
     /**
