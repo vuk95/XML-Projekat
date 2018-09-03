@@ -332,4 +332,13 @@
         
     </xs:complexType>
     
+    <xs:complexType name="Ocena">
+        <xs:sequence>
+            <xs:element name="RegistrovaniKorisnik" type="ag:RegistrovaniKorisnik"/>
+            <xs:element name="rating" type="xs:int"/>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="Smestaj" type="ag:Smestaj"/>
+        </xs:sequence>
+    </xs:complexType>
+    
 </xs:schema>
