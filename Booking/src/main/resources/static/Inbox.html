@@ -21,9 +21,18 @@ $(document).ready(function(){
 	}).then(
 		function(data) {
 			for(i = 0; i < data.length; i++) {
-					
-				info = "<table class=\"table table-hover\"><tr><td><strong>" + data[i].sadrzaj + ":</strong></td></tr>" 
-				$("#inbox").append(info);
+				
+				if(data[i].idPrimljene == null) {
+				info = "<table class=\"table table-hover\"><tr><td><strong><span class=\"glyphicon glyphicon-user\"></span> " + data[i].agent.ime + "</strong></td></tr>"
+					   +"<tr><td><strong>" + data[i].sadrzaj + ":</strong></td></tr>" 
+				$("#poslate").append(info);
+				}
+				
+				if(data[i].idPrimljene != null) {
+					info = "<table class=\"table table-hover\"><tr><td><strong><span class=\"glyphicon glyphicon-eye-open\"></span> " + data[i].data[i].registrovaniKorisnik.ime + "</strong></td></tr>"
+						   +"<tr><td><strong>" + data[i].sadrzaj + ":</strong></td></tr>" 
+					$("#primljene").append(info);
+				}
 				
 				}
 			
@@ -64,11 +73,30 @@ margin-top: 12px;
 
 	<div class="container">
 			<div id="box">	
-				<h3>Inbox:</h3>
+				<h3>Inbox: <span class="glyphicon glyphicon-inbox"></span></h3>
+		</div>
+		</div>
+		
+		<div class="container">
+		<div class="col-md-6">
+			<div id="box">
+				<h3>Poslate:</h3>
 				<hr>
-				<div id="inbox"></div>
+				<div id="poslate"></div>
+			</div>
 		</div>
+			</div>
+
+		<div class="container">
+		<div class="col-md-6">
+			<div id="box">
+				<h3>Primljene:</h3>
+				<hr>
+				<div id="primljene"></div>
+			</div>
 		</div>
+			</div>
+				
 </body>
 </html>
 		
