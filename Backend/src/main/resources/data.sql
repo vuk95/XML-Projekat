@@ -46,12 +46,12 @@ INSERT INTO ponuda (do_datuma,broj_kreveta,cena,od,smestaj_smestaj_id) values ('
 --INSERT INTO moje_ponude (smestaj_id, ponuda_id) values (6, 6);
 
 INSERT INTO rezervacija (registrovani_korisnik_id, potvrdjeno, datum_realizacije, ponuda_ponuda_id) values (1, 0, '2018-05-15', 1);
-INSERT INTO rezervacija (registrovani_korisnik_id, potvrdjeno, datum_realizacije, ponuda_ponuda_id) values (2, 0, '2018-05-15', 1);
+--INSERT INTO rezervacija (registrovani_korisnik_id, potvrdjeno, datum_realizacije, ponuda_ponuda_id) values (2, 0, '2018-05-15', 1);
 INSERT INTO rezervacija (registrovani_korisnik_id, potvrdjeno, datum_realizacije, ponuda_ponuda_id) values (1, 0, '2018-05-15', 2);
 
-INSERT INTO ponuda_rezervacija (ponuda_ponuda_id, rezervacija_rezervacija_id) values (1, 1);
-INSERT INTO ponuda_rezervacija (ponuda_ponuda_id, rezervacija_rezervacija_id) values (1, 2);
-INSERT INTO ponuda_rezervacija (ponuda_ponuda_id, rezervacija_rezervacija_id) values (2, 3);
+--INSERT INTO ponuda_rezervacija (ponuda_ponuda_id, rezervacija_rezervacija_id) values (1, 1);
+--INSERT INTO ponuda_rezervacija (ponuda_ponuda_id, rezervacija_rezervacija_id) values (1, 2);
+--INSERT INTO ponuda_rezervacija (ponuda_ponuda_id, rezervacija_rezervacija_id) values (2, 3);
 
 --KOMENTARI
 INSERT INTO komentar (odobren,sadrzaj,registrovani_korisnik_id,smestaj_smestaj_id) VALUES (false,'Pogled je prelep.',2,4);

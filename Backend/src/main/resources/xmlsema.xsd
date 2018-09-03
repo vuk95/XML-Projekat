@@ -283,7 +283,7 @@
             <xs:element name="Agent" type="ag:Agent"/>
             <xs:element name="procitana" type="xs:boolean"/>
             <xs:element name="sadrzaj" type="xs:string"/>
-            
+            <xs:element name="idPrimljene" type="xs:long"/>
             
         </xs:sequence>
         
