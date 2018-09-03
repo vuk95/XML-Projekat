@@ -29,7 +29,6 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="naziv" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="Image" type="{admin.xmlws.com/backend}Image" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="Ponuda" type="{admin.xmlws.com/backend}Ponuda" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="Komentar" type="{admin.xmlws.com/backend}Komentar" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="Parking" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="Wifi" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="Dorucak" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
@@ -60,7 +59,6 @@ import javax.xml.bind.annotation.XmlType;
     "naziv",
     "image",
     "ponuda",
-    "komentar",
     "parking",
     "wifi",
     "dorucak",
@@ -93,8 +91,6 @@ public class Smestaj {
     protected List<Image> image;
     @XmlElement(name = "Ponuda")
     protected List<Ponuda> ponuda;
-    @XmlElement(name = "Komentar")
-    protected List<Komentar> komentar;
     @XmlElement(name = "Parking")
     protected boolean parking;
     @XmlElement(name = "Wifi")
@@ -347,35 +343,6 @@ public class Smestaj {
             ponuda = new ArrayList<Ponuda>();
         }
         return this.ponuda;
-    }
-
-    /**
-     * Gets the value of the komentar property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the komentar property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getKomentar().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Komentar }
-     * 
-     * 
-     */
-    public List<Komentar> getKomentar() {
-        if (komentar == null) {
-            komentar = new ArrayList<Komentar>();
-        }
-        return this.komentar;
     }
 
     /**
