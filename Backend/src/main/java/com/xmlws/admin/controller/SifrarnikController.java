@@ -41,6 +41,17 @@ public class SifrarnikController {
 		return new ResponseEntity<>(sifrarnikService.findOne(id), HttpStatus.OK);
 	}
 	
+	@CrossOrigin
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<?> updateOne(@PathVariable Long id, @RequestBody SifrarnikDTO dto) {
+		Sifrarnik sifra = sifrarnikService.findOne(id);
+		sifra.setSifra(dto.getSifra());
+		sifra.setVrednost(dto.getVrednost());
+		
+		sifrarnikService.save(sifra);
+		
+		return new ResponseEntity<>(sifra, HttpStatus.OK);
+	}
 	
 
 }

@@ -60,7 +60,45 @@
 				$("#addModal").modal('toggle');
 			});
 			
+			$("#edit-btn").click(function() {
+				formData = JSON.stringify({
+					sifra:$("#editForm [name='sifra-edit']").val(),
+					vrednost:$("#editForm [name='vrednost-edit']").val(),
+				});
+				id = $("#editForm [name='id-edit']").val();
+				
+				$.ajax({
+					url: "http://localhost:8085/codes/" + id,
+					type: "PUT",
+					data: formData,
+					contentType: "application/json",
+					datatype: 'json',
+					success: function(data) {
+						top.location.href = "/codebook.html";
+					},
+					error: function(data) {
+						alert("Doslo je do greske!");
+					}
+				});
+				$("#editModal").modal('toggle');
+			});
+			
 		});
+	    
+	    $(document).on("click", "#edit", function(event){
+	    	event.preventDefault();
+	    	
+	    	var url = $(this).attr("href");
+	    	$.ajax({
+	    		url: url,
+	    		success: function(data) {
+	    			$("#editModal").modal('show');
+	    			$("#editForm [name='sifra-edit']").val(data.sifra);
+	    			$("#editForm [name='vrednost-edit']").val(data.vrednost);
+	    			$("#editForm [name='id-edit']").val(data.id);
+	    		}
+	    	});
+	    });
     </script>
 </head>
 <body>
@@ -131,6 +169,31 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
 		        		<button type="button" class="btn btn-primary" id="add">Potvrda</button>
+					</div>
+					</form>
+				</div>			
+			</div>
+		</div>
+		
+		<div class="modal fade" id="editModal" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Podaci o šifri</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          			<span aria-hidden="true">&times;</span>
+		        		</button>
+					</div>
+					<form id="editForm">
+					<div class="modal-body">
+						<input type="hidden" name="id-edit">
+						<input type="text" class="form-control" name="sifra-edit" placeholder="Šifra">
+						<br>
+						<input type="text" class="form-control" name="vrednost-edit" placeholder="Vrednost">
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+		        		<button type="button" class="btn btn-primary" id="edit-btn">Potvrda</button>
 					</div>
 					</form>
 				</div>			

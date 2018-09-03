@@ -18,6 +18,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 /**
  * <p>Java class for RegistrovaniKorisnik complex type.
@@ -46,10 +48,12 @@ public class RegistrovaniKorisnik
 	 @OneToMany(cascade = CascadeType.ALL)
 	 private List<Rezervacija> rezervacije;
 	 
+	 @JsonIgnore
 	 @XmlTransient
 	 @OneToMany(cascade = CascadeType.ALL)
 	 protected List<Komentar> komentari;
 	 
+	 @JsonIgnore
 	 @XmlTransient
 	 @OneToMany(cascade = CascadeType.ALL)
 	 private List<Poruka> poruke;
