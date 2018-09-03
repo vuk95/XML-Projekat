@@ -20,7 +20,7 @@ INSERT INTO korisnik(dtype,email,ime,lozinka,prezime,zabranjen,poslovni_maticni_
 INSERT INTO smestaj (kategorija,lokacija,naziv,ocena,opis,tip, parking, wifi, dorucak, polupansion, pansion, tv, kuhinja, kupatilo,agent_id, sifrarnik_id, zauzet) 
 values ('1','Vrbas','Hotel Backa','2','Jedini hotel u Vrbasu','Hotel', 1, 1, 1, 0, 0, 1, 1, 0,13,null, 0);
 INSERT INTO smestaj (kategorija,lokacija,naziv,ocena,opis,tip, parking, wifi, dorucak, polupansion, pansion, tv, kuhinja, kupatilo,agent_id, sifrarnik_id, zauzet) 
-values ('4','Novi Sad','Hotel Aleksandar','2','Najlepsi hotel u Novom Sadu','Hotel',1, 1, 1, 0, 0, 1, 1, 0,14,null, 0);
+values ('4','Novi Sad','Hotel Aleksandar','4','Najlepsi hotel u Novom Sadu','Hotel',1, 1, 1, 0, 0, 1, 1, 0,14,null, 0);
 INSERT INTO smestaj (kategorija,lokacija,naziv,ocena,opis,tip, parking, wifi, dorucak, polupansion, pansion, tv, kuhinja, kupatilo,agent_id, sifrarnik_id, zauzet) 
 values ('5','Beograd','Crowne Plaza','2','Jedan od najluksuznijih hotela u Srbiji','Hotel',1, 1, 1, 1, 1, 1, 1, 0,15,null, 0);
 INSERT INTO smestaj (kategorija,lokacija,naziv,ocena,opis,tip, parking, wifi, dorucak, polupansion, pansion, tv, kuhinja, kupatilo,agent_id, sifrarnik_id, zauzet) 
@@ -52,6 +52,10 @@ INSERT INTO rezervacija (registrovani_korisnik_id, potvrdjeno, datum_realizacije
 --INSERT INTO ponuda_rezervacija (ponuda_ponuda_id, rezervacija_rezervacija_id) values (1, 1);
 --INSERT INTO ponuda_rezervacija (ponuda_ponuda_id, rezervacija_rezervacija_id) values (1, 2);
 --INSERT INTO ponuda_rezervacija (ponuda_ponuda_id, rezervacija_rezervacija_id) values (2, 3);
+
+--OCENE
+INSERT INTO ocena (rating, registrovani_korisnik_id, smestaj_smestaj_id) VALUES (2,1,1);
+INSERT INTO ocena (rating, registrovani_korisnik_id, smestaj_smestaj_id) VALUES (4,1,2);
 
 --KOMENTARI
 INSERT INTO komentar (odobren,sadrzaj,registrovani_korisnik_id,smestaj_smestaj_id) VALUES (false,'Pogled je prelep.',2,4);

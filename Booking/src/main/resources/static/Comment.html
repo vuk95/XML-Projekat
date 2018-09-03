@@ -54,6 +54,32 @@ $(document).ready(function(){
 			});
 		
 	});
+	
+	$("#ocena-btn").click(function(){
+		//formData = JSON.stringify({
+		//	rating:$("#rating-select").val()
+		//});
+		
+		formData = $("#rating-select").val();
+		
+		console.log(formData);
+		
+		$.ajax({
+			url: "http://localhost:8085/comments/ocena/" + queryString ,
+			type: "POST",
+			data: formData,
+			contentType: "application/json",
+			datatype: 'json',
+			success: function(data) {
+				alert('Ocena je uspesno dodata!');
+				var qs = decodeURIComponent(window.location.search);
+				window.location.href = "MyReservations.html" + qs;
+			},
+			error: function(data) {
+				alert('Slanje ocene nije uspelo!');
+			}
+		});
+	});
 });
 
 </script>
@@ -120,6 +146,23 @@ top: 0px;
                   </div>
                   </div>
                 </form>
+	</div>
+	<div class="row">
+		<h3>Ostavi ocenu <span class="glyphicon glyphicon-star"></span></h3>
+		<form id="ocenaForm">
+			<div class="row">
+				<select class="form-control" name="rating" id="rating-select">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>
+			</div>
+			<div class="row">
+				<button type="button" id="ocena-btn" class="btn main-btn pull-right">Oceni</button>
+			</div>
+		</form>
 	</div>
 </div>
 

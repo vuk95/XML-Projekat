@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.xmlws.admin.backend.Komentar;
+import com.xmlws.admin.backend.Ocena;
 import com.xmlws.admin.backend.RegistrovaniKorisnik;
 import com.xmlws.admin.backend.Rezervacija;
 import com.xmlws.admin.backend.Smestaj;
 import com.xmlws.admin.service.KomentarService;
+import com.xmlws.admin.service.OcenaService;
 import com.xmlws.admin.service.RegistrovaniKorisnikService;
 import com.xmlws.admin.service.RezervaciijaService;
 import com.xmlws.admin.service.SmService;
@@ -38,6 +40,9 @@ public class KomentarController {
 	
 	@Autowired
 	private SmService smestajService;
+	
+	@Autowired
+	private OcenaService ocenaService;
 	
 	@CrossOrigin
 	@RequestMapping(value = "/unapproved", method = RequestMethod.GET)
@@ -94,6 +99,20 @@ public class KomentarController {
 		smestajService.save(smestaj);
 		
 		return new ResponseEntity<>(newComment,HttpStatus.OK);
+	}
+	
+	@CrossOrigin
+	@RequestMapping(value = "/ocena/{id}" , method = RequestMethod.POST, consumes="application/json")
+	public ResponseEntity<Ocena> novaOcena(@PathVariable Long id,@RequestBody String rating) {
+		Rezervacija rezervacija = rezervacijaService.findOne(id);
+		Smestaj smestaj = rezervacija.getPonuda().getSmestaj();
+		Long userId = (long) 1;
+		RegistrovaniKorisnik korisnik  = registrovaniService.findById(userId);
+		int ratingInt = Integer.parseInt(rating);
+		
+		Ocena ocena = ocenaService.novaOcena(ratingInt, smestaj, korisnik);
+		
+		return new ResponseEntity<>(ocena,HttpStatus.OK);
 	}
 	
 	//ovde nesto kenja
