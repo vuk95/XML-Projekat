@@ -12,10 +12,14 @@ import com.xmlws.admin.backend.AddImageRequest;
 import com.xmlws.admin.backend.AddImageResponse;
 import com.xmlws.admin.backend.AddPonudaRequest;
 import com.xmlws.admin.backend.AddPonudaResponse;
+import com.xmlws.admin.backend.AddPorukaRequest;
+import com.xmlws.admin.backend.AddPorukaResponse;
 import com.xmlws.admin.backend.AddSmestajRequest;
 import com.xmlws.admin.backend.AddSmestajResponse;
 import com.xmlws.admin.backend.GetAllPonudaRequest;
 import com.xmlws.admin.backend.GetAllPonudaResponse;
+import com.xmlws.admin.backend.GetAllPorukeRequest;
+import com.xmlws.admin.backend.GetAllPorukeResponse;
 import com.xmlws.admin.backend.GetAllRezervacijaRequest;
 import com.xmlws.admin.backend.GetAllRezervacijaResponse;
 import com.xmlws.admin.backend.GetAllSmRequest;
@@ -27,17 +31,22 @@ import com.xmlws.admin.backend.GetPonudaResponse;
 import com.xmlws.admin.backend.GetSmestajRequest;
 import com.xmlws.admin.backend.GetSmestajResponse;
 import com.xmlws.admin.backend.Ponuda;
+import com.xmlws.admin.backend.Poruka;
 import com.xmlws.admin.backend.Rezervacija;
 import com.xmlws.admin.backend.Smestaj;
 import com.xmlws.admin.backend.UpdateRezervacijaRequest;
 import com.xmlws.admin.backend.UpdateRezervacijaResponse;
 import com.xmlws.admin.service.ImageService;
 import com.xmlws.admin.service.OfferSoapService;
+import com.xmlws.admin.service.PorukaService;
 import com.xmlws.admin.service.RezervaciijaService;
 import com.xmlws.admin.service.SmService;
 
 @Endpoint
 public class BackendEndpoint {
+	
+	@Autowired
+	private PorukaService msgService;
 	
 	@Autowired
 	private SmService smestajService;
@@ -168,5 +177,28 @@ public class BackendEndpoint {
 		response.setRezervacija(rezerList);
         return response;
         
+    }
+	
+	@PayloadRoot(namespace = "admin.xmlws.com/backend",
+            localPart = "getAllPorukeRequest")
+    @ResponsePayload
+    public GetAllPorukeResponse getAllPoruke(@RequestPayload GetAllPorukeRequest request) {
+		GetAllPorukeResponse response = new GetAllPorukeResponse();
+		
+		List<Poruka> porukaList= msgService.findAll();
+	
+		response.setPoruka(porukaList);
+        return response;
+        
+    }
+	
+	@PayloadRoot(namespace = "admin.xmlws.com/backend",
+            localPart = "addPorukaRequest")
+    @ResponsePayload
+    public AddPorukaResponse addPoruka(@RequestPayload AddPorukaRequest request) {
+		AddPorukaResponse response = new AddPorukaResponse();
+		
+		response.setPoruka(msgService.save(request.getPoruka()));
+        return response;
     }
 }

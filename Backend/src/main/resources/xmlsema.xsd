@@ -34,6 +34,22 @@
         </xs:complexType>
     </xs:element>
 	
+	            	<xs:element name="getAllPorukeRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getAllPorukeResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="Poruka" type="ag:Poruka"/> 
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+	
 	<xs:element name="getPonudaRequest">
         <xs:complexType>
             <xs:sequence>
@@ -178,6 +194,22 @@
         </xs:complexType>
     </xs:element>
 	
+		    <xs:element name="addPorukaRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Poruka" type="ag:Poruka"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="addPorukaResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Poruka" type="ag:Poruka"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>  
+	
     <xs:complexType name="Smestaj">
         <xs:sequence>
         	<xs:element name="Agent" type="ag:Agent"/>
@@ -283,7 +315,7 @@
             <xs:element name="Agent" type="ag:Agent"/>
             <xs:element name="procitana" type="xs:boolean"/>
             <xs:element name="sadrzaj" type="xs:string"/>
-            <xs:element name="idPrimljene" type="xs:long"/>
+            <xs:element name="idPrimljene" minOccurs="0" type="xs:long"/>
             
         </xs:sequence>
         

@@ -60,6 +60,10 @@ INSERT INTO komentar (odobren,sadrzaj,registrovani_korisnik_id,smestaj_smestaj_i
 INSERT INTO komentar (odobren,sadrzaj,registrovani_korisnik_id,smestaj_smestaj_id) VALUES (true,'Prosecan',5,1);
 INSERT INTO komentar (odobren,sadrzaj,registrovani_korisnik_id,smestaj_smestaj_id) VALUES (false,'Hrana je solidna',6,5);
 
+insert into poruka(registrovani_korisnik_id, agent_id, procitana, sadrzaj, id_primljene) values (1, 13, 0, 'abc', null);
+insert into poruka(registrovani_korisnik_id, agent_id, procitana, sadrzaj, id_primljene) values (2, 13, 0, 'abcefg', null);
+insert into poruka(registrovani_korisnik_id, agent_id, procitana, sadrzaj, id_primljene) values (1, 14, 0, 'abc', null);
+
 -- SIFRE
 INSERT INTO sifrarnik(sifra, vrednost) VALUES ('352','hotel');
 INSERT INTO sifrarnik(sifra, vrednost) VALUES ('353','apartman');
