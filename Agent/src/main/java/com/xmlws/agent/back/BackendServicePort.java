@@ -25,54 +25,6 @@ public interface BackendServicePort {
 
     /**
      * 
-     * @param addImageRequest
-     * @return
-     *     returns com.xmlws.admin.backend.AddImageResponse
-     */
-    @WebMethod
-    @WebResult(name = "addImageResponse", targetNamespace = "admin.xmlws.com/backend", partName = "addImageResponse")
-    public AddImageResponse addImage(
-        @WebParam(name = "addImageRequest", targetNamespace = "admin.xmlws.com/backend", partName = "addImageRequest")
-        AddImageRequest addImageRequest);
-
-    /**
-     * 
-     * @param getAllPonudaRequest
-     * @return
-     *     returns com.xmlws.admin.backend.GetAllPonudaResponse
-     */
-    @WebMethod
-    @WebResult(name = "getAllPonudaResponse", targetNamespace = "admin.xmlws.com/backend", partName = "getAllPonudaResponse")
-    public GetAllPonudaResponse getAllPonuda(
-        @WebParam(name = "getAllPonudaRequest", targetNamespace = "admin.xmlws.com/backend", partName = "getAllPonudaRequest")
-        GetAllPonudaRequest getAllPonudaRequest);
-
-    /**
-     * 
-     * @param getAllRezervacijaRequest
-     * @return
-     *     returns com.xmlws.admin.backend.GetAllRezervacijaResponse
-     */
-    @WebMethod
-    @WebResult(name = "getAllRezervacijaResponse", targetNamespace = "admin.xmlws.com/backend", partName = "getAllRezervacijaResponse")
-    public GetAllRezervacijaResponse getAllRezervacija(
-        @WebParam(name = "getAllRezervacijaRequest", targetNamespace = "admin.xmlws.com/backend", partName = "getAllRezervacijaRequest")
-        GetAllRezervacijaRequest getAllRezervacijaRequest);
-
-    /**
-     * 
-     * @param getAllSmRequest
-     * @return
-     *     returns com.xmlws.admin.backend.GetAllSmResponse
-     */
-    @WebMethod
-    @WebResult(name = "getAllSmResponse", targetNamespace = "admin.xmlws.com/backend", partName = "getAllSmResponse")
-    public GetAllSmResponse getAllSm(
-        @WebParam(name = "getAllSmRequest", targetNamespace = "admin.xmlws.com/backend", partName = "getAllSmRequest")
-        GetAllSmRequest getAllSmRequest);
-
-    /**
-     * 
      * @param getRezervacijaRequest
      * @return
      *     returns com.xmlws.admin.backend.GetRezervacijaResponse
@@ -82,18 +34,6 @@ public interface BackendServicePort {
     public GetRezervacijaResponse getRezervacija(
         @WebParam(name = "getRezervacijaRequest", targetNamespace = "admin.xmlws.com/backend", partName = "getRezervacijaRequest")
         GetRezervacijaRequest getRezervacijaRequest);
-
-    /**
-     * 
-     * @param getSmestajRequest
-     * @return
-     *     returns com.xmlws.admin.backend.GetSmestajResponse
-     */
-    @WebMethod
-    @WebResult(name = "getSmestajResponse", targetNamespace = "admin.xmlws.com/backend", partName = "getSmestajResponse")
-    public GetSmestajResponse getSmestaj(
-        @WebParam(name = "getSmestajRequest", targetNamespace = "admin.xmlws.com/backend", partName = "getSmestajRequest")
-        GetSmestajRequest getSmestajRequest);
 
     /**
      * 
@@ -121,18 +61,6 @@ public interface BackendServicePort {
 
     /**
      * 
-     * @param getPonudaRequest
-     * @return
-     *     returns com.xmlws.admin.backend.GetPonudaResponse
-     */
-    @WebMethod
-    @WebResult(name = "getPonudaResponse", targetNamespace = "admin.xmlws.com/backend", partName = "getPonudaResponse")
-    public GetPonudaResponse getPonuda(
-        @WebParam(name = "getPonudaRequest", targetNamespace = "admin.xmlws.com/backend", partName = "getPonudaRequest")
-        GetPonudaRequest getPonudaRequest);
-
-    /**
-     * 
      * @param getAllSmestajRequest
      * @return
      *     returns com.xmlws.admin.backend.GetAllSmestajResponse
@@ -154,5 +82,101 @@ public interface BackendServicePort {
     public UpdateRezervacijaResponse updateRezervacija(
         @WebParam(name = "updateRezervacijaRequest", targetNamespace = "admin.xmlws.com/backend", partName = "updateRezervacijaRequest")
         UpdateRezervacijaRequest updateRezervacijaRequest);
+
+    /**
+     * 
+     * @param getAllRezervacijaRequest
+     * @return
+     *     returns com.xmlws.admin.backend.GetAllRezervacijaResponse
+     */
+    @WebMethod
+    @WebResult(name = "getAllRezervacijaResponse", targetNamespace = "admin.xmlws.com/backend", partName = "getAllRezervacijaResponse")
+    public GetAllRezervacijaResponse getAllRezervacija(
+        @WebParam(name = "getAllRezervacijaRequest", targetNamespace = "admin.xmlws.com/backend", partName = "getAllRezervacijaRequest")
+        GetAllRezervacijaRequest getAllRezervacijaRequest);
+
+    /**
+     * 
+     * @param addImageRequest
+     * @return
+     *     returns com.xmlws.admin.backend.AddImageResponse
+     */
+    @WebMethod
+    @WebResult(name = "addImageResponse", targetNamespace = "admin.xmlws.com/backend", partName = "addImageResponse")
+    public AddImageResponse addImage(
+        @WebParam(name = "addImageRequest", targetNamespace = "admin.xmlws.com/backend", partName = "addImageRequest")
+        AddImageRequest addImageRequest);
+
+    /**
+     * 
+     * @param getAllPonudaRequest
+     * @return
+     *     returns com.xmlws.admin.backend.GetAllPonudaResponse
+     */
+    @WebMethod
+    @WebResult(name = "getAllPonudaResponse", targetNamespace = "admin.xmlws.com/backend", partName = "getAllPonudaResponse")
+    public GetAllPonudaResponse getAllPonuda(
+        @WebParam(name = "getAllPonudaRequest", targetNamespace = "admin.xmlws.com/backend", partName = "getAllPonudaRequest")
+        GetAllPonudaRequest getAllPonudaRequest);
+
+    /**
+     * 
+     * @param addPorukaRequest
+     * @return
+     *     returns com.xmlws.admin.backend.AddPorukaResponse
+     */
+    @WebMethod
+    @WebResult(name = "addPorukaResponse", targetNamespace = "admin.xmlws.com/backend", partName = "addPorukaResponse")
+    public AddPorukaResponse addPoruka(
+        @WebParam(name = "addPorukaRequest", targetNamespace = "admin.xmlws.com/backend", partName = "addPorukaRequest")
+        AddPorukaRequest addPorukaRequest);
+
+    /**
+     * 
+     * @param getAllSmRequest
+     * @return
+     *     returns com.xmlws.admin.backend.GetAllSmResponse
+     */
+    @WebMethod
+    @WebResult(name = "getAllSmResponse", targetNamespace = "admin.xmlws.com/backend", partName = "getAllSmResponse")
+    public GetAllSmResponse getAllSm(
+        @WebParam(name = "getAllSmRequest", targetNamespace = "admin.xmlws.com/backend", partName = "getAllSmRequest")
+        GetAllSmRequest getAllSmRequest);
+
+    /**
+     * 
+     * @param getSmestajRequest
+     * @return
+     *     returns com.xmlws.admin.backend.GetSmestajResponse
+     */
+    @WebMethod
+    @WebResult(name = "getSmestajResponse", targetNamespace = "admin.xmlws.com/backend", partName = "getSmestajResponse")
+    public GetSmestajResponse getSmestaj(
+        @WebParam(name = "getSmestajRequest", targetNamespace = "admin.xmlws.com/backend", partName = "getSmestajRequest")
+        GetSmestajRequest getSmestajRequest);
+
+    /**
+     * 
+     * @param getAllPorukeRequest
+     * @return
+     *     returns com.xmlws.admin.backend.GetAllPorukeResponse
+     */
+    @WebMethod
+    @WebResult(name = "getAllPorukeResponse", targetNamespace = "admin.xmlws.com/backend", partName = "getAllPorukeResponse")
+    public GetAllPorukeResponse getAllPoruke(
+        @WebParam(name = "getAllPorukeRequest", targetNamespace = "admin.xmlws.com/backend", partName = "getAllPorukeRequest")
+        GetAllPorukeRequest getAllPorukeRequest);
+
+    /**
+     * 
+     * @param getPonudaRequest
+     * @return
+     *     returns com.xmlws.admin.backend.GetPonudaResponse
+     */
+    @WebMethod
+    @WebResult(name = "getPonudaResponse", targetNamespace = "admin.xmlws.com/backend", partName = "getPonudaResponse")
+    public GetPonudaResponse getPonuda(
+        @WebParam(name = "getPonudaRequest", targetNamespace = "admin.xmlws.com/backend", partName = "getPonudaRequest")
+        GetPonudaRequest getPonudaRequest);
 
 }

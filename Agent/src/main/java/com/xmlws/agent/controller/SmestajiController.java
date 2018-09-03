@@ -2,6 +2,7 @@ package com.xmlws.agent.controller;
 
 import java.util.ArrayList;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.xmlws.agent.back.AddPonudaRequest;
 import com.xmlws.agent.back.AddPonudaResponse;
+import com.xmlws.agent.back.AddPorukaRequest;
+import com.xmlws.agent.back.AddPorukaResponse;
 import com.xmlws.agent.back.AddSmestajRequest;
 import com.xmlws.agent.back.AddSmestajResponse;
 import com.xmlws.agent.back.BackendServicePort;
@@ -446,6 +449,26 @@ public class SmestajiController {
 		map.put("registrovaniKorisnik", porukaService.findOne(id).getRegistrovaniKorisnik());
 		map.put("id", id);
 		
+		com.xmlws.agent.back.Poruka demoPoruka = new com.xmlws.agent.back.Poruka();
+		demoPoruka.setId(p.getId());
+		demoPoruka.setIdPrimljene(p.getIdPrimljene());
+		demoPoruka.setProcitana(p.isProcitana());
+		demoPoruka.setSadrzaj(p.getSadrzaj());
+		
+		ModelMapper modelMapper =new ModelMapper();
+		com.xmlws.agent.back.Agent demoAgent = modelMapper.map(p.getAgent(), com.xmlws.agent.back.Agent.class);
+		demoPoruka.setAgent(demoAgent);
+		com.xmlws.agent.back.RegistrovaniKorisnik demoRegKorisnik = modelMapper.map(p.getRegistrovaniKorisnik(), com.xmlws.agent.back.RegistrovaniKorisnik.class);
+		demoPoruka.setRegistrovaniKorisnik(demoRegKorisnik);
+		
+		BackendServicePortService backServicePortService = new BackendServicePortService();
+		BackendServicePort port = backServicePortService.getBackendServicePortSoap11();
+		AddPorukaRequest addPorukaRequest = new AddPorukaRequest();
+		addPorukaRequest.setPoruka(demoPoruka);
+		AddPorukaResponse addPorukaResponse = port.addPoruka(addPorukaRequest);
+		
+		System.out.println("U glavnu bazu poruka upisana: " + addPorukaResponse.getPoruka().getId());
+		
 		return "addPoruka";
 		
 	}
@@ -460,10 +483,51 @@ public class SmestajiController {
 		primljena.setProcitana(true);
 		porukaService.save(primljena);
 		
+		com.xmlws.agent.back.Poruka demoPrimljenaPoruka = new com.xmlws.agent.back.Poruka();
+		demoPrimljenaPoruka.setId(primljena.getId());
+		demoPrimljenaPoruka.setIdPrimljene(primljena.getIdPrimljene());
+		demoPrimljenaPoruka.setProcitana(primljena.isProcitana());
+		demoPrimljenaPoruka.setSadrzaj(primljena.getSadrzaj());
+		
+		ModelMapper modelMapper =new ModelMapper();
+		com.xmlws.agent.back.Agent demoAgent = modelMapper.map(primljena.getAgent(), com.xmlws.agent.back.Agent.class);
+		demoPrimljenaPoruka.setAgent(demoAgent);
+		com.xmlws.agent.back.RegistrovaniKorisnik demoRegKorisnik = modelMapper.map(primljena.getRegistrovaniKorisnik(), com.xmlws.agent.back.RegistrovaniKorisnik.class);
+		demoPrimljenaPoruka.setRegistrovaniKorisnik(demoRegKorisnik);
+		
+		BackendServicePortService backServicePortService = new BackendServicePortService();
+		BackendServicePort port = backServicePortService.getBackendServicePortSoap11();
+		
+		AddPorukaRequest addPorukaRequest = new AddPorukaRequest();
+		addPorukaRequest.setPoruka(demoPrimljenaPoruka);
+		AddPorukaResponse addPorukaResponse = port.addPoruka(addPorukaRequest);
+		
+		System.out.println("U glavnu bazu upisana primljena poruka: " + addPorukaResponse.getPoruka().getId());
+		
+		
 		zaSlanje.setSadrzaj(por.getSadrzaj());
 		zaSlanje.setIdPrimljene(id);
 		
 		porukaService.save(zaSlanje);
+		
+		com.xmlws.agent.back.Poruka demoPoruka = new com.xmlws.agent.back.Poruka();
+		demoPoruka.setId(zaSlanje.getId());
+		demoPoruka.setIdPrimljene(zaSlanje.getIdPrimljene());
+		demoPoruka.setProcitana(zaSlanje.isProcitana());
+		demoPoruka.setSadrzaj(zaSlanje.getSadrzaj());
+		
+		ModelMapper modelMapper2 =new ModelMapper();
+		com.xmlws.agent.back.Agent demoAgent2 = modelMapper2.map(zaSlanje.getAgent(), com.xmlws.agent.back.Agent.class);
+		demoPoruka.setAgent(demoAgent2);
+		com.xmlws.agent.back.RegistrovaniKorisnik demoRegKorisnik2 = modelMapper2.map(zaSlanje.getRegistrovaniKorisnik(), com.xmlws.agent.back.RegistrovaniKorisnik.class);
+		demoPoruka.setRegistrovaniKorisnik(demoRegKorisnik2);
+		
+		AddPorukaRequest addPorukaRequest2 = new AddPorukaRequest();
+		addPorukaRequest2.setPoruka(demoPoruka);
+		AddPorukaResponse addPorukaResponse2 = port.addPoruka(addPorukaRequest2);
+		
+		System.out.println("U glavnu bazu dodat sadrzaj poruke: " + addPorukaResponse2.getPoruka().getId());
+		
 		
 		return "redirect:/smestaji/inbox";
 	}
