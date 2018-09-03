@@ -88,6 +88,7 @@ public class KomentarController {
 		return new ResponseEntity<>(newComment,HttpStatus.OK);
 	}
 	
+	//ovde nesto kenja
 	@CrossOrigin
 	@RequestMapping(value = "/com/{id}" ,method = RequestMethod.GET )
 	public ResponseEntity<List<Komentar>> getComments(@PathVariable Long id) {
