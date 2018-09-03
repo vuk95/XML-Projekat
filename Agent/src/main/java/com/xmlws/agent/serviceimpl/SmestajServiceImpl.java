@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.xmlws.agent.model.Agent;
+import com.xmlws.agent.model.Korisnik;
 import com.xmlws.agent.model.Smestaj;
 import com.xmlws.agent.repository.SmestajRepository;
 import com.xmlws.agent.service.SmestajService;
@@ -28,6 +30,11 @@ public class SmestajServiceImpl implements SmestajService{
 	@Override
 	public List<Smestaj> findAll() {
 		return repository.findAll();
+	}
+
+	@Override
+	public List<Smestaj> findByAgent(Korisnik a) {
+		return repository.findByAgent(a);
 	}
 
 }

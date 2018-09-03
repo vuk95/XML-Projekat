@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.xmlws.agent.model.Korisnik;
 import com.xmlws.agent.model.Poruka;
 import com.xmlws.agent.repository.PorukaRepository;
 import com.xmlws.agent.service.PorukaService;
@@ -28,6 +29,11 @@ public class PorukaServiceImpl implements PorukaService{
 	@Override
 	public Poruka findOne(Long id) {
 		return repo.getOne(id);
+	}
+
+	@Override
+	public List<Poruka> findByAgent(Korisnik agent) {
+		return repo.findByAgent(agent);
 	}
 
 }

@@ -3,6 +3,7 @@ package com.xmlws.agent.controller;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +26,12 @@ import com.xmlws.agent.back.GetSmestajRequest;
 import com.xmlws.agent.back.GetSmestajResponse;
 import com.xmlws.agent.back.UpdateRezervacijaRequest;
 import com.xmlws.agent.back.UpdateRezervacijaResponse;
+import com.xmlws.agent.model.Agent;
 import com.xmlws.agent.model.Ponuda;
 import com.xmlws.agent.model.Poruka;
 import com.xmlws.agent.model.Rezervacija;
 import com.xmlws.agent.model.Smestaj;
+import com.xmlws.agent.repository.AgentRepository;
 import com.xmlws.agent.service.PonudaService;
 import com.xmlws.agent.service.PorukaService;
 import com.xmlws.agent.service.RezervacijaService;
@@ -56,7 +59,7 @@ public class SmestajiController {
 	private PorukaService porukaService;
 	
 	@Autowired
-	private UserService korisnickiService;
+	private AgentRepository agentRepository;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index() {
@@ -75,7 +78,15 @@ public class SmestajiController {
 		synchroservice.getAllRezervacija();
 		synchroservice.getAllMessages();
 		
-		map.put("smestaji", sm_service.findAll());
+		//zakucan ulogovan korisnik
+		Agent agent = (Agent) agentRepository.getOne(13l);
+		
+		List<Smestaj> mySmestaji = sm_service.findByAgent(agent);
+		
+		map.put("smestaji", mySmestaji);
+		
+		
+		//map.put("smestaji", sm_service.findAll());
 		return "sviSmestaji";
 		
 	}
@@ -83,7 +94,14 @@ public class SmestajiController {
 	@RequestMapping(value = "/getSviSmestaji", method = RequestMethod.GET)
 	public String sviSmestaji(ModelMap map) {
 		
-		map.put("smestaji", sm_service.findAll());
+		//zakucan ulogovani korisnik
+		Agent agent = (Agent) agentRepository.getOne(13l);
+		
+		List<Smestaj> mySmestaji = sm_service.findByAgent(agent);
+		
+		map.put("smestaji", mySmestaji);
+		
+		//map.put("smestaji", sm_service.findAll());
 		return "sviSmestaji";
 		
 	}
@@ -100,12 +118,21 @@ public class SmestajiController {
 	
 	@RequestMapping(value = "getSviSmestaji/add", method = RequestMethod.POST)
 	public String add(@ModelAttribute("smestaj") Smestaj smestaj, ModelMap map) {
-	
+		
+		//zakucan ulogovani korisnik
+		Agent agent = (Agent) agentRepository.getOne(13l);
+		smestaj.setAgent(agent);
+		
 		sm_service.save(smestaj);
 		
 		com.xmlws.agent.back.Smestaj demoSmestaj = new com.xmlws.agent.back.Smestaj();
 		demoSmestaj.setNaziv(smestaj.getNaziv());
-		demoSmestaj.setAgent(null);
+		
+		ModelMapper modelMapper =new ModelMapper();
+		com.xmlws.agent.back.Agent demoAgent = modelMapper.map(smestaj.getAgent(), com.xmlws.agent.back.Agent.class);
+				
+		demoSmestaj.setAgent(demoAgent);
+		
 		demoSmestaj.setId(smestaj.getId());
 		demoSmestaj.setKategorija(smestaj.getKategorija());
 		demoSmestaj.setLokacija(smestaj.getLokacija());
@@ -143,7 +170,12 @@ public class SmestajiController {
 		
 		com.xmlws.agent.back.Smestaj demoSmestaj = new com.xmlws.agent.back.Smestaj();
 		demoSmestaj.setNaziv(s.getNaziv());
-		demoSmestaj.setAgent(null);
+		
+		ModelMapper modelMapper =new ModelMapper();
+		com.xmlws.agent.back.Agent demoAgent = modelMapper.map(s.getAgent(), com.xmlws.agent.back.Agent.class);
+				
+		demoSmestaj.setAgent(demoAgent);
+		
 		demoSmestaj.setId(s.getId());
 		demoSmestaj.setKategorija(s.getKategorija());
 		demoSmestaj.setLokacija(s.getLokacija());
@@ -181,7 +213,11 @@ public class SmestajiController {
 		
 		com.xmlws.agent.back.Smestaj demoSmestaj = new com.xmlws.agent.back.Smestaj();
 		demoSmestaj.setNaziv(s.getNaziv());
-		demoSmestaj.setAgent(null);
+		
+		ModelMapper modelMapper =new ModelMapper();
+		com.xmlws.agent.back.Agent demoAgent = modelMapper.map(s.getAgent(), com.xmlws.agent.back.Agent.class);
+				
+		demoSmestaj.setAgent(demoAgent);
 		demoSmestaj.setId(s.getId());
 		demoSmestaj.setKategorija(s.getKategorija());
 		demoSmestaj.setLokacija(s.getLokacija());
@@ -431,7 +467,14 @@ public class SmestajiController {
 	@RequestMapping(value = "/inbox", method = RequestMethod.GET)
 	public String inbox(ModelMap map) {
 		
-		map.put("poruke", porukaService.findAll());
+		//zakucan ulogovani korisnik
+		Agent agent = (Agent) agentRepository.getOne(13l);
+		
+		List<Poruka> myPor = porukaService.findByAgent(agent);
+		
+		//map.put("poruke", porukaService.findAll());
+		map.put("poruke", myPor);
+		
 		return "inbox";
 		
 	}
