@@ -10,6 +10,8 @@ import com.xmlws.agent.back.BackendServicePort;
 import com.xmlws.agent.back.BackendServicePortService;
 import com.xmlws.agent.back.GetAllPonudaRequest;
 import com.xmlws.agent.back.GetAllPonudaResponse;
+import com.xmlws.agent.back.GetAllPorukeRequest;
+import com.xmlws.agent.back.GetAllPorukeResponse;
 import com.xmlws.agent.back.GetAllRezervacijaRequest;
 import com.xmlws.agent.back.GetAllRezervacijaResponse;
 import com.xmlws.agent.back.GetAllSmRequest;
@@ -18,13 +20,12 @@ import com.xmlws.agent.back.GetAllSmestajRequest;
 import com.xmlws.agent.back.GetAllSmestajResponse;
 import com.xmlws.agent.model.Smestaj;
 import com.xmlws.agent.model.Ponuda;
+import com.xmlws.agent.model.Poruka;
 import com.xmlws.agent.model.Rezervacija;
 import com.xmlws.agent.repository.PonudaRepository;
+import com.xmlws.agent.repository.PorukaRepository;
 import com.xmlws.agent.repository.RezervacijaRepository;
 import com.xmlws.agent.repository.SmestajRepository;
-import com.xmlws.agent.service.PonudaService;
-import com.xmlws.agent.service.RezervacijaService;
-import com.xmlws.agent.service.SmestajService;
 import com.xmlws.agent.service.SynchronizeService;
 
 @Service
@@ -38,6 +39,10 @@ public class SynchronizeServiceImpl implements SynchronizeService{
 	
 	@Autowired
 	private RezervacijaRepository rRepository;
+	
+	@Autowired
+	private PorukaRepository porukeRepository;
+	
 	
 	@Override
 	public void getAllSmestajByAgent(String email) {
@@ -129,6 +134,29 @@ public class SynchronizeServiceImpl implements SynchronizeService{
 			Rezervacija r = modelMapper.map(rezervacijaDemo, Rezervacija.class);
 			System.out.println(r.getId());
 			rRepository.save(r);
+			
+		}
+		
+	}
+
+
+	@Override
+	public void getAllMessages() {
+		
+		BackendServicePortService backendServicePortService = new BackendServicePortService();
+		BackendServicePort port = backendServicePortService.getBackendServicePortSoap11();
+		GetAllPorukeRequest request = new GetAllPorukeRequest();
+		request.setId("nebitno");
+
+		GetAllPorukeResponse response = port.getAllPoruke(request);
+		
+		List<com.xmlws.agent.back.Poruka> listMsgDemo = response.getPoruka();
+		ModelMapper modelMapper =new ModelMapper();
+		
+		for(com.xmlws.agent.back.Poruka porDemo : listMsgDemo) {
+			Poruka p = modelMapper.map(porDemo, Poruka.class);
+			System.out.println(p.getId());
+			porukeRepository.save(p);
 			
 		}
 		

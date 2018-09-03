@@ -27,7 +27,6 @@ import com.xmlws.agent.model.Ponuda;
 import com.xmlws.agent.model.Poruka;
 import com.xmlws.agent.model.Rezervacija;
 import com.xmlws.agent.model.Smestaj;
-import com.xmlws.agent.repository.UserRepository;
 import com.xmlws.agent.service.PonudaService;
 import com.xmlws.agent.service.PorukaService;
 import com.xmlws.agent.service.RezervacijaService;
@@ -72,6 +71,7 @@ public class SmestajiController {
 		synchroservice.getAllSmestaj();
 		synchroservice.getAllPonuda();
 		synchroservice.getAllRezervacija();
+		synchroservice.getAllMessages();
 		
 		map.put("smestaji", sm_service.findAll());
 		return "sviSmestaji";
