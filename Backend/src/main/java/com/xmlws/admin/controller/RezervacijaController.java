@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.xmlws.admin.backend.Agent;
+import com.xmlws.admin.backend.Komentar;
 import com.xmlws.admin.backend.Korisnik;
 import com.xmlws.admin.backend.Ponuda;
 import com.xmlws.admin.backend.RegistrovaniKorisnik;
@@ -120,4 +121,7 @@ public class RezervacijaController {
 		
 		return new ResponseEntity<>(rezervacija,HttpStatus.OK);
 	}
+
+
+	
 }

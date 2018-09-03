@@ -87,4 +87,17 @@ public class KomentarController {
 		
 		return new ResponseEntity<>(newComment,HttpStatus.OK);
 	}
+	
+	@CrossOrigin
+	@RequestMapping(value = "/com/{id}" ,method = RequestMethod.GET )
+	public ResponseEntity<List<Komentar>> getComments(@PathVariable Long id) {
+		
+		Rezervacija rezervacija = rezervacijaService.findOne(id);
+		
+		Smestaj smestaj = rezervacija.getPonuda().getSmestaj();
+		
+		List<Komentar> komentari = smestaj.getKomentar();
+		
+		return new ResponseEntity<>(komentari,HttpStatus.OK);
+	}
 }

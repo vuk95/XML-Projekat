@@ -60,6 +60,13 @@ INSERT INTO komentar (odobren,sadrzaj,registrovani_korisnik_id,smestaj_smestaj_i
 INSERT INTO komentar (odobren,sadrzaj,registrovani_korisnik_id,smestaj_smestaj_id) VALUES (true,'Prosecan',5,1);
 INSERT INTO komentar (odobren,sadrzaj,registrovani_korisnik_id,smestaj_smestaj_id) VALUES (false,'Hrana je solidna',6,5);
 
+--LISTA KOMENTARA
+INSERT INTO korisnik_komentari (registrovani_korisnik_id,komentari_komentar_id) values (2,1);
+INSERT INTO korisnik_komentari (registrovani_korisnik_id,komentari_komentar_id) values (3,2);
+INSERT INTO korisnik_komentari (registrovani_korisnik_id,komentari_komentar_id) values (8,3);
+INSERT INTO korisnik_komentari (registrovani_korisnik_id,komentari_komentar_id) values (5,4);
+INSERT INTO korisnik_komentari (registrovani_korisnik_id,komentari_komentar_id) values (6,5);
+
 insert into poruka(registrovani_korisnik_id, agent_id, procitana, sadrzaj, id_primljene) values (1, 13, 0, 'abc', null);
 insert into poruka(registrovani_korisnik_id, agent_id, procitana, sadrzaj, id_primljene) values (2, 13, 0, 'abcefg', null);
 insert into poruka(registrovani_korisnik_id, agent_id, procitana, sadrzaj, id_primljene) values (1, 14, 0, 'abc', null);
