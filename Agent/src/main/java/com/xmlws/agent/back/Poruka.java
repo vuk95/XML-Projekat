@@ -23,6 +23,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="procitana" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="sadrzaj" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="idPrimljene" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="datum" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -38,7 +39,8 @@ import javax.xml.bind.annotation.XmlType;
     "agent",
     "procitana",
     "sadrzaj",
-    "idPrimljene"
+    "idPrimljene",
+    "datum"
 })
 public class Poruka {
 
@@ -51,6 +53,8 @@ public class Poruka {
     @XmlElement(required = true)
     protected String sadrzaj;
     protected Long idPrimljene;
+    @XmlElement(required = true)
+    protected String datum;
 
     /**
      * Gets the value of the id property.
@@ -178,6 +182,30 @@ public class Poruka {
      */
     public void setIdPrimljene(Long value) {
         this.idPrimljene = value;
+    }
+
+    /**
+     * Gets the value of the datum property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getDatum() {
+        return datum;
+    }
+
+    /**
+     * Sets the value of the datum property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setDatum(String value) {
+        this.datum = value;
     }
 
 }

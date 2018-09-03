@@ -14,6 +14,7 @@
 				<th>Primaoc</th>
 				<th>Posiljaoc</th>
 				<th>Sadrzaj</th>
+				<th>Datum prijema</th>
 				<th>Odgovori</th>
 			</tr>
 			<tr th:each="poruka, iterStat: ${poruke}">
@@ -22,6 +23,7 @@
 				<td th:if = "${poruka.idPrimljene == null}" th:text="${poruka.agent.email}"></td>
 				<td th:if = "${poruka.idPrimljene == null}" th:text="${poruka.registrovaniKorisnik.email}"></td>
 				<td th:if = "${poruka.idPrimljene == null}" th:text="${poruka.sadrzaj}"></td>
+				<td th:if = "${poruka.idPrimljene == null}" th:text="${poruka.datum}"></td>
 				<td th:if = "${poruka.idPrimljene == null}"> <a th:href="${'/smestaji/inbox/reply/' + poruka.id}">Odgovori</a></td>
 	
 			</tr>
@@ -35,12 +37,14 @@
 				<th>Posiljaoc</th>
 				<th>Primaoc</th>
 				<th>Sadrzaj</th>
+				<th>Datum slanja</th>
 			</tr>
 			<tr th:each="poruka, iterStat: ${poruke}">
 				<td th:if = "${poruka.idPrimljene != null}" th:text="${poruka.idPrimljene}"></td>
 				<td  th:if = "${poruka.idPrimljene != null}" th:text="${poruka.agent.email}"></td>
 				<td  th:if = "${poruka.idPrimljene != null}" th:text="${poruka.registrovaniKorisnik.email}"></td>
 				<td  th:if = "${poruka.idPrimljene != null}" th:text="${poruka.sadrzaj}"></td>
+				<td  th:if = "${poruka.idPrimljene != null}" th:text="${poruka.datum}"></td>
 			</tr>
 		</table>
 		

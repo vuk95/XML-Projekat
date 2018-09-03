@@ -1,6 +1,8 @@
 package com.xmlws.agent.controller;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -454,6 +456,7 @@ public class SmestajiController {
 		demoPoruka.setIdPrimljene(p.getIdPrimljene());
 		demoPoruka.setProcitana(p.isProcitana());
 		demoPoruka.setSadrzaj(p.getSadrzaj());
+		demoPoruka.setDatum(p.getDatum());
 		
 		ModelMapper modelMapper =new ModelMapper();
 		com.xmlws.agent.back.Agent demoAgent = modelMapper.map(p.getAgent(), com.xmlws.agent.back.Agent.class);
@@ -488,6 +491,7 @@ public class SmestajiController {
 		demoPrimljenaPoruka.setIdPrimljene(primljena.getIdPrimljene());
 		demoPrimljenaPoruka.setProcitana(primljena.isProcitana());
 		demoPrimljenaPoruka.setSadrzaj(primljena.getSadrzaj());
+		demoPrimljenaPoruka.setDatum(primljena.getDatum());
 		
 		ModelMapper modelMapper =new ModelMapper();
 		com.xmlws.agent.back.Agent demoAgent = modelMapper.map(primljena.getAgent(), com.xmlws.agent.back.Agent.class);
@@ -508,6 +512,11 @@ public class SmestajiController {
 		zaSlanje.setSadrzaj(por.getSadrzaj());
 		zaSlanje.setIdPrimljene(id);
 		
+		Calendar kalendar = Calendar.getInstance();
+		Date datum = kalendar.getTime();
+		
+		zaSlanje.setDatum(datum.toString());
+		
 		porukaService.save(zaSlanje);
 		
 		com.xmlws.agent.back.Poruka demoPoruka = new com.xmlws.agent.back.Poruka();
@@ -515,6 +524,7 @@ public class SmestajiController {
 		demoPoruka.setIdPrimljene(zaSlanje.getIdPrimljene());
 		demoPoruka.setProcitana(zaSlanje.isProcitana());
 		demoPoruka.setSadrzaj(zaSlanje.getSadrzaj());
+		demoPoruka.setDatum(zaSlanje.getDatum());
 		
 		ModelMapper modelMapper2 =new ModelMapper();
 		com.xmlws.agent.back.Agent demoAgent2 = modelMapper2.map(zaSlanje.getAgent(), com.xmlws.agent.back.Agent.class);

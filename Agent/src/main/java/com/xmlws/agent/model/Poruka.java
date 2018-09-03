@@ -67,6 +67,8 @@ public class Poruka {
     @XmlElement(required = true)
     protected String sadrzaj;
     private Long idPrimljene;
+    @XmlElement(required = true)
+    protected String datum;
 
     /**
      * Gets the value of the id property.
@@ -180,6 +182,29 @@ public class Poruka {
 		this.idPrimljene = idPrimljene;
 	}
     
-    
+	/**
+     * Gets the value of the datum property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getDatum() {
+        return datum;
+    }
+
+    /**
+     * Sets the value of the datum property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setDatum(String value) {
+        this.datum = value;
+    }
+
 
 }

@@ -315,6 +315,7 @@
             <xs:element name="procitana" type="xs:boolean"/>
             <xs:element name="sadrzaj" type="xs:string"/>
             <xs:element name="idPrimljene" minOccurs="0" type="xs:long"/>
+            <xs:element name="datum" type="xs:string"/>
             
         </xs:sequence>
         

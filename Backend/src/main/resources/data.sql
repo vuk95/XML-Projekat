@@ -71,9 +71,9 @@ INSERT INTO moji_komentari (smestaj_id,komentar_id) values (4,1);
 INSERT INTO moji_komentari (smestaj_id,komentar_id) values (5,5);
 INSERT INTO moji_komentari (smestaj_id,komentar_id) values (6,2);
 
-insert into poruka(registrovani_korisnik_id, agent_id, procitana, sadrzaj, id_primljene) values (1, 13, 0, 'abc', null);
-insert into poruka(registrovani_korisnik_id, agent_id, procitana, sadrzaj, id_primljene) values (2, 13, 0, 'abcefg', null);
-insert into poruka(registrovani_korisnik_id, agent_id, procitana, sadrzaj, id_primljene) values (1, 14, 0, 'abc', null);
+insert into poruka(registrovani_korisnik_id, agent_id, procitana, sadrzaj, id_primljene, datum) values (1, 13, 0, 'abc', null, '1-1-2015');
+insert into poruka(registrovani_korisnik_id, agent_id, procitana, sadrzaj, id_primljene, datum) values (2, 13, 0, 'abcefg', null, '4-5-2016');
+insert into poruka(registrovani_korisnik_id, agent_id, procitana, sadrzaj, id_primljene, datum) values (1, 14, 0, 'abc', null, '12-12-2012');
 
 -- SIFRE
 INSERT INTO sifrarnik(sifra, vrednost) VALUES ('352','hotel');
