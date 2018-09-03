@@ -21,8 +21,8 @@ $(document).ready(function(){
 	}).then(
 		function(data) {
 			for(i = 0; i < data.length; i++) {
-				"<table class=\"table table-hover\"><tr><td><strong>" + data[i].registrovaniKorisnik.ime + ":</strong></td></tr>" 
-				+"<tr><td><strong>" + data[i].registrovaniKorisnik.ime + ":</strong></td></tr>" 
+				info = "<table class=\"table table-hover\"><tr><td><strong>" + data[i].registrovaniKorisnik.ime + ":</strong></td></tr>" 
+				+"<tr><td><strong>" + data[i].sadrzaj + ":</strong></td></tr>" 
 				$("#komentar").append(info);
 			}
 		}

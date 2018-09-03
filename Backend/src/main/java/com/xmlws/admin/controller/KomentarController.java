@@ -21,6 +21,7 @@ import com.xmlws.admin.backend.Smestaj;
 import com.xmlws.admin.service.KomentarService;
 import com.xmlws.admin.service.RegistrovaniKorisnikService;
 import com.xmlws.admin.service.RezervaciijaService;
+import com.xmlws.admin.service.SmService;
 
 @RestController
 @RequestMapping(value = "/comments")
@@ -34,6 +35,9 @@ public class KomentarController {
 	
 	@Autowired
 	private RegistrovaniKorisnikService registrovaniService;
+	
+	@Autowired
+	private SmService smestajService;
 	
 	@CrossOrigin
 	@RequestMapping(value = "/unapproved", method = RequestMethod.GET)
@@ -82,8 +86,12 @@ public class KomentarController {
 		
 		RegistrovaniKorisnik korisnik  = registrovaniService.findById(userId);
 		komentar.setRegistrovaniKorisnik(korisnik);
-		
+				
 		Komentar newComment = komentarService.save(komentar);
+		
+		smestaj.getKomentar().add(newComment);
+		
+		smestajService.save(smestaj);
 		
 		return new ResponseEntity<>(newComment,HttpStatus.OK);
 	}

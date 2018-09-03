@@ -24,6 +24,7 @@ import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 import org.hibernate.annotations.LazyCollection;
@@ -131,11 +132,12 @@ public class Smestaj {
 	@JsonIgnore
     protected List<Ponuda> ponuda;
     @XmlElement(name = "Komentar")
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @LazyCollection(LazyCollectionOption.FALSE)    
     @OneToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "mojiKomentari",
 				joinColumns = @JoinColumn(name = "smestaj_id", referencedColumnName = "smestaj_id"),
 				inverseJoinColumns = @JoinColumn(name = "komentar_id", referencedColumnName = "komentar_id"))
+    @XmlTransient
     @JsonIgnore
     protected List<Komentar> komentar;
     @XmlElement(name = "Parking")
